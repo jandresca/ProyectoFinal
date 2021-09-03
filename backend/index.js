@@ -4,6 +4,7 @@ const { dbConnection } = require("./db/db");
 const Role = require("./routes/role");
 const User = require("./routes/user");
 const Board = require("./routes/board");
+const Panel = require("./routes/panel");
 require("dotenv").config();
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(cors());
 app.use("/api/role", Role);
 app.use("/api/user", User);
 app.use("/api/board", Board);
+app.use("/api/panel", Panel);
 app.use("/uploads", express.static("uploads"));
 
 app.listen(process.env.PORT, () =>

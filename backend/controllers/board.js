@@ -5,11 +5,12 @@ const path = require("path");
 const moment = require("moment");
 
 const saveTask = async (req, res) => {
-  if (!req.body.name || !req.body.description)
+  if (!req.body.name || !req.body.description || !req.body.panelId)
     return res.status(400).send("Incomplete data");
 
   const board = new Board({
     userId: req.user._id,
+    panelId: req.body.panelId,
     name: req.body.name,
     description: req.body.description,
     taskStatus: "to-do",
@@ -21,7 +22,14 @@ const saveTask = async (req, res) => {
 };
 
 const listTask = async (req, res) => {
-  const board = await Board.find({ userId: req.user._id });
+
+  // const validId = mongoose.Types.ObjectId.isValid(req.params.panelId);
+  // if (!validId) return res.status(400).send("Invalid id");
+
+  const board = await Board.find(
+    { userId: req.user._id,panelId: req.params._id}
+  );
+
   if (!board || board.length === 0)
     return res.status(400).send("You have no assigned tasks");
   return res.status(200).send({ board });
@@ -47,6 +55,7 @@ const saveTaskImg = async (req, res) => {
 
   const board = new Board({
     userId: req.user._id,
+    panelId: req.panel._id,
     name: req.body.name,
     description: req.body.description,
     taskStatus: "to-do",
@@ -61,6 +70,9 @@ const saveTaskImg = async (req, res) => {
 const updateTask = async (req, res) => {
   let validId = mongoose.Types.ObjectId.isValid(req.body._id);
   if (!validId) return res.status(400).send("Invalid id");
+
+  let validIdPanel = mongoose.Types.ObjectId.isValid(req.panel._id);
+  if (!validIdPanel) return res.status(400).send("Invalid id");
 
   if (!req.body._id || !req.body.taskStatus)
     return res.status(400).send("Incomplete data");

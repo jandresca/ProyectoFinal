@@ -16,7 +16,7 @@ router.post(
   ValidateUser,
   BoardController.saveTaskImg
 );
-router.get("/listTask", Auth, ValidateUser, BoardController.listTask);
+router.get("/listTask/:_id", Auth, ValidateUser, BoardController.listTask);
 router.put("/updateTask", Auth, ValidateUser, BoardController.updateTask);
 router.delete(
   "/deleteTask/:_id",
