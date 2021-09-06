@@ -1,5 +1,7 @@
 const Panel = require("../models/panel");
 const mongoose = require("mongoose");
+const User = require("../models/user");
+const Board = require("../models/task");
 
 const registerPanel = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.theme)
@@ -13,6 +15,30 @@ const registerPanel = async (req, res) => {
     name: req.body.name,
     description: req.body.description,
     theme: req.body.theme,
+    dbStatus: true,
+  });
+
+  const result = await panel.save();
+  if (!result) return res.status(400).send("Failed to register panel");
+  return res.status(200).send({ result });
+};
+
+const sharePanelUser = async (req, res) => {
+  if (!req.body.email || !req.body.panelId)
+    return res.status(400).send("Incomplete data");
+
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) return res.status(400).send("user not found");
+
+  const panel1 = await Panel.findOne({ _id: req.body.panelId });
+  if (!panel1) return res.status(400).send("panel not found");
+
+  const panel = new Panel({
+    _id: panel1._id,
+    userId: user._id,
+    name: panel1.name,
+    description: panel1.description,
+    theme: panel1.theme,
     dbStatus: true,
   });
 
