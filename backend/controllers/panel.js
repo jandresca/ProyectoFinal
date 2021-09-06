@@ -1,7 +1,6 @@
 const Panel = require("../models/panel");
 const mongoose = require("mongoose");
 const User = require("../models/user");
-const Board = require("../models/task");
 
 const registerPanel = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.theme)
@@ -24,17 +23,16 @@ const registerPanel = async (req, res) => {
 };
 
 const sharePanelUser = async (req, res) => {
-  if (!req.body.email || !req.body.panelId)
+  if (!req.body.email || !req.body.name)
     return res.status(400).send("Incomplete data");
 
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("user not found");
 
-  const panel1 = await Panel.findOne({ _id: req.body.panelId });
+  const panel1 = await Panel.findOne({ name: req.body.name });
   if (!panel1) return res.status(400).send("panel not found");
 
   const panel = new Panel({
-    _id: panel1._id,
     userId: user._id,
     name: panel1.name,
     description: panel1.description,
@@ -48,7 +46,7 @@ const sharePanelUser = async (req, res) => {
 };
 
 const listPanel = async (req, res) => {
-  const panel = await Panel.find({ userId: req.user._id });
+  const panel = await Panel.find({ userId: req.user._id, dbStatus: "true" });
   if (!panel || panel.length === 0)
     return res.status(400).send("Empty panel list");
   return res.status(200).send({ panel });
@@ -75,4 +73,15 @@ const updatePanel = async (req, res) => {
   return res.status(200).send({ panel });
 };
 
-module.exports = { registerPanel, listPanel, updatePanel };
+const deletePanel = async (req, res) => {
+  const validId = mongoose.Types.ObjectId.isValid(req.params._id);
+  if (!validId) return res.status(400).send("Invalid id");
+
+  const panel = await Panel.findByIdAndUpdate(req.params._id,{
+    dbStatus: false,
+  });
+  if (!panel) return res.status(400).send("Panel not found");
+  return res.status(200).send({message: "Panel deleted"})
+}
+
+module.exports = { registerPanel, listPanel, updatePanel, sharePanelUser, deletePanel };

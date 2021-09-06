@@ -5,14 +5,14 @@ const Auth = require("../middleware/auth");
 const ValidateUser = require("../middleware/validateUser");
 
 router.post("/registerPanel", Auth, ValidateUser, PanelController.registerPanel);
-// router.post("/sharePanelUser", Auth, ValidateUser, PanelController.sharePanelUser);
+router.post("/sharePanelUser", Auth, ValidateUser, PanelController.sharePanelUser);
 router.get("/listPanel", Auth, ValidateUser, PanelController.listPanel);
 router.put("/updatePanel", Auth, ValidateUser, PanelController.updatePanel);
-// router.delete(
-//   "/deletePanel/:_id",
-//   Auth,
-//   ValidateUser,
-//   PanelController.deletePanel
-// );
+router.put(
+  "/deletePanel/:_id",
+  Auth,
+  ValidateUser,
+  PanelController.deletePanel
+);
 
 module.exports = router;
