@@ -1,4 +1,4 @@
-const Board = require("../models/board");
+const Board = require("../models/task");
 const mongoose = require("mongoose");
 const fs = require("fs");
 const path = require("path");
