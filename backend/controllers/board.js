@@ -22,13 +22,13 @@ const saveTask = async (req, res) => {
 };
 
 const listTask = async (req, res) => {
-
+  
   // const validId = mongoose.Types.ObjectId.isValid(req.params.panelId);
   // if (!validId) return res.status(400).send("Invalid id");
 
   const board = await Board.find(
     { userId: req.user._id,panelId: req.params._id}
-  );
+  ).sort( { priority: 1 } );
 
   if (!board || board.length === 0)
     return res.status(400).send("You have no assigned tasks");
