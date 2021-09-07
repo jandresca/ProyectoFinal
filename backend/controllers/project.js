@@ -4,7 +4,7 @@ const Project = require("../models/project");
 
 //registrar projectos
 const registerProject = async (req, res) => {
-  if (!req.body.projectName || !req.body.panelId)
+  if (!req.body.projectName || !req.body.name)
     return res.status(400).send("Incomplete data");
 
   const existingProject = await Project.findOne({
@@ -16,9 +16,12 @@ const registerProject = async (req, res) => {
   const user = await User.findOne({ _id: req.user._id });
   if (!user) return res.status(400).send("user not found");
 
+  let panel = await Panel.findOne({ name: req.body.name });
+  if (!panel) return res.status(400).send("Panel not found");
+
   const project = new Project({
     userCreator: req.user._id,
-    panelId: req.body.panelId,
+    panelId: panel._id,
     userId: req.user._id,
     projectName: req.body.projectName,
     status: true,
