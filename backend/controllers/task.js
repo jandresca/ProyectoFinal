@@ -7,7 +7,7 @@ const User = require("../models/user");
 const Panel = require("../models/panel");
 
 const saveTask = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.priority )
+  if (!req.body.name || !req.body.description )
     return res.status(400).send("Incomplete data");
 
   const task = new Task({
@@ -16,7 +16,7 @@ const saveTask = async (req, res) => {
 
     name: req.body.name,
     description: req.body.description,
-    priority: req.body.priority,
+    priority: 1,
     taskStatus: "to-do",
   });
 
@@ -26,13 +26,13 @@ const saveTask = async (req, res) => {
 };
 
 const listTask = async (req, res) => {
-
+  
   // const validId = mongoose.Types.ObjectId.isValid(req.params.panelId);
   // if (!validId) return res.status(400).send("Invalid id");
 
   const task = await Task.find(
     { userId: req.user._id,panelId: req.params._id}
-  );
+  ).sort( { priority: 1 } );
 
   if (!task || Task.length === 0)
     return res.status(400).send("You have no assigned tasks");
@@ -62,6 +62,7 @@ const saveTaskImg = async (req, res) => {
     panelId: req.panel._id,
     name: req.body.name,
     description: req.body.description,
+    priority: 1,
     taskStatus: "to-do",
     imageUrl: imageUrl,
   });
@@ -101,18 +102,18 @@ const deleteTask = async (req, res) => {
 
 const sharePanelTask = async (req, res) => {
   
-  if (!req.body.email || !req.body.panelId)
+  if (!req.body.email || !req.body.name)
     return res.status(400).send("Incomplete data");
 
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("user not found");
 
-  // const panel = await Panel.findOne({ _id: req.panel._id });
-  // if (!panel) return res.status(400).send("panel not found");
+  let panel = await Panel.findOne({ name: req.body.name });
+  if (!panel) return res.status(400).send("Panel not found");
 
   const task = new Task({
     userId: req.user._id,
-    panelId: req.body.panelId,
+    panelId: panel._id,
     name: req.body.name,
     description: req.body.description,
     priority:req.body.priority,
