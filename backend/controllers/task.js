@@ -7,7 +7,7 @@ const User = require("../models/user");
 const Panel = require("../models/panel");
 
 const saveTask = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.priority )
+  if (!req.body.name || !req.body.description )
     return res.status(400).send("Incomplete data");
 
   const task = new Task({
@@ -16,7 +16,7 @@ const saveTask = async (req, res) => {
 
     name: req.body.name,
     description: req.body.description,
-    priority: req.body.priority,
+    priority: 1,
     taskStatus: "to-do",
   });
 
@@ -62,6 +62,7 @@ const saveTaskImg = async (req, res) => {
     panelId: req.panel._id,
     name: req.body.name,
     description: req.body.description,
+    priority: 1,
     taskStatus: "to-do",
     imageUrl: imageUrl,
   });
