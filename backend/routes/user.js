@@ -31,5 +31,6 @@ router.post(
   UserController.registerAdmin
 );
 router.get("/getRole/:email", Auth, ValidateUser, UserController.getRole);
+router.get("/getName/:email", Auth, ValidateUser, UserController.getName);
 
 module.exports = router;

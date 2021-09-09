@@ -10,14 +10,38 @@ import { ListTaskComponent } from './board/list-task/list-task.component';
 import { SaveTaskComponent } from './board/save-task/save-task.component';
 import { LoginComponent } from './home/login/login.component';
 import { RegisterComponent } from './home/register/register.component';
+import { IndexComponent } from "./home/index/index.component";
+import { ListPanelComponent } from "./panel/list-panel/list-panel.component";
+import { SavePanelComponent } from "./panel/save-panel/save-panel.component";
+import { ProfileComponent } from "./home/profile/profile.component";
 
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
+    component: IndexComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'index',
+    component: IndexComponent,
+    pathMatch: 'full',
+  },
+  {
+    path: 'listPanel',
+    component: ListPanelComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'myProfile',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'savePanel',
+    component: SavePanelComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'listTask',

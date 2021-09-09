@@ -7,16 +7,15 @@ const User = require("../models/user");
 const Panel = require("../models/panel");
 
 const saveTask = async (req, res) => {
-  if (!req.body.name || !req.body.description )
+  if (!req.body.name || !req.body.description || !req.body.priority)
     return res.status(400).send("Incomplete data");
 
   const task = new Task({
     userId: req.body.userId,
     panelId: req.body.panelId,
-
     name: req.body.name,
     description: req.body.description,
-    priority: 1,
+    priority: req.body.priority,
     taskStatus: "to-do",
   });
 
@@ -27,11 +26,11 @@ const saveTask = async (req, res) => {
 
 const listTask = async (req, res) => {
   
-  // const validId = mongoose.Types.ObjectId.isValid(req.params.panelId);
-  // if (!validId) return res.status(400).send("Invalid id");
+  const validId = mongoose.Types.ObjectId.isValid(req.params._id);
+  if (!validId) return res.status(400).send("Invalid id");
 
   const task = await Task.find(
-    { userId: req.user._id,panelId: req.params._id}
+    {panelId: req.params._id}
   ).sort( { priority: 1 } );
 
   if (!task || Task.length === 0)
@@ -40,7 +39,7 @@ const listTask = async (req, res) => {
 };
 
 const saveTaskImg = async (req, res) => {
-  if (!req.body.name || !req.body.description)
+  if (!req.body.name || !req.body.description || !req.body.priority)
     return res.status(400).send("Incomplete data");
 
   let imageUrl = "";
@@ -62,7 +61,7 @@ const saveTaskImg = async (req, res) => {
     panelId: req.panel._id,
     name: req.body.name,
     description: req.body.description,
-    priority: 1,
+    priority: req.body.priority,
     taskStatus: "to-do",
     imageUrl: imageUrl,
   });

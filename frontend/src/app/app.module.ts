@@ -38,7 +38,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-
+import { IndexComponent } from './home/index/index.component';
+import { ListPanelComponent } from './panel/list-panel/list-panel.component';
+import { SavePanelComponent } from './panel/save-panel/save-panel.component';
+import { MatMenuModule } from '@angular/material/menu';
+import { ProfileComponent } from './home/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +58,10 @@ import { MatSortModule } from '@angular/material/sort';
     RegisterRoleComponent,
     ListRoleComponent,
     UpdateRoleComponent,
+    IndexComponent,
+    ListPanelComponent,
+    SavePanelComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +82,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatMenuModule,
   ],
   providers: [
     UserService,

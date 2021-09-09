@@ -81,7 +81,7 @@ const deleteUserProject = async (req, res) => {
   return res.status(200).send({ project });
 };
 
-//listo los usuarios del proyecto
+//listo los usuarios del proyecto - solo el creador del proyecto podra listar los usuarios del proyecto
 const listProjectUser = async (req, res) => {
   const project = await Project.find({
     userCreator: req.user._id,

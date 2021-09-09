@@ -151,6 +151,16 @@ const getRole = async (req, res) => {
   return res.status(200).send({ role });
 };
 
+const getName = async (req, res) => {
+  const users = await User.findOne({ email: req.params.email })
+    .populate("roleId")
+    .exec();
+  if (!users || users.length === 0)
+    return res.status(400).send("No search results");
+  const name = users.name;
+  return res.status(200).send({ name });
+};
+
 module.exports = {
   registerUser,
   login,
@@ -160,4 +170,5 @@ module.exports = {
   deleteUser,
   registerAdmin,
   getRole,
+  getName,
 };
