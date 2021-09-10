@@ -48,6 +48,7 @@ import { SavePanelComponent } from './panel/save-panel/save-panel.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SaveProjectComponent } from './project/save-project/save-project.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { SaveProjectComponent } from './project/save-project/save-project.compon
     MatPaginatorModule,
     MatSortModule,
     MatMenuModule,
+    DragDropModule,
   ],
   providers: [
     UserService,
