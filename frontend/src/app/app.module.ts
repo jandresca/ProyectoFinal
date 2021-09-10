@@ -19,7 +19,7 @@ import { UpdateRoleComponent } from './admin/update-role/update-role.component';
 //servicios
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
-import { BoardService } from './services/board.service';
+import { TaskService } from './services/task.service';
 import { PanelService } from "./services/panel.service";
 import { ProjectService } from "./services/project.service";
 
@@ -94,7 +94,7 @@ import { SaveProjectComponent } from './project/save-project/save-project.compon
   providers: [
     UserService,
     RoleService,
-    BoardService,
+    TaskService,
     PanelService,
     ProjectService,
     TokenInterceptorService,
