@@ -7,7 +7,7 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  nameUser: any = '';
+  nameUser: any = localStorage.getItem('user');
 
   constructor(public _userService: UserService) {}
 
@@ -15,4 +15,6 @@ export class HeaderComponent implements OnInit {
     this.nameUser = localStorage.getItem('user');
     console.log(this.nameUser);
   }
+
+  
 }
