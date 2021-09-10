@@ -4,12 +4,9 @@ const Project = require("../models/project");
 
 //registrar projectos
 const registerProject = async (req, res) => {
-  if (!req.body.projectName || !req.body.name)
+  if (!req.body.name)
     return res.status(400).send("Incomplete data");
 
-  const existingProject = await Project.findOne({
-    projectName: req.body.projectName,
-  });
   if (existingProject)
     return res.status(400).send("The Project already exists");
 
@@ -23,7 +20,6 @@ const registerProject = async (req, res) => {
     userCreator: req.user._id,
     panelId: panel._id,
     userId: req.user._id,
-    projectName: req.body.projectName,
     status: true,
   });
 
@@ -34,20 +30,22 @@ const registerProject = async (req, res) => {
 
 //registrar en el proyecto usuarios
 const shareProjectUser = async (req, res) => {
-  if (!req.body.email || !req.body.projectName)
+  if (!req.body.email || !req.body.panelId)
     return res.status(400).send("Incomplete data");
+
+  let panel = await Panel.findOne({ panelId: !req.body.panelId});
+  if (!panel) return res.status(400).send("Panel not found");
 
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("user not found");
 
-  const project1 = await Project.findOne({ projectName: req.body.projectName });
+  const project1 = await Project.findOne({ panelId: req.body.panelId });
   if (!project1) return res.status(400).send("project not found");
 
   const project = new Project({
     userCreator: project1.userCreator,
     panelId: project1.panelId,
     userId: user._id,
-    projectName: project1.projectName,
     status: true,
   });
 
@@ -87,7 +85,9 @@ const listProjectUser = async (req, res) => {
     userCreator: req.user._id,
     status: "true",
     panelId: req.params.id,
-  }).populate("userId");
+  })
+    .populate("panelId")
+    .populate("roleId");
 
   const project1 = await Project.findOne({
     userCreator: req.user._id,
@@ -105,9 +105,21 @@ const listProjectUser = async (req, res) => {
   return res.status(200).send({ project });
 };
 
+const listProjectUserP = async (req, res) => {
+  const project = await Project.find({
+    userId: req.user._id,
+    status: "true",
+  }).populate("panelId");
+
+  if (!project || project.length === 0)
+    return res.status(400).send("Empty project list");
+  return res.status(200).send({ project });
+};
+
 module.exports = {
   registerProject,
   listProjectUser,
   deleteUserProject,
   shareProjectUser,
+  listProjectUserP,
 };

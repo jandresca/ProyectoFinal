@@ -9,6 +9,7 @@ router.post("/registerProject", Auth, ValidateUser, projectController.registerPr
 router.post("/shareProjectUser", Auth, ValidateUser, projectController.shareProjectUser);
 
 router.get("/listProjectUser/:id", Auth, ValidateUser, projectController.listProjectUser);
+router.get("/listProjectUserP", Auth, ValidateUser, projectController.listProjectUserP);
 router.put("/deleteUserProject", Auth, ValidateUser, projectController.deleteUserProject);
 
 

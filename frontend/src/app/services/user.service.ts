@@ -36,6 +36,7 @@ export class UserService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
+    localStorage.removeItem('user');
     this._router.navigate(['/login']);
   }
 

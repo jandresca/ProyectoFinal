@@ -6,8 +6,8 @@ import { RegisterRoleComponent } from './admin/register-role/register-role.compo
 import { RegisterUserComponent } from './admin/register-user/register-user.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
 import { UpdateUserComponent } from './admin/update-user/update-user.component';
-import { ListTaskComponent } from './board/list-task/list-task.component';
-import { SaveTaskComponent } from './board/save-task/save-task.component';
+import { ListTaskComponent } from './task/list-task/list-task.component';
+import { SaveTaskComponent } from './task/save-task/save-task.component';
 import { LoginComponent } from './home/login/login.component';
 import { RegisterComponent } from './home/register/register.component';
 import { IndexComponent } from "./home/index/index.component";
@@ -15,12 +15,14 @@ import { ListPanelComponent } from "./panel/list-panel/list-panel.component";
 import { SavePanelComponent } from "./panel/save-panel/save-panel.component";
 import { ProfileComponent } from "./home/profile/profile.component";
 
+
+
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: IndexComponent,
+    component: LoginComponent,
     pathMatch: 'full',
   },
   {
