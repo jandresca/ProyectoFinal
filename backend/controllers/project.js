@@ -4,16 +4,13 @@ const Project = require("../models/project");
 
 //registrar projectos
 const registerProject = async (req, res) => {
-  if (!req.body.name)
+  if (!req.body.panelId)
     return res.status(400).send("Incomplete data");
-
-  if (existingProject)
-    return res.status(400).send("The Project already exists");
 
   const user = await User.findOne({ _id: req.user._id });
   if (!user) return res.status(400).send("user not found");
 
-  let panel = await Panel.findOne({ name: req.body.name });
+  let panel = await Panel.findOne({ _id: req.body.panelId });
   if (!panel) return res.status(400).send("Panel not found");
 
   const project = new Project({
@@ -33,7 +30,7 @@ const shareProjectUser = async (req, res) => {
   if (!req.body.email || !req.body.panelId)
     return res.status(400).send("Incomplete data");
 
-  let panel = await Panel.findOne({ panelId: !req.body.panelId});
+  let panel = await Panel.findOne({ _id: req.body.panelId});
   if (!panel) return res.status(400).send("Panel not found");
 
   const user = await User.findOne({ email: req.body.email });
