@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -9,15 +8,11 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit {
   nameUser: any = '';
-  
-  constructor(public _userService: UserService) {
-    this.nameUser=localStorage.getItem('user');
-  }
+
+  constructor(public _userService: UserService) {}
 
   ngOnInit(): void {
-  }
-
-  name () {
-    
+    this.nameUser = localStorage.getItem('user');
+    console.log(this.nameUser);
   }
 }

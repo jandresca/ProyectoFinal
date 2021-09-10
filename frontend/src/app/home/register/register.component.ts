@@ -42,7 +42,9 @@ export class RegisterComponent implements OnInit {
       this._userService.registerUser(this.registerData).subscribe(
         (res) => {
           localStorage.setItem('token', res.jwtToken);
-          this._router.navigate(['/saveTask']);
+          this._router.navigate(['/savePanel']);
+          this.getRole(this.registerData.email);
+          this.getName(this.registerData.email);
           this.message = 'Successfull user registration';
           this.openSnackBarSuccesfull();
           this.registerData = {};
@@ -53,6 +55,28 @@ export class RegisterComponent implements OnInit {
         }
       );
     }
+  }
+
+  getRole(email: string) {
+    this._userService.getRole(email).subscribe(
+      (res) => {
+        localStorage.setItem('role', res.role);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  getName(email: string) {
+    this._userService.getName(email).subscribe(
+      (res) => {
+        localStorage.setItem('user', res.name);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   openSnackBarSuccesfull() {
