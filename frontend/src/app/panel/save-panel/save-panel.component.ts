@@ -12,7 +12,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 
 export interface State {
-  flag: string;
+  url: string;
   name: string;
 }
 
@@ -34,24 +34,24 @@ export class SavePanelComponent implements OnInit {
 
   states: State[] = [
     {
-      name: 'Arkansas',
+      name: 'photo-1',
       // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
+      url: '../../../assets/img/photo-1.jpg'
     },
     {
-      name: 'California',
+      name: 'photo-2',
       // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg'
+      url: '../../../assets/img/photo-2.jpg'
     },
     {
-      name: 'Florida',
+      name: 'photo-3',
       // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg'
+      url: '../../../assets/img/photo-3.jpg'
     },
     {
-      name: 'Texas',
+      name: 'photo-4',
       // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
+      url: '../../../assets/img/photo-4.jpg'
     }
   ];
 
