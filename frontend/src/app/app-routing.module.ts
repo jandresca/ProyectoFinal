@@ -57,7 +57,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'saveTask',
+    path: 'saveTask/:id',
     component: SaveTaskComponent,
     canActivate: [AuthGuard],
   },
