@@ -7,9 +7,10 @@ import { UserService } from '../../services/user.service';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
-  nameUser: any = '';
+  nameUser = localStorage.getItem('user');
 
-  constructor(public _userService: UserService) {}
+  constructor(public _userService: UserService) {
+  }
 
   ngOnInit(): void {
     this.nameUser = localStorage.getItem('user');
