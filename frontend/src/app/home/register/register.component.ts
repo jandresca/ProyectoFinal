@@ -44,7 +44,6 @@ export class RegisterComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'Close',
       });
-
       this.registerData = {};
     } else {
       Swal.fire({
@@ -73,7 +72,6 @@ export class RegisterComponent implements OnInit {
         },
         (err) => {
           this.message = err.error;
-
           Swal.fire({
             allowOutsideClick: false,
             title: 'Error!',
