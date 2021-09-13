@@ -49,6 +49,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SaveProjectComponent } from './project/save-project/save-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 @NgModule({
   declarations: [
@@ -92,6 +95,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatSortModule,
     MatMenuModule,
     DragDropModule,
+    MatAutocompleteModule
   ],
   providers: [
     UserService,
