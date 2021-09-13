@@ -71,6 +71,15 @@ const listUserAll = async (req, res) => {
   return res.status(200).send({ users });
 };
 
+const listUser2 = async (req, res) => {
+  const users = await User.findById({ _id: req.user._id })
+    .populate("roleId")
+    .exec();
+  if (!users || users.length === 0)
+    return res.status(400).send("No search results");
+  return res.status(200).send({ users });
+};
+
 const updateUser = async (req, res) => {
   if (!req.body._id || !req.body.name || !req.body.email || !req.body.roleId)
     return res.status(400).send("Incomplete data");
@@ -171,4 +180,5 @@ module.exports = {
   registerAdmin,
   getRole,
   getName,
+  listUser2,
 };

@@ -7,7 +7,7 @@ import {
 } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -27,6 +27,7 @@ export class ListTaskComponent implements OnInit {
     private _taskService: TaskService,
     private _snackBar: MatSnackBar,
     private _activatedRoute: ActivatedRoute,
+    private _router: Router,
   ) {
     this.taskData = {};
   }
@@ -60,7 +61,10 @@ export class ListTaskComponent implements OnInit {
           this.openSnackBarError();
         }
       );
+    } else{
+      this._router.navigate(['/listPanel']);
     }
+
   }
   updateTask(task: any, status: string, button?: string) {
     let tempStatus = task.taskStatus;

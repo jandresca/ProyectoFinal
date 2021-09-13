@@ -52,6 +52,9 @@ export class UserService {
   listUser(name: string) {
     return this._http.get<any>(this.env + 'user/listUsers/' + name);
   }
+  listUser2() {
+    return this._http.get<any>(this.env + 'user/listUser2');
+  }
 
   updateUser(user: any) {
     return this._http.put<any>(this.env + 'user/updateUser', user);
