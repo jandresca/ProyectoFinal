@@ -7,8 +7,14 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -21,16 +27,16 @@ export class ListTaskComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2;
-  todo : any = [];
-  progress : any = [];
-  done : any = [];
+  todo: any = [];
+  progress: any = [];
+  done: any = [];
 
   constructor(
     private _taskService: TaskService,
     private _snackBar: MatSnackBar,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _panelService: PanelService,
+    private _panelService: PanelService
   ) {
     this.taskData = {};
     this.panelData = {};
@@ -41,7 +47,6 @@ export class ListTaskComponent implements OnInit {
   }
 
   loadTask() {
-    
     let panelId = this._activatedRoute.snapshot.paramMap.get('id');
     // console.log(panelId);
 
@@ -51,37 +56,48 @@ export class ListTaskComponent implements OnInit {
 
     if (panelId != null || panelId != '') {
       this._panelService.listPanel2(panelId).subscribe(
-        (res)=>{
-          this.panelData=res.panel;
+        (res) => {
+          this.panelData = res.panel;
           console.log(this.panelData);
         },
         (err) => {
           this.message = err.error;
-          this.openSnackBarError();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
+          //this.openSnackBarError();
         }
-      )
-
-
+      );
 
       this._taskService.listTask(panelId).subscribe(
         (res: any) => {
-          this.taskData=res.task;
-        // console.log(res);
-        this.taskData.forEach((element: any) => {
-          if(element.taskStatus === 'done') this.done.push(element);
-          if(element.taskStatus === 'to-do') this.todo.push(element);
-          if(element.taskStatus === 'in-progress') this.progress.push(element);
-        });
+          this.taskData = res.task;
+          // console.log(res);
+          this.taskData.forEach((element: any) => {
+            if (element.taskStatus === 'done') this.done.push(element);
+            if (element.taskStatus === 'to-do') this.todo.push(element);
+            if (element.taskStatus === 'in-progress')
+              this.progress.push(element);
+          });
         },
         (err) => {
           this.message = err.error;
-          this.openSnackBarError();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
         }
       );
-    } else{
+    } else {
       this._router.navigate(['/listPanel']);
     }
-
   }
   updateTask(task: any, status: string, button?: string) {
     let tempStatus = task.taskStatus;
@@ -89,12 +105,18 @@ export class ListTaskComponent implements OnInit {
     this._taskService.updateTask(task).subscribe(
       (res: any) => {
         task.status = status;
-        if(button) this.loadTask();
+        if (button) this.loadTask();
       },
       (err: any) => {
         task.status = tempStatus;
         this.message = err.error;
-        this.openSnackBarError();
+        Swal.fire({
+          allowOutsideClick: false,
+          title: 'Error!',
+          text: this.message,
+          icon: 'error',
+          confirmButtonText: 'Close',
+        });
       }
     );
   }
@@ -106,31 +128,45 @@ export class ListTaskComponent implements OnInit {
         if (index > -1) {
           this.taskData.splice(index, 1);
           this.message = res.message;
-          this.openSnackBarSuccesfull();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Good',
+            text: this.message,
+            icon: 'success',
+            confirmButtonText: 'Close',
+          });
         }
       },
       (err) => {
         this.message = err.error;
-        this.openSnackBarError();
+        Swal.fire({
+          allowOutsideClick: false,
+          title: 'Error!',
+          text: this.message,
+          icon: 'error',
+          confirmButtonText: 'Close',
+        });
       }
     );
   }
 
-
-
   drop(event: CdkDragDrop<string[]>, status?: any) {
     if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     } else {
-      transferArrayItem(event.previousContainer.data,
-                        event.container.data,
-                        event.previousIndex,
-                        event.currentIndex);
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
     }
     this.updateTask(event.container.data[event.currentIndex], status);
   }
-
- 
 
   openSnackBarSuccesfull() {
     this._snackBar.open(this.message, 'X', {
