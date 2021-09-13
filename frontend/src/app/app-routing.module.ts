@@ -14,6 +14,7 @@ import { IndexComponent } from "./home/index/index.component";
 import { ListPanelComponent } from "./panel/list-panel/list-panel.component";
 import { SavePanelComponent } from "./panel/save-panel/save-panel.component";
 import { ProfileComponent } from "./home/profile/profile.component";
+import { SaveProjectComponent } from "./project/save-project/save-project.component";
 
 
 
@@ -43,6 +44,11 @@ const routes: Routes = [
   {
     path: 'savePanel',
     component: SavePanelComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'saveProyect',
+    component: SaveProjectComponent,
     canActivate: [AuthGuard],
   },
   {
