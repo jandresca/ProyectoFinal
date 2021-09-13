@@ -15,6 +15,14 @@ router.get(
   UserController.listUser
 );
 router.get(
+  "/listUser2",
+  Auth,
+  ValidateUser,
+  UserController.listUser2
+);
+
+
+router.get(
   "/listUsers/:name?",
   Auth,
   ValidateUser,
