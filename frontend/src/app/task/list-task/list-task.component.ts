@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
+import { PanelService } from '../../services/panel.service';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./list-task.component.css'],
 })
 export class ListTaskComponent implements OnInit {
+  panelData: any;
   taskData: any;
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
@@ -28,8 +30,10 @@ export class ListTaskComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
+    private _panelService: PanelService,
   ) {
     this.taskData = {};
+    this.panelData = {};
   }
 
   ngOnInit(): void {
@@ -46,6 +50,19 @@ export class ListTaskComponent implements OnInit {
     this.progress = [];
 
     if (panelId != null || panelId != '') {
+      this._panelService.listPanel2(panelId).subscribe(
+        (res)=>{
+          this.panelData=res.panel;
+          console.log(this.panelData);
+        },
+        (err) => {
+          this.message = err.error;
+          this.openSnackBarError();
+        }
+      )
+
+
+
       this._taskService.listTask(panelId).subscribe(
         (res: any) => {
           this.taskData=res.task;
