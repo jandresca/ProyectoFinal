@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import {
@@ -35,10 +36,23 @@ export class RegisterComponent implements OnInit {
       !this.registerData.email ||
       !this.registerData.password
     ) {
-      this.message = 'Failed process: Imcomplete data';
-      this.openSnackBarError();
+      this.message = 'Failed process: Incomplete data';
+      Swal.fire({
+        allowOutsideClick: false,
+        title: 'Error!',
+        text: this.message,
+        icon: 'error',
+        confirmButtonText: 'Close',
+      });
+
       this.registerData = {};
     } else {
+      Swal.fire({
+        allowOutsideClick: false,
+        text: this.message,
+        icon: 'info',
+      });
+      Swal.showLoading();
       this._userService.registerUser(this.registerData).subscribe(
         (res) => {
           localStorage.setItem('token', res.jwtToken);
@@ -46,12 +60,27 @@ export class RegisterComponent implements OnInit {
           this.getRole(this.registerData.email);
           this.getName(this.registerData.email);
           this.message = 'Successfull user registration';
-          this.openSnackBarSuccesfull();
+          Swal.close();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'congratulations!',
+            text: this.message,
+            icon: 'success',
+            confirmButtonText: 'Close',
+          });
+
           this.registerData = {};
         },
         (err) => {
           this.message = err.error;
-          this.openSnackBarError();
+
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
         }
       );
     }
