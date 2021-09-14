@@ -10,9 +10,10 @@ import {
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import Swal from 'sweetalert2';
 
 export interface State {
-  flag: string;
+  url: string;
   name: string;
 }
 
@@ -34,24 +35,24 @@ export class SavePanelComponent implements OnInit {
 
   states: State[] = [
     {
-      name: 'Arkansas',
+      name: 'photo-1',
       // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg'
+      url: '../../../assets/img/photo-1.jpg'
     },
     {
-      name: 'California',
+      name: 'photo-2',
       // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg'
+      url: '../../../assets/img/photo-2.jpg'
     },
     {
-      name: 'Florida',
+      name: 'photo-3',
       // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg'
+      url: '../../../assets/img/photo-3.jpg'
     },
     {
-      name: 'Texas',
+      name: 'photo-4',
       // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg'
+      url: '../../../assets/img/photo-4.jpg'
     }
   ];
 
@@ -84,18 +85,37 @@ export class SavePanelComponent implements OnInit {
       !this.registerData.theme
     ) {
       this.message = 'Failed process: Incomplete data';
-      this.openSnackBarError();
+      Swal.fire({
+        allowOutsideClick: false,
+        title: 'Error!',
+        text: this.message,
+        icon: 'error',
+        confirmButtonText: 'Close',
+      });
       this.registerData = {};
     } else {
+      Swal.fire({
+        allowOutsideClick: false,
+        text: this.message,
+        icon: 'info',
+      });
+      Swal.showLoading();
       this._panelService.registerPanel(this.registerData).subscribe(
         (res) => {
           this._router.navigate(['/saveProyect']);
           this.message = 'Panel create';
+          Swal.close();
           this.registerData = {};
         },
         (err) => {
           this.message = err.console.error;
-          this.openSnackBarError();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
         }
       );
     }
