@@ -80,7 +80,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'updateUser',
+    path: 'updateUser/:_id',
     component: UpdateUserComponent,
     canActivate: [AuthGuard],
   },
