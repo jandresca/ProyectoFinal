@@ -182,3 +182,14 @@
 
     padding: 1em;
   }
+
+  .priorityone{
+    border: solid #f00 2px;
+  }
+  .prioritytwo{
+    border: solid #fdf254 2px;
+  }
+  .prioritythree{
+    border: solid #5de242 2px;
+  }
+  

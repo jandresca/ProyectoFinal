@@ -21,7 +21,9 @@ export class ListTaskComponent implements OnInit {
   todo : any = [];
   progress : any = [];
   done : any = [];
-  
+  priorityone : string = 'priorityone' ;
+  prioritytwo : string = 'prioritytwo' ;
+  prioritythree : string = 'prioritythree' ;
 
 
   constructor(
@@ -61,7 +63,8 @@ export class ListTaskComponent implements OnInit {
     this._taskService.updateTask(task).subscribe(
       (res: any) => {
         task.status = status;
-        if(button) this.loadTask();
+        // if(button) this.loadTask();
+        this.loadTask();
       },
       (err: any) => {
         task.status = tempStatus;

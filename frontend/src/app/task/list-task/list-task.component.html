@@ -35,10 +35,11 @@
                                             <mat-accordion class="example-box" *ngFor="let task of todo" multi="true"
                                                 cdkDrag>
                                                 <mat-expansion-panel hideToggle="false">
-                                                    <mat-expansion-panel-header>
+                                                    <mat-expansion-panel-header [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
                                                         <mat-panel-title>
                                                             <span class="name-center">{{ task.name }}</span>
                                                             <span class="spacer"></span>
+                                                            
                                                             <button class="btnDone" *ngIf="task.taskStatus == 'done'"
                                                                 mat-raised-button>
                                                                 {{ task.taskStatus }}
@@ -92,10 +93,15 @@
                                             <mat-accordion class="example-box" *ngFor="let task of progress"
                                                 multi="true" cdkDrag>
                                                 <mat-expansion-panel hideToggle="false">
-                                                    <mat-expansion-panel-header>
+                                                    <mat-expansion-panel-header [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
                                                         <mat-panel-title>
+                                                            
                                                             <span class="name-center">{{ task.name }}</span>
                                                             <span class="spacer"></span>
+                                                            <!-- <span class="badge bg-light text-dark" *ngIf="task.task.priority == '1'">
+                                                                {{task.priority}} 
+                                                                
+                                                            </span> -->
                                                             <button class="btnDone" *ngIf="task.taskStatus == 'done'"
                                                                 mat-raised-button>
                                                                 {{ task.taskStatus }}
@@ -149,10 +155,11 @@
                                             <mat-accordion class="example-box" *ngFor="let task of done" multi="true"
                                                 cdkDrag>
                                                 <mat-expansion-panel hideToggle="false">
-                                                    <mat-expansion-panel-header>
+                                                    <mat-expansion-panel-header [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
                                                         <mat-panel-title>
                                                             <span class="name-center">{{ task.name }}</span>
                                                             <span class="spacer"></span>
+                                                            
                                                             <button class="btnDone" *ngIf="task.taskStatus == 'done'"
                                                                 mat-raised-button>
                                                                 {{ task.taskStatus }}
