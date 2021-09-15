@@ -13,7 +13,7 @@
                     <div class="data">
                         <div class="content">
                             <span class="author">{{panel.panelId.name}}</span>
-                            <h2 class="title"><a href="#">{{panel.panelId.description}}</a></h2>
+                            <h2 class="title"><a [routerLink]="['/listTask/',panel.panelId._id]">{{panel.panelId.description}}</a></h2>
                             <p class="text"></p>
                             <button class="button" mat-button
                                 [routerLink]="['/listTask/',panel.panelId._id]">Go</button>
