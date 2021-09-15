@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { ListUserComponent } from './admin/list-user/list-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
-import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { RegisterUserComponent } from './admin/register-admin/register-user.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
 import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { ListTaskComponent } from './task/list-task/list-task.component';
@@ -80,6 +80,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'registerAdmin',
+    component: RegisterUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'updateUser/:_id',
     component: UpdateUserComponent,
     canActivate: [AuthGuard],
@@ -95,7 +100,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'updateRole',
+    path: 'updateRole/:_id',
     component: UpdateRoleComponent,
     canActivate: [AuthGuard],
   },

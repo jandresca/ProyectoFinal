@@ -3,11 +3,7 @@
         <div class="container">
             <h1 class="text-center"><strong>My Panel</strong></h1>
             <h2 class="text-center"><strong>{{panelData.name}}</strong></h2>
-<<<<<<< HEAD
-            <button mat-button  routerLink="../../saveTask/{{ panelData._id }}">Create new Task</button>
-=======
             <button mat-button [routerLink]="['/saveTask/',panelData._id]">Create new Task</button>
->>>>>>> aaa2415d1a48740fc82dc3544aee2ea47cb34a9c
             <div class="row">
                 <div cdkDropListGroup class="accordion_display">
                     <table class="table table-bordered border-dark table-responsive">
