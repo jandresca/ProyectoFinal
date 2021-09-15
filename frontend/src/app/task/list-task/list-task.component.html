@@ -1,3 +1,5 @@
+<div class = "img" style="background-image: url('../../../assets/img/{{panelData.theme}}');
+" >
 <div class="container-fluid">
     <div class="">
         <div class="container">
@@ -5,7 +7,9 @@
                 <div class="col-sm-12">
                     <br>
 
-                    <h1 class="text-center">My Panel</h1>
+                    <!-- <h1 class="text-center">My Panel</h1> -->
+                    <h1 class="text-center"><strong>{{panelData.name}}</strong></h1>
+                    <button mat-button [routerLink]="['/saveTask/',panelData._id]">Create new Task</button>
                 </div>
             </div>
             <div class="row">
@@ -215,4 +219,5 @@
         </div>
     </div>
     
+</div>
 </div>

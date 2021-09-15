@@ -27,5 +27,8 @@ export class PanelService {
   deletePanel(panel: any) {
     return this._http.delete<any>(this.env + 'panel/deletePanel/' + panel._id);
   }
+  listPanel2(panelId: any) {
+    return this._http.get<any>(this.env + 'panel/listPanel2/'+panelId);
+  }
   
 }

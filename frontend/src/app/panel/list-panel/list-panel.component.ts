@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PanelService } from '../../services/panel.service';
 import { ProjectService } from '../../services/project.service';
+import { Pipe, PipeTransform } from '@angular/core';
+import { DatePipe } from '@angular/common';
 
 import {
   MatSnackBar,
@@ -39,7 +41,12 @@ export class ListPanelComponent implements OnInit {
       }
     );
   }
-  
+
+  transform(value: any) {
+    var datePipe = new DatePipe('en-US');
+    value = datePipe.transform(value, 'dd MMMM yyyy');
+    return value;
+  }
 
   openSnackBarSuccesfull() {
     this._snackBar.open(this.message, 'X', {

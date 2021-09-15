@@ -2,9 +2,10 @@
 
 html,
 body {
-  height: 100%;
+  /* height: auto;
+  width: auto; */
   /* background-image: url("../src/assets/img/bg1.jpg"); */
-  background-image: url("./assets/img/project.jpg");
+  background-image: url("./assets/img/fondo.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -29,8 +30,8 @@ body {
 
 #footer {
   width: 100%;
-  height: 30px;
-  position: absolute;
+  height: 70px;
+  position: responsive;
   background-color: #383d38;
   text-align: center;
   color: #cecccc;

@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "401bf0ef-6b29-47f7-942c-c04c92adfc1b",
-		"name": "Trello",
+		"_postman_id": "9318b2e5-275d-45e9-880c-5212c92c690f",
+		"name": "ToolTask",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -36,7 +36,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Pepita\",\r\n    \"email\":\"pepita@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
+							"raw": "{\r\n    \"name\":\"juan\",\r\n    \"email\":\"juan@gmail.com\",\r\n    \"password\":\"1234\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -85,6 +85,46 @@
 								"user",
 								"login",
 								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Share Porject User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM2NGMyMmNlNzIyYjM0NjhhNjg3YzYiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzNjRiZjYxYTVjMTIzYzI4ZmVjZDQzIiwiaWF0IjoxNjMxMzA0MDY2fQ.FvfgklDzrfEnRMYRPFb3JHB-mpFscD7EeGPzABD6Uok",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"juan@gmail.com\",\r\n    \"panelId\": \"613bb9ab992d383454aa7cf5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/project/shareProjectUser",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"project",
+								"shareProjectUser"
 							]
 						}
 					},
@@ -159,7 +199,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTMyODc2MDUzYzMxNTFlMjRlZWU5MjIiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzMjg2MjZjN2VjMDc4NGU4M2VmN2UwIiwiaWF0IjoxNjMwNzAxNTA1fQ.sXHTreCYkPmaSQYn_hLXqPupQgvPUPe7pYTKjOTxccY",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM2NGMyMmNlNzIyYjM0NjhhNjg3YzYiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzNjRiZjYxYTVjMTIzYzI4ZmVjZDQzIiwiaWF0IjoxNjMxMzA0MDY2fQ.FvfgklDzrfEnRMYRPFb3JHB-mpFscD7EeGPzABD6Uok",
 									"type": "string"
 								}
 							]
@@ -168,7 +208,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Tablero 1\",\r\n    \"description\":\"Tablero de ejemplo en postman\",\r\n    \"theme\":\"tema de prueba\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Tablero 3\",\r\n    \"description\":\"Tablero 3 de ejemplo en postman\",\r\n    \"theme\":\"tema de prueba 3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -228,11 +268,43 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Delete Panel/6136636953cd90022858d1a6",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM2NGMyMmNlNzIyYjM0NjhhNjg3YzYiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzNjRiZjYxYTVjMTIzYzI4ZmVjZDQzIiwiaWF0IjoxNjMwOTUwNDYxfQ.ICnKJVqCJVKNTfg0-gE71jgYBydcdey8DrZpH7TMXUE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3001/api/panel/deletePanel/6136636953cd90022858d1a6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"panel",
+								"deletePanel",
+								"6136636953cd90022858d1a6"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
-			"name": "Board",
+			"name": "Task",
 			"item": [
 				{
 					"name": "saveTask",
@@ -242,7 +314,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTMyODc2MDUzYzMxNTFlMjRlZWU5MjIiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzMjg2MjZjN2VjMDc4NGU4M2VmN2UwIiwiaWF0IjoxNjMwNzAzNDA4fQ.n2QnyZIKvjMJ-4SoRrnbDayS9xp97ZwWH_oisvzaZms",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM2NGMyMmNlNzIyYjM0NjhhNjg3YzYiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzNjRiZjYxYTVjMTIzYzI4ZmVjZDQzIiwiaWF0IjoxNjMxMzA1MjIwfQ.js5DR9rLjAM8JOz2OKePmve5A37ydVhWqcLGOb_ssgs",
 									"type": "string"
 								}
 							]
@@ -256,8 +328,34 @@
 							}
 						],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"panelId\":\"6132889353c3151e24eee927\",\r\n    \"name\":\"tarea numero 1 de pepita\",\r\n    \"description\":\"tarea de prueba 1 de pepita\"\r\n}",
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "panelId",
+									"value": "613bb9ab992d383454aa7cf5",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "tarea 4",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "prueba 4",
+									"type": "text"
+								},
+								{
+									"key": "priority",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/D:/Descargas/neguentropia.jpg"
+								}
+							],
 							"options": {
 								"raw": {
 									"language": "json"
@@ -265,7 +363,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3001/api/board/saveTask",
+							"raw": "http://localhost:3001/api/task/saveTaskImg",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -273,8 +371,8 @@
 							"port": "3001",
 							"path": [
 								"api",
-								"board",
-								"saveTask"
+								"task",
+								"saveTaskImg"
 							]
 						}
 					},
@@ -307,6 +405,91 @@
 								"board",
 								"listTask",
 								"6132897b53c3151e24eee92e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Project",
+			"item": [
+				{
+					"name": "Register Project",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM2NGMyMmNlNzIyYjM0NjhhNjg3YzYiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzNjRiZjYxYTVjMTIzYzI4ZmVjZDQzIiwiaWF0IjoxNjMxMzA0MDY2fQ.FvfgklDzrfEnRMYRPFb3JHB-mpFscD7EeGPzABD6Uok",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"panelId\": \"613bb9ab992d383454aa7cf5\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/project/registerProject",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"project",
+								"registerProject"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Share Panel Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTM2NGMyMmNlNzIyYjM0NjhhNjg3YzYiLCJuYW1lIjoiUGVwaXRhIiwicm9sZUlkIjoiNjEzNjRiZjYxYTVjMTIzYzI4ZmVjZDQzIiwiaWF0IjoxNjMwOTc4MjIwfQ.3_Io7bArCF5nUaj9U5n3fQD5aoQP1zkTTUrLlJgeQZQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"cristian@gmail.com\",\r\n    \"name\": \"Tablero 1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3001/api/task/sharePanelTask",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"task",
+								"sharePanelTask"
 							]
 						}
 					},

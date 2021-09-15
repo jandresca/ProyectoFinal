@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import {
@@ -31,8 +32,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (!this.loginData.email || !this.loginData.password) {
-      this.message = 'Failed process: Imcomplete data';
-      this.openSnackBarError();
+      this.message = 'Failed process: Incomplete data';
+      Swal.fire({
+        allowOutsideClick: false,
+        title: 'Error!',
+        text: this.message,
+        icon: 'error',
+        confirmButtonText: 'Close',
+      });
+
       this.loginData = {};
     } else {
       this._userService.login(this.loginData).subscribe(
@@ -45,7 +53,13 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
           this.message = err.error;
-          this.openSnackBarError();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
         }
       );
     }

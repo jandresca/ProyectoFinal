@@ -34,9 +34,10 @@ export class UserService {
   }
 
   logout() {
+    localStorage.removeItem('user');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
-    localStorage.removeItem('user');
+
     this._router.navigate(['/login']);
   }
 
@@ -48,8 +49,14 @@ export class UserService {
     return this._http.get<any>(this.env + 'user/getName/' + email);
   }
 
-  listUser(name: string) {
+  listUser(name: any) {
     return this._http.get<any>(this.env + 'user/listUsers/' + name);
+  }
+  listUser2() {
+    return this._http.get<any>(this.env + 'user/listUser2');
+  }
+  findUser(_id: string) {
+    return this._http.get<any>(this.env + 'user/findUser/' + _id);
   }
 
   updateUser(user: any) {

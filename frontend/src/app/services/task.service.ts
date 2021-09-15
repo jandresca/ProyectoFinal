@@ -22,6 +22,9 @@ export class TaskService {
     return this._http.delete(this.env+ "task/deleteTask/"+data._id);
 
   }
+  listTask(_id: any) {
+    return this._http.get<any>(this.env + 'task/listTask/' + _id);
+  }
 }
 
 

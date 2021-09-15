@@ -30,6 +30,13 @@ const listPanel = async (req, res) => {
   return res.status(200).send({ panel });
 };
 
+const listPanel2 = async (req, res) => {
+  const panel = await Panel.findById({ _id: req.params._id});
+  if (!panel || panel.length === 0)
+    return res.status(400).send("Empty panel list");
+  return res.status(200).send({ panel });
+};
+
 //actualizar panel
 const updatePanel = async (req, res) => {
   const validId = mongoose.Types.ObjectId.isValid(req.body._id);
@@ -64,4 +71,4 @@ const deletePanel = async (req, res) => {
   return res.status(200).send({message: "Panel deleted"})
 }
 
-module.exports = { registerPanel, listPanel, updatePanel, deletePanel };
+module.exports = { registerPanel, listPanel, updatePanel, deletePanel, listPanel2 };

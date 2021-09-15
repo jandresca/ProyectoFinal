@@ -10,8 +10,11 @@ const saveTask = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.priority)
     return res.status(400).send("Incomplete data");
 
+    const user = await User.findOne({ _id: req.user._id });
+    if (!user) return res.status(400).send("user not found");
+
   const task = new Task({
-    userId: req.body.userId,
+    userId: req.user._id,
     panelId: req.body.panelId,
     name: req.body.name,
     description: req.body.description,
@@ -64,7 +67,7 @@ const saveTaskImg = async (req, res) => {
 
   const task = new Task({
     userId: req.user._id,
-    panelId: req.panel._id,
+    panelId: req.body.panelId,
     name: req.body.name,
     description: req.body.description,
     priority: req.body.priority,

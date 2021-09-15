@@ -1,9 +1,12 @@
 <mat-toolbar class="bgHeader">
   <ul>
-    <a *ngIf="_userService.loggedIn()" routerLink="listTask">List task</a>
-  </ul>
-  <ul>
-    <a *ngIf="_userService.loggedIn()" routerLink="saveTask">Create task</a>
+    <mat-form-field *ngIf="_userService.loggedIn()" appearance="fill">
+      <mat-label>Panel</mat-label>
+      <mat-select>
+        <mat-option value="option1" routerLink="listPanel">List Panel</mat-option>
+        <mat-option value="option2" routerLink="savePanel">Create Panel</mat-option>
+      </mat-select>
+    </mat-form-field>
   </ul>
   <ul>
     <mat-form-field *ngIf="_userService.loggedIn() && _userService.isAdmin()" appearance="fill">
@@ -23,7 +26,8 @@
 
   <mat-icon *ngIf="_userService.loggedIn()">face</mat-icon>
   <span *ngIf="_userService.loggedIn()">{{nameUser}}</span>
-  <button *ngIf="_userService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <button *ngIf="_userService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">

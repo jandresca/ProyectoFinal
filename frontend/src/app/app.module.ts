@@ -10,7 +10,7 @@ import { FooterComponent } from './home/footer/footer.component';
 import { ListTaskComponent } from './task/list-task/list-task.component';
 import { SaveTaskComponent } from './task/save-task/save-task.component';
 import { ListUserComponent } from './admin/list-user/list-user.component';
-import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { RegisterUserComponent } from './admin/register-admin/register-user.component';
 import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
@@ -20,8 +20,8 @@ import { UpdateRoleComponent } from './admin/update-role/update-role.component';
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
 import { TaskService } from './services/task.service';
-import { PanelService } from "./services/panel.service";
-import { ProjectService } from "./services/project.service";
+import { PanelService } from './services/panel.service';
+import { ProjectService } from './services/project.service';
 
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { AuthGuard } from './guard/auth.guard';
@@ -48,7 +48,10 @@ import { SavePanelComponent } from './panel/save-panel/save-panel.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SaveProjectComponent } from './project/save-project/save-project.component';
-import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 @NgModule({
   declarations: [
@@ -92,6 +95,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     MatSortModule,
     MatMenuModule,
     DragDropModule,
+    MatAutocompleteModule
   ],
   providers: [
     UserService,
