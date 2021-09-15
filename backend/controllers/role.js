@@ -26,6 +26,14 @@ const listRole = async (req, res) => {
   return res.status(200).send({ role });
 };
 
+const findRole = async (req, res) => {
+  console.log(req.params["_id"]);
+  const role = await Role.findOne({ _id: req.params["_id"] })
+  if (!role || role.length === 0)
+    return res.status(400).send("No search results");
+  return res.status(200).send({ role });
+};
+
 const updateRole = async (req, res) => {
   const validId = mongoose.Types.ObjectId.isValid(req.body._id);
   if (!validId) return res.status(400).send("Invalid id");
@@ -40,4 +48,4 @@ const updateRole = async (req, res) => {
   return res.status(200).send({ role });
 };
 
-module.exports = { registerRole, listRole, updateRole };
+module.exports = { registerRole, listRole, updateRole, findRole };

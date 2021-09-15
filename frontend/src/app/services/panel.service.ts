@@ -30,5 +30,9 @@ export class PanelService {
   listPanel2(panelId: any) {
     return this._http.get<any>(this.env + 'panel/listPanel2/'+panelId);
   }
+
+  findPanel(_id: any) {
+    return this._http.get<any>(this.env + 'panel/findPanel/'+_id);
+  }
   
 }

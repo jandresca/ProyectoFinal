@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { ListUserComponent } from './admin/list-user/list-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
-import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { RegisterUserComponent } from './admin/register-admin/register-user.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
 import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { ListTaskComponent } from './task/list-task/list-task.component';
@@ -15,6 +15,7 @@ import { ListPanelComponent } from "./panel/list-panel/list-panel.component";
 import { SavePanelComponent } from "./panel/save-panel/save-panel.component";
 import { ProfileComponent } from "./home/profile/profile.component";
 import { SaveProjectComponent } from "./project/save-project/save-project.component";
+import { UpdatePanelComponent } from "./panel/update-panel/update-panel.component";
 
 
 
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'index',
     component: IndexComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'updatePanel/:id',
+    component: UpdatePanelComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'listPanel',
@@ -54,7 +60,7 @@ const routes: Routes = [
   {
     path: 'listTask/:id',
     component: ListTaskComponent,
-    canActivate: [AuthGuard],
+     canActivate: [AuthGuard],
   },
   {
     path: 'saveTask/:id',
@@ -80,7 +86,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'updateUser',
+    path: 'registerAdmin',
+    component: RegisterUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateUser/:_id',
     component: UpdateUserComponent,
     canActivate: [AuthGuard],
   },
@@ -95,7 +106,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'updateRole',
+    path: 'updateRole/:_id',
     component: UpdateRoleComponent,
     canActivate: [AuthGuard],
   },

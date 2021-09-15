@@ -19,7 +19,7 @@ const saveTask = async (req, res) => {
     name: req.body.name,
     description: req.body.description,
     priority: req.body.priority,
-    taskStatus: "to-do",
+    taskStatus: "to-do", 
   });
 
   const result = await task.save();
@@ -41,6 +41,12 @@ const listTask = async (req, res) => {
   return res.status(200).send({ task });
 };
 
+const listTaskTemp = async (req, res) => {
+  const task = await Task.find();
+  if (!task || task.length === 0)
+    return res.status(400).send("You have no assigned tasks");
+  return res.status(200).send({ task });
+}
 const saveTaskImg = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.priority)
     return res.status(400).send("Incomplete data");
@@ -128,4 +134,4 @@ const sharePanelTask = async (req, res) => {
 
 }
 
-module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask };
+module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask , listTaskTemp};

@@ -10,7 +10,7 @@ import { FooterComponent } from './home/footer/footer.component';
 import { ListTaskComponent } from './task/list-task/list-task.component';
 import { SaveTaskComponent } from './task/save-task/save-task.component';
 import { ListUserComponent } from './admin/list-user/list-user.component';
-import { RegisterUserComponent } from './admin/register-user/register-user.component';
+import { RegisterUserComponent } from './admin/register-admin/register-user.component';
 import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
@@ -50,6 +50,7 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { SaveProjectComponent } from './project/save-project/save-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
 
 
 
@@ -73,6 +74,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     SavePanelComponent,
     ProfileComponent,
     SaveProjectComponent,
+    UpdatePanelComponent,
   ],
   imports: [
     BrowserModule,

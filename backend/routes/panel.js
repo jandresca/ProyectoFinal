@@ -4,7 +4,7 @@ const PanelController = require("../controllers/panel");
 const Auth = require("../middleware/auth");
 const ValidateUser = require("../middleware/validateUser");
 
-router.post("/registerPanel", Auth, ValidateUser, PanelController.registerPanel);
+router.post("/|", Auth, ValidateUser, PanelController.registerPanel);
 router.get("/listPanel", Auth, ValidateUser, PanelController.listPanel);
 router.put("/updatePanel", Auth, ValidateUser, PanelController.updatePanel);
 router.put(
@@ -14,5 +14,6 @@ router.put(
   PanelController.deletePanel
 );
 router.get("/listPanel2/:_id", Auth, ValidateUser, PanelController.listPanel2);
+router.get("/findPanel/:_id", Auth, ValidateUser, PanelController.findPanel);
 
 module.exports = router;

@@ -14,13 +14,14 @@ router.get(
   Admin,
   UserController.listUser
 );
+router.get("/listUser2", Auth, ValidateUser, UserController.listUser2);
 router.get(
-  "/listUser2",
+  "/findUser/:_id",
   Auth,
   ValidateUser,
-  UserController.listUser2
+  Admin,
+  UserController.findUser
 );
-
 
 router.get(
   "/listUsers/:name?",
