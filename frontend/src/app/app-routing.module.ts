@@ -48,7 +48,7 @@ const routes: Routes = [
   {
     path: 'listTask',
     component: ListTaskComponent,
-    canActivate: [AuthGuard],
+     canActivate: [AuthGuard],
   },
   {
     path: 'saveTask',

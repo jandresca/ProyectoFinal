@@ -25,5 +25,5 @@ router.delete(
   taskController.deleteTask
 );
 router.post("/sharePanelTask",Auth, ValidateUser, taskController.sharePanelTask);
-router.get("/listTask", Auth, ValidateUser, taskController.listTaskTemp);
+router.get("/listTask", taskController.listTaskTemp);
 module.exports = router;

@@ -34,8 +34,8 @@
                                             (cdkDropListDropped)="drop($event, 'to-do')" *ngIf="taskData.length">
                                             <mat-accordion class="example-box" *ngFor="let task of todo" multi="true"
                                                 cdkDrag>
-                                                <mat-expansion-panel hideToggle="false">
-                                                    <mat-expansion-panel-header [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                <mat-expansion-panel hideToggle="false"  [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                    <mat-expansion-panel-header>
                                                         <mat-panel-title>
                                                             <span class="name-center">{{ task.name }}</span>
                                                             <span class="spacer"></span>
@@ -92,8 +92,8 @@
                                             (cdkDropListDropped)="drop($event, 'in-progress')" *ngIf="taskData.length">
                                             <mat-accordion class="example-box" *ngFor="let task of progress"
                                                 multi="true" cdkDrag>
-                                                <mat-expansion-panel hideToggle="false">
-                                                    <mat-expansion-panel-header [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                <mat-expansion-panel hideToggle="false" [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                    <mat-expansion-panel-header >
                                                         <mat-panel-title>
                                                             
                                                             <span class="name-center">{{ task.name }}</span>
@@ -154,8 +154,8 @@
                                             (cdkDropListDropped)="drop($event, 'done')" *ngIf="taskData.length">
                                             <mat-accordion class="example-box" *ngFor="let task of done" multi="true"
                                                 cdkDrag>
-                                                <mat-expansion-panel hideToggle="false">
-                                                    <mat-expansion-panel-header [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                <mat-expansion-panel hideToggle="false" [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                    <mat-expansion-panel-header >
                                                         <mat-panel-title>
                                                             <span class="name-center">{{ task.name }}</span>
                                                             <span class="spacer"></span>
