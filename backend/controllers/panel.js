@@ -37,6 +37,16 @@ const listPanel2 = async (req, res) => {
   return res.status(200).send({ panel });
 };
 
+const findPanel = async (req, res) => {
+  const panel = await Panel.findOne({
+    _id: req.params["_id"],
+  })
+    .exec();
+  if (!panel || panel.length === 0)
+    return res.status(400).send("No search results");
+  return res.status(200).send({ panel });
+};
+
 //actualizar panel
 const updatePanel = async (req, res) => {
   const validId = mongoose.Types.ObjectId.isValid(req.body._id);
@@ -71,4 +81,4 @@ const deletePanel = async (req, res) => {
   return res.status(200).send({message: "Panel deleted"})
 }
 
-module.exports = { registerPanel, listPanel, updatePanel, deletePanel, listPanel2 };
+module.exports = { registerPanel, listPanel, updatePanel, deletePanel, listPanel2, findPanel };

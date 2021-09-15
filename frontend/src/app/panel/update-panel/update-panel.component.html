@@ -1,0 +1,34 @@
+<div class="bgComponent">
+    <div class="form">
+        <mat-card class="card">
+            <mat-card-title>Update Panel</mat-card-title>
+            <mat-card-content>
+                <div class="container">
+                    <mat-form-field>
+                        <input [(ngModel)]="registerData.name" matInput placeholder="Name panel" required />
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input [(ngModel)]="registerData.description" type="text" matInput placeholder="Description"
+                            required />
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width" appearance="fill">
+                        <mat-label>Theme</mat-label>
+                        <input matInput [(ngModel)]="registerData.theme" aria-label="State" [matAutocomplete]="auto"
+                            [formControl]="stateCtrl">
+                        <mat-autocomplete #auto="matAutocomplete">
+                            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                                <img class="example-option-img" aria-hidden [src]="state.url" height="25">
+                                <span>{{state.name}}</span>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button (click)="updatePanel()" class="button" mat-raised-button>
+                    Register
+                </button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

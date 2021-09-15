@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PanelService } from '../../services/panel.service';
-import { Router } from '@angular/router';
-import { ProjectService } from '../../services/project.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -18,13 +17,14 @@ export interface State {
 }
 
 @Component({
-  selector: 'app-save-panel',
-  templateUrl: './save-panel.component.html',
-  styleUrls: ['./save-panel.component.css'],
+  selector: 'app-update-panel',
+  templateUrl: './update-panel.component.html',
+  styleUrls: ['./update-panel.component.css'],
 })
-export class SavePanelComponent implements OnInit {
+export class UpdatePanelComponent implements OnInit {
   registerData: any;
   selectedFile: any;
+  _id: string = '';
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -59,7 +59,8 @@ export class SavePanelComponent implements OnInit {
   constructor(
     private _panelService: PanelService,
     private _router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _Arouter: ActivatedRoute
   ) {
     this.registerData = {};
     this.selectedFile = null;
@@ -77,15 +78,30 @@ export class SavePanelComponent implements OnInit {
     );
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._Arouter.params.subscribe((params) => {
+      this._id = params['id'];
+      // console.log(this._id);
+      this._panelService.findPanel(this._id).subscribe(
+        (res) => {
+          this.registerData = res.panel;
+          // console.log(this.registerData);
+        },
+        (err) => {
+          this.message = err.error;
+          this.openSnackBarError();
+        }
+      );
+    });
+  }
 
-  registerPanel() {
+  updatePanel() {
     if (
       !this.registerData.name ||
       !this.registerData.description ||
       !this.registerData.theme
     ) {
-      this.message = 'Failed process: Incomplete data';
+      this.message = 'Failed process: Imcomplete data';
       Swal.fire({
         allowOutsideClick: false,
         title: 'Error!',
@@ -93,7 +109,6 @@ export class SavePanelComponent implements OnInit {
         icon: 'error',
         confirmButtonText: 'Close',
       });
-      this.registerData = {};
     } else {
       Swal.fire({
         allowOutsideClick: false,
@@ -101,11 +116,12 @@ export class SavePanelComponent implements OnInit {
         icon: 'info',
       });
       Swal.showLoading();
-      this._panelService.registerPanel(this.registerData).subscribe(
+      this._panelService.updatePanel(this.registerData).subscribe(
         (res) => {
-          this._router.navigate(['/saveProyect']);
-          this.message = 'Panel create';
+          this._router.navigate(['/listPanel']);
+          this.message = 'Successfull edit Panel';
           Swal.close();
+          this.openSnackBarSuccesfull();
           this.registerData = {};
         },
         (err) => {
@@ -121,6 +137,49 @@ export class SavePanelComponent implements OnInit {
       );
     }
   }
+
+  // updatePanel() {
+  //   if (
+  //     !this.registerData.name ||
+  //     !this.registerData.description ||
+  //     !this.registerData.theme
+  //   ) {
+  //     this.message = 'Failed process: Incomplete data';
+  //     Swal.fire({
+  //       allowOutsideClick: false,
+  //       title: 'Error!',
+  //       text: this.message,
+  //       icon: 'error',
+  //       confirmButtonText: 'Close',
+  //     });
+  //     this.registerData = {};
+  //   } else {
+  //     Swal.fire({
+  //       allowOutsideClick: false,
+  //       text: this.message,
+  //       icon: 'info',
+  //     });
+  //     Swal.showLoading();
+  //     this._panelService.registerPanel(this.registerData).subscribe(
+  //       (res) => {
+  //         this._router.navigate(['/saveProyect']);
+  //         this.message = 'Panel create';
+  //         Swal.close();
+  //         this.registerData = {};
+  //       },
+  //       (err) => {
+  //         this.message = err.console.error;
+  //         Swal.fire({
+  //           allowOutsideClick: false,
+  //           title: 'Error!',
+  //           text: this.message,
+  //           icon: 'error',
+  //           confirmButtonText: 'Close',
+  //         });
+  //       }
+  //     );
+  //   }
+  // }
 
   openSnackBarSuccesfull() {
     this._snackBar.open(this.message, 'X', {

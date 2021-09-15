@@ -7,7 +7,12 @@
     padding-bottom: 30%;
     position: responsive;
   }
-  
+
+  .img{
+    width: 100%;
+    height: 100%;
+    background-attachment:fixed ;
+  }
   .accordion_display {
     display: flex;
     justify-content: center;

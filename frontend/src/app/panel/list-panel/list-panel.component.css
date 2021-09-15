@@ -23,8 +23,9 @@ h1 {
 
 .row {
   max-width: 900px;
-  margin: 50px auto 0;
+  margin: 50px auto 0;  
 }
+
 
 .card {
   float: left;
@@ -98,7 +99,9 @@ h1 {
   transform: translateY(-60px);
 }
 
-
+/* .example-2 {
+    padding: 1em;
+} */
 
 .example-2 .wrapper {
   /* background: url(https://tvseriescritic.files.wordpress.com/2016/10/stranger-things-bicycle-lights-children.jpg) center/cover no-repeat; */

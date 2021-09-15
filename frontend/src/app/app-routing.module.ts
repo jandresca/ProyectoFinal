@@ -15,6 +15,7 @@ import { ListPanelComponent } from "./panel/list-panel/list-panel.component";
 import { SavePanelComponent } from "./panel/save-panel/save-panel.component";
 import { ProfileComponent } from "./home/profile/profile.component";
 import { SaveProjectComponent } from "./project/save-project/save-project.component";
+import { UpdatePanelComponent } from "./panel/update-panel/update-panel.component";
 
 
 
@@ -30,6 +31,11 @@ const routes: Routes = [
     path: 'index',
     component: IndexComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'updatePanel/:id',
+    component: UpdatePanelComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'listPanel',

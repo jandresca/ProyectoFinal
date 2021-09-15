@@ -14,5 +14,6 @@ router.put(
   PanelController.deletePanel
 );
 router.get("/listPanel2/:_id", Auth, ValidateUser, PanelController.listPanel2);
+router.get("/findPanel/:_id", Auth, ValidateUser, PanelController.findPanel);
 
 module.exports = router;
