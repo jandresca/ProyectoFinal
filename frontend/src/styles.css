@@ -2,8 +2,8 @@
 
 html,
 body {
-  height: auto;
-  width: auto;
+  /* height: auto;
+  width: auto; */
   /* background-image: url("../src/assets/img/bg1.jpg"); */
   background-image: url("./assets/img/fondo.jpg");
   background-repeat: no-repeat;

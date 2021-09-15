@@ -11,16 +11,20 @@ export class TaskService {
   constructor(private _http: HttpClient) {
     this.env = environment.APP_URL;
   }
-  listTask(_id: any) {
-    return this._http.get<any>(this.env + 'task/listTask/' + _id);
+  getTask (): any{
+    return this._http.get(this.env+ "task/listTask");
   }
-  deleteTask(task: any) {
-    return this._http.delete<any>(this.env + 'task/deleteTask/' + task._id);
-  }
-
   updateTask (data : any): any{
     return this._http.put(this.env+ "task/updateTask", data);
   }
-  
-  
+
+  deleteTask (data: any): any{
+    return this._http.delete(this.env+ "task/deleteTask/"+data._id);
+
+  }
+  listTask(_id: any) {
+    return this._http.get<any>(this.env + 'task/listTask/' + _id);
+  }
 }
+
+

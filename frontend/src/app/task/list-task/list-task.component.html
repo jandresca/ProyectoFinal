@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 <div class="img" style="background-image: url('../../../assets/img/{{panelData.theme}}'); background-repeat: no-repeat;background-size: cover; ">
     <div class="container-fluid"  >
@@ -212,3 +213,228 @@
    <br><br><br>
 </div>
 
+=======
+<div class = "img" style="background-image: url('../../../assets/img/{{panelData.theme}}');
+" >
+<div class="container-fluid">
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <br>
+
+                    <!-- <h1 class="text-center">My Panel</h1> -->
+                    <h1 class="text-center"><strong>{{panelData.name}}</strong></h1>
+                    <button mat-button [routerLink]="['/saveTask/',panelData._id]">Create new Task</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div cdkDropListGroup class="accordion_display">
+                    <table class="table table-bordered border-dark table-responsive">
+                        <thead>
+                            <tr>
+                                <th scope="col">
+                                    <h2 class="text-center">To do </h2>
+                                </th>
+                                <th scope="col">
+                                    <h2 class="text-center">Progress</h2>
+                                </th>
+                                <th scope="col">
+                                    <h2 class="text-center">Done</h2>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="example-container">
+
+                                        <div cdkDropList [cdkDropListData]="todo" class="example-list"
+                                            (cdkDropListDropped)="drop($event, 'to-do')" *ngIf="taskData.length">
+                                            <mat-accordion class="example-box" *ngFor="let task of todo" multi="true"
+                                                cdkDrag>
+                                                <mat-expansion-panel hideToggle="false"  [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                    <mat-expansion-panel-header>
+                                                        <mat-panel-title>
+                                                            <span class="name-center">{{ task.name }}</span>
+                                                            <span class="spacer"></span>
+                                                            
+                                                            <button class="btnDone" *ngIf="task.taskStatus == 'done'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                            <button class="btnInProgress"
+                                                                *ngIf="task.taskStatus == 'in-progress'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                            <button class="btnToDo" *ngIf="task.taskStatus == 'to-do'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                        </mat-panel-title>
+                                                    </mat-expansion-panel-header>
+                                                    <mat-panel-description>
+                                                        {{ task.description }}
+                                                    </mat-panel-description>
+                                                    <mat-panel-description>
+                                                        <img class="card-img-top image_center"
+                                                            src="{{ task.imageUrl }}" />
+                                                    </mat-panel-description>
+                                                    <mat-action-row>
+                                                        <button class="btnSelectTodo" mat-button
+                                                            (click)="updateTask(task, 'to-do', 'true')">
+                                                            to-do
+                                                        </button>
+                                                        <button class="btnSelectInProgress" mat-button
+                                                            (click)="updateTask(task, 'in-progress', 'true')">
+                                                            In-progress
+                                                        </button>
+                                                        <button class="btnSelectDone" mat-button
+                                                            (click)="updateTask(task, 'done', 'true')">
+                                                            done
+                                                        </button>
+                                                        <span class="spacer"></span>
+                                                        <mat-icon color="primary" (click)="deleteTask(task)">delete
+                                                        </mat-icon>
+                                                    </mat-action-row>
+                                                </mat-expansion-panel>
+                                            </mat-accordion>
+                                        </div>
+                                    </div>
+
+                                </td>
+                                <td>
+                                    <div class="example-container">
+
+                                        <div cdkDropList [cdkDropListData]="progress" class="example-list"
+                                            (cdkDropListDropped)="drop($event, 'in-progress')" *ngIf="taskData.length">
+                                            <mat-accordion class="example-box" *ngFor="let task of progress"
+                                                multi="true" cdkDrag>
+                                                <mat-expansion-panel hideToggle="false" [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                    <mat-expansion-panel-header >
+                                                        <mat-panel-title>
+                                                            
+                                                            <span class="name-center">{{ task.name }}</span>
+                                                            <span class="spacer"></span>
+                                                            <!-- <span class="badge bg-light text-dark" *ngIf="task.task.priority == '1'">
+                                                                {{task.priority}} 
+                                                                
+                                                            </span> -->
+                                                            <button class="btnDone" *ngIf="task.taskStatus == 'done'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                            <button class="btnInProgress"
+                                                                *ngIf="task.taskStatus == 'in-progress'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                            <button class="btnToDo" *ngIf="task.taskStatus == 'to-do'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                        </mat-panel-title>
+                                                    </mat-expansion-panel-header>
+                                                    <mat-panel-description>
+                                                        {{ task.description }}
+                                                    </mat-panel-description>
+                                                    <mat-panel-description>
+                                                        <img class="card-img-top image_center"
+                                                            src="{{ task.imageUrl }}" />
+                                                    </mat-panel-description>
+                                                    <mat-action-row>
+                                                        <button class="btnSelectTodo" mat-button
+                                                            (click)="updateTask(task, 'to-do', 'true')">
+                                                            to-do
+                                                        </button>
+                                                        <button class="btnSelectInProgress" mat-button
+                                                            (click)="updateTask(task, 'in-progress', 'true')">
+                                                            In-progress
+                                                        </button>
+                                                        <button class="btnSelectDone" mat-button
+                                                            (click)="updateTask(task, 'done', 'true')">
+                                                            done
+                                                        </button>
+                                                        <span class="spacer"></span>
+                                                        <mat-icon color="primary" (click)="deleteTask(task)">delete
+                                                        </mat-icon>
+                                                    </mat-action-row>
+                                                </mat-expansion-panel>
+                                            </mat-accordion>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+
+                                    <div class="example-container">
+
+                                        <div cdkDropList [cdkDropListData]="done" class="example-list"
+                                            (cdkDropListDropped)="drop($event, 'done')" *ngIf="taskData.length">
+                                            <mat-accordion class="example-box" *ngFor="let task of done" multi="true"
+                                                cdkDrag>
+                                                <mat-expansion-panel hideToggle="false" [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                    <mat-expansion-panel-header >
+                                                        <mat-panel-title>
+                                                            <span class="name-center">{{ task.name }}</span>
+                                                            <span class="spacer"></span>
+                                                            
+                                                            <button class="btnDone" *ngIf="task.taskStatus == 'done'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                            <button class="btnInProgress"
+                                                                *ngIf="task.taskStatus == 'in-progress'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                            <button class="btnToDo" *ngIf="task.taskStatus == 'to-do'"
+                                                                mat-raised-button>
+                                                                {{ task.taskStatus }}
+                                                            </button>
+                                                        </mat-panel-title>
+                                                    </mat-expansion-panel-header>
+                                                    <mat-panel-description>
+                                                        {{ task.description }}
+                                                    </mat-panel-description>
+                                                    <mat-panel-description>
+                                                        <img class="card-img-top image_center"
+                                                            src="{{ task.imageUrl }}" />
+                                                    </mat-panel-description>
+                                                    <mat-action-row>
+                                                        <button class="btnSelectTodo" mat-button
+                                                            (click)="updateTask(task, 'to-do', 'true')">
+                                                            to-do
+                                                        </button>
+                                                        <button class="btnSelectInProgress" mat-button
+                                                            (click)="updateTask(task, 'in-progress', 'true')">
+                                                            In-progress
+                                                        </button>
+                                                        <button class="btnSelectDone" mat-button
+                                                            (click)="updateTask(task, 'done', 'true')">
+                                                            done
+                                                        </button>
+                                                        <span class="spacer"></span>
+                                                        <mat-icon color="primary" (click)="deleteTask(task)">delete
+                                                        </mat-icon>
+                                                    </mat-action-row>
+                                                </mat-expansion-panel>
+                                            </mat-accordion>
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+</div>
+>>>>>>> d20e0e073aa78b342dc6eb7fe054966f2d0e18a5

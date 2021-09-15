@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../services/user.service';
 import { RoleService } from '../../services/role.service';
 import { Router } from '@angular/router';
 import {
@@ -8,40 +9,58 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-register-role',
-  templateUrl: './register-role.component.html',
-  styleUrls: ['./register-role.component.css'],
+  selector: 'app-register-user',
+  templateUrl: './register-user.component.html',
+  styleUrls: ['./register-user.component.css'],
 })
-export class RegisterRoleComponent implements OnInit {
+export class RegisterUserComponent implements OnInit {
   registerData: any;
   message: string = '';
+  roles: Array<any>; 
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2;
 
   constructor(
+    private _userService: UserService,
     private _roleService: RoleService,
     private _router: Router,
     private _snackBar: MatSnackBar
   ) {
     this.registerData = {};
+    this.roles = [];
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+      this._roleService.listRole().subscribe(
+        (res) => {
+          this.roles = res.role
+          console.log(this.roles);
+          
+        },
 
-  registerRole() {
+        (err) => {
+          this.message = err.error;
+          this.openSnackBarError();
+        }
+      );
+  }
+
+  registerAdmin() {
     if (
       !this.registerData.name ||
-      !this.registerData.description
+      !this.registerData.email ||
+      !this.registerData.password ||
+      !this.registerData.roleId
     ) {
       this.message = 'Failed process: Imcomplete data';
       this.openSnackBarError();
       this.registerData = {};
     } else {
-      this._roleService.registerRole(this.registerData).subscribe(
+      this._userService.registerAdmin(this.registerData).subscribe(
         (res) => {
-          this._router.navigate(['/listRole']);
-          this.message = 'Successfull role registration';
+          this._router.navigate(['/listUser']);
+          this.message = 'Successfull user registration';
           this.openSnackBarSuccesfull();
           this.registerData = {};
         },
