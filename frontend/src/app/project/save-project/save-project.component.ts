@@ -25,7 +25,9 @@ export class SaveProjectComponent implements OnInit{
       this.registerData = {};
      }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
   registerProject() {
     if (
