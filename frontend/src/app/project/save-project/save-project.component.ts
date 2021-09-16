@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import Swal from 'sweetalert2';
 import { ProjectService } from '../../services/project.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -14,24 +14,49 @@ import {
 })
 export class SaveProjectComponent implements OnInit{
   registerData: any;
+  registerData2: any;
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2;
+  _id: string = '';
 
   constructor( private _projectService: ProjectService,
     private _router: Router,
-    private _snackBar: MatSnackBar) {
+    private _snackBar: MatSnackBar,
+    private _Arouter: ActivatedRoute
+    ) {
       this.registerData = {};
+      this.registerData2 = {};
      }
 
   ngOnInit(): void {
     
+    this._Arouter.params.subscribe((params) => {
+      this._id = params['id'];
+      this._projectService.listProjectUser(this._id).subscribe(
+        (res: any) => {
+          this.registerData2 = res.project;
+          console.log(this.registerData2)
+        },
+        (err: any) => {
+          this.message = err.error;
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
+        }
+      );
+      })
+
   }
 
   shareProjectUser() {
     if (
-      !this.registerData.email || !this.registerData.panelId
+      !this.registerData.email
     ) {
       this.message = 'Failed process: Incomplete data';
       Swal.fire({
@@ -49,14 +74,21 @@ export class SaveProjectComponent implements OnInit{
         icon: 'info',
       });
       Swal.showLoading();
-      this._projectService.shareProjectUser(this.registerData).subscribe(
-        (res) => {
-          this._router.navigate(['/listPanel']);
+      const data = {
+        'panelId':this._id,
+        'email':this.registerData.email
+      }
+      console.log(data);
+      
+      this._projectService.shareProjectUser(data).subscribe(
+        (res:any) => {
+          //this._router.navigate(['/listTask/']);
           this.message = 'Project create';
           Swal.close();
           this.registerData = {};
+          this.ngOnInit()
         },
-        (err) => {
+        (err:any) => {
           this.message = err.console.error;
           Swal.fire({
             allowOutsideClick: false,
@@ -68,6 +100,20 @@ export class SaveProjectComponent implements OnInit{
         }
       );
     }
+  }
+
+  deleteProject(userProject: any) {
+    this._projectService.deleteUserProject(userProject).subscribe(
+      (res: any) => {
+        this.message = res.message;
+          this.openSnackBarSuccesfull();
+          this.ngOnInit();
+      },
+      (err: any) => {
+        this.message = err.error;
+        this.openSnackBarError();
+      }
+    );
   }
 
   openSnackBarSuccesfull() {

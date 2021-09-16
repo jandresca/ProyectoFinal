@@ -1,34 +1,32 @@
 <div class="bgComponent">
-    <div class="form">
-      <mat-card class="card">
-        <mat-card-title>Registrar proyecto</mat-card-title>
-        <mat-card-content>
-          <div class="container">
-            <mat-form-field>
-                <input
-                  [(ngModel)]="registerData.email"
-                  type="email"
-                  matInput
-                  placeholder="Email"
-                  required
-                />
-              </mat-form-field>
-            <mat-form-field>
+  <div class="form">
+    <mat-card class="card">
+      <mat-card-title>Registrar proyecto</mat-card-title>
+      <mat-card-content>
+        <div class="container">
+          <mat-form-field>
               <input
-                [(ngModel)]="registerData.panelId"
+                [(ngModel)]="registerData.email"
+                type="email"
                 matInput
-                placeholder="Panel id"
+                placeholder="Email"
                 required
-                disabled
               />
             </mat-form-field>
-          </div>
-        </mat-card-content>
-        <mat-card-actions>
-          <button (click)="shareProjectUser()" class="button" mat-raised-button>
-            Register
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="shareProjectUser()" class="button" mat-raised-button>
+          Register
+        </button>
+      </mat-card-actions>
+      <mat-card-content *ngFor="let userProject of registerData2">
+        <div *ngIf="userProject.userId._id != userProject.userCreator">
+          <span >{{userProject.userId.name}}</span>
+          <mat-icon color="primary" (click)="deleteProject(userProject)">delete
+          </mat-icon>
+        </div>
+    </mat-card-content>
+    </mat-card>
   </div>
+</div>
