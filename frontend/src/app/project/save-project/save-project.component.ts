@@ -29,9 +29,9 @@ export class SaveProjectComponent implements OnInit{
     
   }
 
-  registerProject() {
+  shareProjectUser() {
     if (
-      !this.registerData.panelId
+      !this.registerData.email || !this.registerData.panelId
     ) {
       this.message = 'Failed process: Incomplete data';
       Swal.fire({
@@ -49,7 +49,7 @@ export class SaveProjectComponent implements OnInit{
         icon: 'info',
       });
       Swal.showLoading();
-      this._projectService.registerProject(this.registerData).subscribe(
+      this._projectService.shareProjectUser(this.registerData).subscribe(
         (res) => {
           this._router.navigate(['/listPanel']);
           this.message = 'Project create';

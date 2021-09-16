@@ -30,7 +30,7 @@ const shareProjectUser = async (req, res) => {
   if (!req.body.email || !req.body.panelId)
     return res.status(400).send("Incomplete data");
 
-  let panel = await Panel.findOne({ _id: req.body.panelId});
+  let panel = await Panel.findOne({ _id: req.body.panelId });
   if (!panel) return res.status(400).send("Panel not found");
 
   const user = await User.findOne({ email: req.body.email });
@@ -49,6 +49,7 @@ const shareProjectUser = async (req, res) => {
   const result = await project.save();
   if (!result) return res.status(400).send("Failed to register project");
   return res.status(200).send({ result });
+  
 };
 
 //eliminar usuarios del proyecto

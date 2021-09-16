@@ -5,17 +5,27 @@
         <mat-card-content>
           <div class="container">
             <mat-form-field>
+                <input
+                  [(ngModel)]="registerData.email"
+                  type="email"
+                  matInput
+                  placeholder="Email"
+                  required
+                />
+              </mat-form-field>
+            <mat-form-field>
               <input
                 [(ngModel)]="registerData.panelId"
                 matInput
                 placeholder="Panel id"
                 required
+                disabled
               />
             </mat-form-field>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button (click)="registerProject()" class="button" mat-raised-button>
+          <button (click)="shareProjectUser()" class="button" mat-raised-button>
             Register
           </button>
         </mat-card-actions>

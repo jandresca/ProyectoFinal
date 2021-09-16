@@ -103,7 +103,10 @@ export class SavePanelComponent implements OnInit {
       Swal.showLoading();
       this._panelService.registerPanel(this.registerData).subscribe(
         (res) => {
-          this._router.navigate(['/saveProyect/']);
+          this._router.navigate(['/saveProyect/' + res.result._id]);
+          console.log(res.result);
+          
+          
           this.message = 'Panel create';
           Swal.close();
           this.registerData = {};
