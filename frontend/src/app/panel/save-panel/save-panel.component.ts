@@ -26,6 +26,7 @@ export class SavePanelComponent implements OnInit {
   registerData: any;
   selectedFile: any;
   message: string = '';
+  id: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2;
@@ -59,7 +60,8 @@ export class SavePanelComponent implements OnInit {
   constructor(
     private _panelService: PanelService,
     private _router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _projectService: ProjectService
   ) {
     this.registerData = {};
     this.selectedFile = null;
@@ -103,10 +105,15 @@ export class SavePanelComponent implements OnInit {
       Swal.showLoading();
       this._panelService.registerPanel(this.registerData).subscribe(
         (res) => {
+          this._projectService.registerProject(res.result).subscribe(
+            (res) => { 
+            },
+            (err) => {
+              this.message = err.error;
+              this.openSnackBarError();
+            }
+          );
           this._router.navigate(['/saveProyect/' + res.result._id]);
-          console.log(res.result);
-          
-          
           this.message = 'Panel create';
           Swal.close();
           this.registerData = {};

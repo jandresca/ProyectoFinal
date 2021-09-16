@@ -4,13 +4,11 @@ const Project = require("../models/project");
 
 //registrar projectos
 const registerProject = async (req, res) => {
-  if (!req.body.panelId)
-    return res.status(400).send("Incomplete data");
-
+  if (!req.body._id) return res.status(400).send("Incomplete data");
   const user = await User.findOne({ _id: req.user._id });
   if (!user) return res.status(400).send("user not found");
 
-  let panel = await Panel.findOne({ _id: req.body.panelId });
+  let panel = await Panel.findOne({ _id: req.body._id });
   if (!panel) return res.status(400).send("Panel not found");
 
   const project = new Project({
