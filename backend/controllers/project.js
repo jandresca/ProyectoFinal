@@ -28,15 +28,16 @@ const registerProject = async (req, res) => {
 const shareProjectUser = async (req, res) => {
   if (!req.body.email || !req.body.panelId)
     return res.status(400).send("Incomplete data");
+    console.log(req.body.email);
+    console.log(req.body.panelId);
 
-  let panel = await Panel.findOne({ _id: req.body.panelId });
-  if (!panel) return res.status(400).send("Panel not found");
 
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("user not found");
 
   const project1 = await Project.findOne({ panelId: req.body.panelId });
   if (!project1) return res.status(400).send("project not found");
+
 
   const project = new Project({
     userCreator: project1.userCreator,
@@ -52,12 +53,12 @@ const shareProjectUser = async (req, res) => {
 
 //eliminar usuarios del proyecto
 const deleteUserProject = async (req, res) => {
-  if (!req.body.userId || !req.body.panelId)
+  if (!req.body.userId._id || !req.body.panelId)
     return res.status(400).send("Incomplete data");
     
   //busco los siguientes parametros para recuperar el id del registro del project
   const projects = await Project.findOne({
-    userId: req.body.userId,
+    userId: req.body.userId._id,
     status: "true",
     panelId: req.body.panelId,
     userCreator: req.user._id,
@@ -82,8 +83,10 @@ const listProjectUser = async (req, res) => {
     status: "true",
     panelId: req.params.id,
   })
-    .populate("panelId")
-    .populate("roleId");
+    // .populate("panelId")
+    // .populate("roleId")
+    .populate("userId")
+    .exec();
 
   const project1 = await Project.findOne({
     userCreator: req.user._id,

@@ -16,8 +16,8 @@ export class ProjectService {
     return this._http.post<any>(this.env + 'project/registerProject/', project);
   }
 
-  listProjectUser() {
-    return this._http.get<any>(this.env + 'project/listProjectUser');
+  listProjectUser(_id: any) {
+    return this._http.get<any>(this.env + 'project/listProjectUser/' + _id);
   }
 
   listProjectUserP() {
@@ -25,11 +25,11 @@ export class ProjectService {
   }
 
   shareProjectUser(project: any) {
-    return this._http.put<any>(this.env + 'project/shareProjectUser', project);
+    return this._http.post<any>(this.env + 'project/shareProjectUser', project);
   }
 
   deleteUserProject(project: any) {
-    return this._http.delete<any>(this.env + 'project/deleteUserProject/' + project._id);
+    return this._http.put<any>(this.env + 'project/deleteUserProject' , project._id);
   }
 
 }
