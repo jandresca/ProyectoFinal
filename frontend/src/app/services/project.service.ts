@@ -13,7 +13,7 @@ export class ProjectService {
   }
 
   registerProject(project: any) {
-    return this._http.post<any>(this.env + 'project/registerProject', project);
+    return this._http.post<any>(this.env + 'project/registerProject/', project);
   }
 
   listProjectUser() {

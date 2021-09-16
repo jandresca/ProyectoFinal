@@ -53,7 +53,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'saveProyect',
+    path: 'saveProyect/:id',
     component: SaveProjectComponent,
     canActivate: [AuthGuard],
   },
