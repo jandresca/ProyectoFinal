@@ -35,7 +35,11 @@ export class SaveTaskComponent implements OnInit {
     this.selectedFile = null;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { 
+      this._Arouter.params.subscribe((params) => {
+      this._id = params['id'];
+    })
+  }
 
   uploadImg(event: any) {
     this.selectedFile = <File>event.target.files[0];
@@ -69,14 +73,14 @@ export class SaveTaskComponent implements OnInit {
       }
       data.append('name', this.registerData.name);
       data.append('description', this.registerData.description);
-      data.append('priority', this.registerData.priority)
-      data.append('panelId', this.registerData.panelId)
+      data.append('priority', this.registerData.priority);
+      data.append('panelId', this._id);
+      console.log(data);
+            console.log(this.registerData);
 
-      
-      console.log(this.registerData)
       this._taskService.saveTaskImg(data).subscribe(
         (res) => {
-          // this._router.navigate(['/listPane']);
+          this._router.navigate(['listTask/', this._id]);
           this.message = 'Successfull user registration';
           Swal.close();
           Swal.fire({
@@ -87,7 +91,7 @@ export class SaveTaskComponent implements OnInit {
             confirmButtonText: 'Close',
           });
 
-          this.registerData = {};
+        this.registerData = {};
         },
         (err) => {
           this.message = err.error;

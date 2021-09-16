@@ -51,8 +51,8 @@ const saveTaskImg = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.priority)
     return res.status(400).send("Incomplete data");
 
-    // let panel = await Panel.findOne({ _id: req.body._id });
-    // if (!panel) return res.status(400).send("Panel not found");
+    let panel = await Panel.findOne({ _id: req.body.panelId });
+    if (!panel) return res.status(400).send("Panel not found");
 
   let imageUrl = "";
   if (req.files.image) {
