@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <div class="container bg-dark card">
     <h2><span class="badge bg-light  text-dark mat-card-title"><br> My Profile</span></h2>
     <div class="col-lg-4 ">
@@ -10,4 +10,50 @@
                     </mat-card-header>
                 </mat-card>
             </div>
+</div> -->
+<div class="bgComponent">
+  <div class="form">
+    <mat-card class="card">
+      <mat-card-title>My Profile</mat-card-title>
+      <mat-card-content>
+        <div class="container">
+          <mat-form-field>
+            <input
+              [(ngModel)]="profileData.name"
+              matInput
+              placeholder="Name and lastname"
+              required
+              disabled
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              [(ngModel)]="profileData.email"
+              type="email"
+              matInput
+              placeholder="Email"
+              required
+              disabled
+            />
+          </mat-form-field>
+          
+          <!-- <mat-form-field>
+            <input
+              [(ngModel)]="role"
+              matInput
+              placeholder="Role"
+              required
+              disabled
+            />
+          </mat-form-field> -->
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button class="button" mat-raised-button [routerLink]="['/updateUser2', profileData._id]">
+          Update Account
+        </button>
+        
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

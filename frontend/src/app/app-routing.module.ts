@@ -19,6 +19,7 @@ import { SaveProjectComponent } from "./project/save-project/save-project.compon
 
 
 import { AuthGuard } from './guard/auth.guard';
+import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,11 @@ const routes: Routes = [
   {
     path: 'updateUser/:_id',
     component: UpdateUserComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateUser2/:_id',
+    component: UpdateUser2Component,
     canActivate: [AuthGuard],
   },
   {
