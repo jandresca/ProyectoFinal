@@ -5,6 +5,7 @@ const Project = require("../models/project");
 //registrar projectos
 const registerProject = async (req, res) => {
   if (!req.body._id) return res.status(400).send("Incomplete data");
+  
   const user = await User.findOne({ _id: req.user._id });
   if (!user) return res.status(400).send("user not found");
 
