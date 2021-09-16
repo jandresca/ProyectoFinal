@@ -82,6 +82,8 @@
                                                         <span class="spacer"></span>
                                                         <mat-icon color="primary" (click)="deleteTask(task)">delete
                                                         </mat-icon>
+                                                        <mat-icon  [routerLink]="['/updateTask/',task._id]">border_color
+                                                        </mat-icon>
                                                     </mat-action-row>
                                                 </mat-expansion-panel>
                                             </mat-accordion>
@@ -121,6 +123,7 @@
                                                             </button>
                                                         </mat-panel-title>
                                                     </mat-expansion-panel-header>
+                                                    
                                                     <mat-panel-description>
                                                         {{ task.description }}
                                                     </mat-panel-description>
@@ -144,6 +147,9 @@
                                                         <span class="spacer"></span>
                                                         <mat-icon color="primary" (click)="deleteTask(task)">delete
                                                         </mat-icon>
+                                                        <mat-icon  [routerLink]="['/updateTask/',task._id]">border_color
+                                                        </mat-icon>
+                                                        
                                                     </mat-action-row>
                                                 </mat-expansion-panel>
                                             </mat-accordion>
@@ -201,6 +207,8 @@
                                                         </button>
                                                         <span class="spacer"></span>
                                                         <mat-icon color="primary" (click)="deleteTask(task)">delete
+                                                        </mat-icon>
+                                                        <mat-icon  [routerLink]="['/updateTask/',task._id]">border_color
                                                         </mat-icon>
                                                     </mat-action-row>
                                                 </mat-expansion-panel>

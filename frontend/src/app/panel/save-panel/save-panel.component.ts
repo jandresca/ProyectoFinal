@@ -107,13 +107,14 @@ export class SavePanelComponent implements OnInit {
         (res) => {
           this._projectService.registerProject(res.result).subscribe(
             (res) => { 
+              // console.log(res);
             },
             (err) => {
               this.message = err.error;
               this.openSnackBarError();
             }
           );
-          this._router.navigate(['/saveProyect/' + res.result._id]);
+          // this._router.navigate(['/saveProyect/' + res.result._id]);
           this.message = 'Panel create';
           Swal.close();
           this.registerData = {};
