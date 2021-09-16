@@ -51,6 +51,7 @@ import { SaveProjectComponent } from './project/save-project/save-project.compon
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
+import { UpdateTaskComponent } from './task/update-task/update-task.component';
 
 
 
@@ -75,6 +76,7 @@ import { UpdatePanelComponent } from './panel/update-panel/update-panel.componen
     ProfileComponent,
     SaveProjectComponent,
     UpdatePanelComponent,
+    UpdateTaskComponent,
   ],
   imports: [
     BrowserModule,

@@ -53,7 +53,7 @@ const shareProjectUser = async (req, res) => {
 const deleteUserProject = async (req, res) => {
   if (!req.body.userId || !req.body.panelId)
     return res.status(400).send("Incomplete data");
-
+    
   //busco los siguientes parametros para recuperar el id del registro del project
   const projects = await Project.findOne({
     userId: req.body.userId,

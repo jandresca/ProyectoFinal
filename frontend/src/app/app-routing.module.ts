@@ -16,6 +16,7 @@ import { SavePanelComponent } from "./panel/save-panel/save-panel.component";
 import { ProfileComponent } from "./home/profile/profile.component";
 import { SaveProjectComponent } from "./project/save-project/save-project.component";
 import { UpdatePanelComponent } from "./panel/update-panel/update-panel.component";
+import { UpdateTaskComponent } from "./task/update-task/update-task.component";
 
 
 
@@ -31,6 +32,11 @@ const routes: Routes = [
     path: 'index',
     component: IndexComponent,
     pathMatch: 'full',
+  },
+  {
+    path: 'updateTask/:id',
+    component: UpdateTaskComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'updatePanel/:id',

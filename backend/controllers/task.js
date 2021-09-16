@@ -80,6 +80,14 @@ const saveTaskImg = async (req, res) => {
   return res.status(200).send({ result });
 };
 
+const findTask = async (req, res) => {
+  // console.log(req.params["_id"]);
+  const task = await Task.findOne({ _id: req.params["_id"] })
+  if (!task || task.length === 0)
+    return res.status(400).send("No search results");
+  return res.status(200).send({ task });
+};
+
 const updateTask = async (req, res) => {
   let validId = mongoose.Types.ObjectId.isValid(req.body._id);
   if (!validId) return res.status(400).send("Invalid id");
@@ -134,4 +142,4 @@ const sharePanelTask = async (req, res) => {
 
 }
 
-module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask , listTaskTemp};
+module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask , listTaskTemp, findTask};
