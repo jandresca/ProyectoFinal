@@ -34,6 +34,10 @@ export class TaskService {
   findTask(_id: string) {
     return this._http.get<any>(this.env + 'task/findTask/' + _id);
   }
+
+  updatetaskImg(data: any) {
+    return this._http.put<any>(this.env + 'task/updatetaskImg', data);
+  }
 }
 
 

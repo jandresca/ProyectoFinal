@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
-
+import { DatePipe } from '@angular/common';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   MatSnackBar,
@@ -54,6 +54,18 @@ export class UpdateTaskComponent implements OnInit {
   uploadImg(event: any) {
     this.selectedFile = <File>event.target.files[0];
   }
+
+  transform(value: any) {
+    var datePipe = new DatePipe('en-US');
+    var fecha = new Date(value);
+    var dias = 1; // Número de días a agregar
+    value = datePipe.transform(
+      fecha.setDate(fecha.getDate() + dias),
+      'yyyy-MM-dd'
+    );
+    return value;
+  }
+
   updateTask() {
     if (!this.registerData.name || !this.registerData.description) {
       this.message = 'Failed process: Imcomplete data';
@@ -64,17 +76,20 @@ export class UpdateTaskComponent implements OnInit {
       if (this.selectedFile != null) {
         data.append('image', this.selectedFile, this.selectedFile.name);
       }
+      data.append('_id', this.registerData._id);
       data.append('name', this.registerData.name);
       data.append('description', this.registerData.description);
-
-      this._taskService.updateTask(data).subscribe(
-        (res: any) => {
+      data.append('priority', this.registerData.priority);
+      data.append('finalDate', this.registerData.finalDate);
+      
+      this._taskService.updatetaskImg(data).subscribe(
+        (res) => {
           this._router.navigate(['/listTask']);
           this.message = 'Task update';
           this.openSnackBarSuccesfull();
           this.registerData = {};
         },
-        (err: any) => {
+        (err) => {
           this.message = err.error;
           this.openSnackBarError();
         }
