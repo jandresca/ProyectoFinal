@@ -108,6 +108,34 @@ const updateUser = async (req, res) => {
   return res.status(200).send({ user });
 };
 
+const updateUser2 = async (req, res) => {
+  if (!req.body._id || !req.body.name || !req.body.email)
+    return res.status(400).send("Incomplete data");
+
+  let pass = "";
+  let role = "";
+
+  if (req.body.password) {
+    pass = await bcrypt.hash(req.body.password, 10);
+  } else {
+    const userFind = await User.findOne({ email: req.body.email });
+    pass = userFind.password;
+  }
+  if (req.body.roleId) {
+    role = req.body.roleId;
+  }
+
+  const user = await User.findByIdAndUpdate(req.body._id, {
+    name: req.body.name,
+    email: req.body.email,
+    password: pass,
+    roleId: req.body.roleId,
+  });
+
+  if (!user) return res.status(400).send("Error editing user");
+  return res.status(200).send({ user });
+};
+
 const findUser = async (req, res) => {
   const users = await User.findOne({
     _id: req.params["_id"],
@@ -197,4 +225,5 @@ module.exports = {
   getName,
   listUser2,
   findUser,
+  updateUser2,
 };

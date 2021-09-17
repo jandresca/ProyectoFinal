@@ -9,12 +9,12 @@ import {
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
-  styleUrls: ['./profile.component.css']
+  styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-
   profileData: any;
   message: string = '';
+  role: any;
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
   durationInSeconds: number = 2;
@@ -25,14 +25,14 @@ export class ProfileComponent implements OnInit {
     private _snackBar: MatSnackBar
   ) {
     this.profileData = {};
+    this.role = {};
   }
 
   ngOnInit(): void {
     this._userService.listUser2().subscribe(
       (res) => {
         this.profileData = res.users;
-        console.log(this.profileData);
-        
+        // this.role = res.users.roleId.name;
       },
       (err) => {
         this.message = err.error;
@@ -40,7 +40,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-  
 
   openSnackBarSuccesfull() {
     this._snackBar.open(this.message, 'X', {
@@ -59,6 +58,4 @@ export class ProfileComponent implements OnInit {
       panelClass: ['style-snackBarFalse'],
     });
   }
-
-
 }

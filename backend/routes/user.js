@@ -19,7 +19,6 @@ router.get(
   "/findUser/:_id",
   Auth,
   ValidateUser,
-  Admin,
   UserController.findUser
 );
 
@@ -31,6 +30,7 @@ router.get(
   UserController.listUserAll
 );
 router.put("/updateUser", Auth, ValidateUser, Admin, UserController.updateUser);
+router.put("/updateUser2", Auth, ValidateUser, UserController.updateUser2);
 router.put("/deleteUser", Auth, ValidateUser, Admin, UserController.deleteUser);
 router.post(
   "/registerAdmin",

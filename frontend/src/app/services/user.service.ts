@@ -63,6 +63,10 @@ export class UserService {
     return this._http.put<any>(this.env + 'user/updateUser', user);
   }
 
+  updateUser2(user: any) {
+    return this._http.put<any>(this.env + 'user/updateUser2', user);
+  }
+
   deleteUser(user: any) {
     return this._http.put<any>(this.env + 'user/deleteUser', user);
   }
