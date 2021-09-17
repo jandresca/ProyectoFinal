@@ -28,16 +28,13 @@ const registerProject = async (req, res) => {
 const shareProjectUser = async (req, res) => {
   if (!req.body.email || !req.body.panelId)
     return res.status(400).send("Incomplete data");
-    console.log(req.body.email);
-    console.log(req.body.panelId);
-
-
+    // console.log(req.body.email);
+    // console.log(req.body.panelId);
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("user not found");
 
   const project1 = await Project.findOne({ panelId: req.body.panelId });
   if (!project1) return res.status(400).send("project not found");
-
 
   const project = new Project({
     userCreator: project1.userCreator,
@@ -55,6 +52,7 @@ const shareProjectUser = async (req, res) => {
 const deleteUserProject = async (req, res) => {
   if (!req.body.userId._id || !req.body.panelId)
     return res.status(400).send("Incomplete data");
+    console.log(req.body.userId._id);
     
   //busco los siguientes parametros para recuperar el id del registro del project
   const projects = await Project.findOne({

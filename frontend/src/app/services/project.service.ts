@@ -29,7 +29,7 @@ export class ProjectService {
   }
 
   deleteUserProject(project: any) {
-    return this._http.put<any>(this.env + 'project/deleteUserProject' , project._id);
+    return this._http.put<any>(this.env + 'project/deleteUserProject' , project);
   }
 
 }

@@ -50,7 +50,7 @@ import { ProfileComponent } from './home/profile/profile.component';
 import { SaveProjectComponent } from './project/save-project/save-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-
+import {MatDialogModule} from '@angular/material/dialog';
 import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
 
@@ -107,7 +107,8 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     MatSortModule,
     MatMenuModule,
     DragDropModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDialogModule
   ],
   providers: [
     UserService,

@@ -78,7 +78,7 @@ export class SaveProjectComponent implements OnInit{
         'panelId':this._id,
         'email':this.registerData.email
       }
-      console.log(data);
+      // console.log(data);
       
       this._projectService.shareProjectUser(data).subscribe(
         (res:any) => {
@@ -103,6 +103,7 @@ export class SaveProjectComponent implements OnInit{
   }
 
   deleteProject(userProject: any) {
+    // console.log(userProject);
     this._projectService.deleteUserProject(userProject).subscribe(
       (res: any) => {
         this.message = res.message;
