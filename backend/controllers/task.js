@@ -50,6 +50,7 @@ const listTaskTemp = async (req, res) => {
 const saveTaskImg = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
     return res.status(400).send("Incomplete data");
+    // console.log(req.body.finalDate);
 
     let panel = await Panel.findOne({ _id: req.body.panelId });
     if (!panel) return res.status(400).send("Panel not found");
