@@ -17,12 +17,18 @@ import Swal from 'sweetalert2';
 
 
 
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
   styleUrls: ['./list-task.component.css'],
 })
 export class ListTaskComponent implements OnInit {
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  }
   registerData: any;
   panelData: any;
   selectedFile: any;
@@ -260,7 +266,8 @@ export class ListTaskComponent implements OnInit {
       if (
         !this.registerData.name ||
         !this.registerData.description ||
-        !this.registerData.priority
+        !this.registerData.priority ||
+        !this.registerData.finalDate
       ) {
         this.message = 'Failed process: Incomplete data';
         Swal.fire({
@@ -285,6 +292,7 @@ export class ListTaskComponent implements OnInit {
         data.append('name', this.registerData.name);
         data.append('description', this.registerData.description);
         data.append('priority', this.registerData.priority);
+        data.append('finalDate', this.registerData.finalDate);
         data.append('panelId', this._id);
         console.log(data);
               console.log(this.registerData);
