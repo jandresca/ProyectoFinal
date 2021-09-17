@@ -76,9 +76,11 @@ export class SaveTaskComponent implements OnInit {
       data.append('description', this.registerData.description);
       data.append('priority', this.registerData.priority);
       data.append('finalDate', this.registerData.finalDate);
+      console.log(this.registerData.finalDate);
       data.append('panelId', this._id);
+
       console.log(data);
-            console.log(this.registerData);
+      // console.log(this.registerData);
 
       this._taskService.saveTaskImg(data).subscribe(
         (res) => {

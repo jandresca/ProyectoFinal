@@ -8,7 +8,7 @@ const taskSchema = new mongoose.Schema({
   priority: Number,
   taskStatus: String,
   imageUrl: String,
-  finalDate: { type: Date, default: Date.now },
+  finalDate: Date,
   date: { type: Date, default: Date.now },
 });
 
