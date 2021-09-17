@@ -112,11 +112,8 @@ const updateTask = async (req, res) => {
   return res.status(200).send({ task });
 };
 const updateTaskImg = async (req, res) => {
-  console.log(req.body);
-
   if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
   return res.status(400).send("Incomplete data");
- 
 
   let validId = mongoose.Types.ObjectId.isValid(req.body._id);
   if (!validId) return res.status(400).send("Invalid id");

@@ -10,6 +10,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-update-task',
@@ -65,37 +66,59 @@ export class UpdateTaskComponent implements OnInit {
     );
     return value;
   }
-
   updateTask() {
-    if (!this.registerData.name || !this.registerData.description) {
-      this.message = 'Failed process: Imcomplete data';
-      this.openSnackBarError();
+    if (
+      !this.registerData.name ||
+      !this.registerData.description ||
+      !this.registerData.priority ||
+      !this.registerData.finalDate
+    ) {
+      this.message = 'Failed process: Incomplete data';
+      Swal.fire({
+        allowOutsideClick: false,
+        title: 'Error!',
+        text: this.message,
+        icon: 'error',
+        confirmButtonText: 'Close',
+      });
       this.registerData = {};
     } else {
-      const data = new FormData();
-      if (this.selectedFile != null) {
-        data.append('image', this.selectedFile, this.selectedFile.name);
-      }
-      data.append('_id', this.registerData._id);
-      data.append('name', this.registerData.name);
-      data.append('description', this.registerData.description);
-      data.append('priority', this.registerData.priority);
-      data.append('finalDate', this.registerData.finalDate);
-      
-      this._taskService.updatetaskImg(data).subscribe(
-        (res) => {
-          this._router.navigate(['/listTask']);
-          this.message = 'Task update';
-          this.openSnackBarSuccesfull();
-          this.registerData = {};
+      Swal.fire({
+        allowOutsideClick: false,
+        text: this.message,
+        icon: 'info',
+      });
+      Swal.showLoading();
+
+      this._taskService.updateTaskImg(this.registerData).subscribe(
+        (res:any) => {
+          this._router.navigate(['listTask/', this.registerData.panelId]);
+          this.message = 'Successfull user registration';
+          Swal.close();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'congratulations!',
+            text: this.message,
+            icon: 'success',
+            confirmButtonText: 'Close',
+          });
+
+        this.registerData = {};
         },
-        (err) => {
+        (err:any) => {
           this.message = err.error;
-          this.openSnackBarError();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
         }
       );
     }
   }
+  
 
   openSnackBarSuccesfull() {
     this._snackBar.open(this.message, 'X', {

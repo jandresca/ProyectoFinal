@@ -23,6 +23,7 @@ export class TaskService {
   updateTask (data : any): any{
     return this._http.put(this.env+ "task/updateTask", data);
   }
+  
 
   deleteTask (data: any): any{
     return this._http.delete(this.env+ "task/deleteTask/" + data._id);
@@ -35,9 +36,11 @@ export class TaskService {
     return this._http.get<any>(this.env + 'task/findTask/' + _id);
   }
 
-  updatetaskImg(data: any) {
-    return this._http.put<any>(this.env + 'task/updatetaskImg', data);
+  updateTaskImg (data : any): any{
+    return this._http.put(this.env+ "task/updateTaskImg", data);
   }
+
+  
 }
 
 

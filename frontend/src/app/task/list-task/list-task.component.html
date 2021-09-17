@@ -1,88 +1,117 @@
-<body
-  class="img"
-  style="background-image: url('../../../assets/img/{{ panelData.theme }}');
-"
->
-  <div class="container-fluid">
-    <div class="">
-      <button
-        class="btn"
-        mat-button
-        [routerLink]="['/saveProyect/', panelData._id]"
-      >
-        INVITE<mat-icon>folder_shared </mat-icon>
-      </button>
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <br />
-            <!-- <h1 class="text-center">My Panel</h1> -->
-            <h1 class="text-center">
-              <strong>{{ panelData.name }}</strong>
-            </h1>
-            <button
-              class="task"
-              mat-button
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              Create new Task
-            </button>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <div cdkDropListGroup class="accordion_display">
-              <table
-                class="table table-bordered border-dark table-responsive"
-                style="height: 600px"
-              >
-                <thead>
-                  <tr>
-                    <th scope="col">
-                      <h2 class="text-center">To do</h2>
-                    </th>
-                    <th scope="col">
-                      <h2 class="text-center">Progress</h2>
-                    </th>
-                    <th scope="col">
-                      <h2 class="text-center">Done</h2>
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>
-                      <div class="example-container">
-                        <div
-                          cdkDropList
-                          [cdkDropListData]="todo"
-                          class="example-list"
-                          (cdkDropListDropped)="drop($event, 'to-do')"
-                          *ngIf="taskData.length"
-                        >
-                          <mat-accordion
-                            class="example-box"
-                            *ngFor="let task of todo"
-                            multi="true"
-                            cdkDrag
-                          >
-                            <mat-expansion-panel
-                              hideToggle="false"
-                              [ngClass]="
-                                task.priority === 1
-                                  ? priorityone
-                                  : task.priority === 2
-                                  ? prioritytwo
-                                  : prioritythree
-                              "
-                            >
-                              <mat-expansion-panel-header>
-                                <mat-panel-title>
-                                  <span class="name-center">{{
-                                    task.name
-                                  }}</span>
-                                  <span class="spacer"></span>
+<body class="img" style="background-image: url('../../../assets/img/{{panelData.theme}}');
+">
+    <div class="container-fluid">
+        <div class="">
+            <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared
+                </mat-icon></button>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <br>
+                        <!-- <h1 class="text-center">My Panel</h1> -->
+                        <h1 class="text-center"><strong>{{panelData.name}}</strong></h1>
+                        <button class="task" mat-button data-bs-toggle="modal" data-bs-target="#exampleModal">Create new
+                            Task</button>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div cdkDropListGroup class="accordion_display">
+                            <table class="table table-bordered border-dark table-responsive " style="height: 600px;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <h2 class="text-center">To do </h2>
+                                        </th>
+                                        <th scope="col">
+                                            <h2 class="text-center">Progress</h2>
+                                        </th>
+                                        <th scope="col">
+                                            <h2 class="text-center">Done</h2>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="example-container">
+
+                                                <div cdkDropList [cdkDropListData]="todo" class="example-list"
+                                                    (cdkDropListDropped)="drop($event, 'to-do')"
+                                                    *ngIf="taskData.length">
+                                                    <mat-accordion class="example-box" *ngFor="let task of todo"
+                                                        multi="true" cdkDrag>
+                                                        <mat-expansion-panel hideToggle="false"
+                                                            [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                            <mat-expansion-panel-header>
+                                                                <mat-panel-title>
+                                                                    <span class="name-center">{{ task.name }}</span>
+                                                                    <span class="spacer"></span>
+
+                                                                    <button class="btnDone"
+                                                                        *ngIf="task.taskStatus == 'done'"
+                                                                        mat-raised-button>
+                                                                        {{ task.taskStatus }}
+                                                                    </button>
+                                                                    <button class="btnInProgress"
+                                                                        *ngIf="task.taskStatus == 'in-progress'"
+                                                                        mat-raised-button>
+                                                                        {{ task.taskStatus }}
+                                                                    </button>
+                                                                    <button class="btnToDo"
+                                                                        *ngIf="task.taskStatus == 'to-do'"
+                                                                        mat-raised-button>
+                                                                        {{ task.taskStatus }}
+                                                                    </button>
+                                                                </mat-panel-title>
+                                                            </mat-expansion-panel-header>
+                                                            <mat-panel-description>
+                                                                {{ task.description }}
+                                                            </mat-panel-description>
+                                                            <mat-panel-description>
+                                                                <img class="card-img-top image_center"
+                                                                    src="{{ task.imageUrl }}" />
+                                                            </mat-panel-description>
+                                                            <mat-action-row>
+                                                                <button class="btnSelectTodo" mat-button
+                                                                    (click)="updateTask(task, 'to-do', 'true')">
+                                                                    to-do
+                                                                </button>
+                                                                <button class="btnSelectInProgress" mat-button
+                                                                    (click)="updateTask(task, 'in-progress', 'true')">
+                                                                    In-progress
+                                                                </button>
+                                                                <button class="btnSelectDone" mat-button
+                                                                    (click)="updateTask(task, 'done', 'true')">
+                                                                    done
+                                                                </button>
+                                                                <span class="spacer"></span>
+                                                                <mat-icon color="primary" (click)="deleteTask(task)">
+                                                                    delete
+                                                                </mat-icon>
+                                                                <mat-icon [routerLink]="['/updateTask/',task._id]">
+                                                                    border_color
+                                                                </mat-icon>
+                                                            </mat-action-row>
+                                                        </mat-expansion-panel>
+                                                    </mat-accordion>
+                                                </div>
+                                            </div>
+
+                                        </td>
+                                        <td>
+                                            <div class="example-container">
+
+                                                <div cdkDropList [cdkDropListData]="progress" class="example-list"
+                                                    (cdkDropListDropped)="drop($event, 'in-progress')"
+                                                    *ngIf="taskData.length">
+                                                    <mat-accordion class="example-box" *ngFor="let task of progress"
+                                                        multi="true" cdkDrag>
+                                                        <mat-expansion-panel hideToggle="false"
+                                                            [ngClass]="task.priority === 1 ? priorityone : task.priority === 2 ? prioritytwo : prioritythree ">
+                                                            <mat-expansion-panel-header>
+                                                                <mat-panel-title>
 
                                   <button
                                     class="btnDone"
@@ -384,59 +413,49 @@
     </div>
   </div>
 </body>
-<div
-  class="modal fade"
-  id="exampleModal"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="form">
-        <mat-card>
-          <button
-            style="float: right; background-color: white"
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-          <mat-card-title>Register task</mat-card-title>
-          <mat-card-content>
-            <mat-form-field>
-              <input
-                [(ngModel)]="registerData.name"
-                matInput
-                placeholder="Task name"
-                required
-              /> </mat-form-field
-            ><br />
-            <mat-form-field>
-              <input
-                [(ngModel)]="registerData.description"
-                matInput
-                placeholder="Description"
-                required
-              /> </mat-form-field
-            ><br />
-            <mat-form-field appearance="fill">
-              <mat-label>Por favor seleccione la prioridad </mat-label>
-              <mat-select [(ngModel)]="registerData.priority">
-                <mat-option value="1">Alta</mat-option>
-                <mat-option value="2">Media</mat-option>
-                <mat-option value="3">Baja</mat-option>
-              </mat-select> </mat-form-field
-            ><br />
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           
+                <mat-card class="text-center" style="width: 100%;">
+                    <button style='float:right; background-color: white;' type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
+                    <mat-card-title>Register task</mat-card-title>
+                    <mat-card-content>
 
-            <mat-form-field>
-              <mat-label>Por favor ingrese la fecha final</mat-label>
-              <input
-                type="date"
-                matInput
-                [(ngModel)]="registerData.finalDate"
-              /> </mat-form-field
-            ><br />
+                        <mat-form-field>
+                            <input [(ngModel)]="registerData.name" matInput placeholder="Task name" required />
+                        </mat-form-field><br>
+                        <mat-form-field>
+                            <input [(ngModel)]="registerData.description" matInput placeholder="Description" required />
+                        </mat-form-field><br>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Por favor seleccione la prioridad </mat-label>
+                            <mat-select [(ngModel)]="registerData.priority">
+                                <mat-option value="1">Alta</mat-option>
+                                <mat-option value="2">Media</mat-option>
+                                <mat-option value="3">Baja</mat-option>
+                            </mat-select>
+                        </mat-form-field><br>
+
+                        <mat-form-field>
+                            <mat-label>Por favor ingrese la fecha final </mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="registerData.finalDate" matInput>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field><br>
+
+                        <input type="file" (change)="uploadImg($event)" />
+
+                    </mat-card-content>
+
+                    <mat-card-actions class="text-center">
+                        <button (click)="saveTaskImg()" class="button" mat-raised-button>
+                            Register
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+           
 
             <input type="file" (change)="uploadImg($event)" />
           </mat-card-content>
