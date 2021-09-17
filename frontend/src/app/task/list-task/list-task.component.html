@@ -294,3 +294,49 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="updateTask" tabindex="-1" aria-labelledby="updateTaskLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="form">
+                <mat-card>
+                    <button  style='float:right; background-color: white;' type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <mat-card-title>Register task</mat-card-title>
+                    <mat-card-content>
+                        
+                            <mat-form-field>
+                                <input [(ngModel)]="registerData.name" matInput placeholder="Task name" required />
+                            </mat-form-field><br>
+                            <mat-form-field>
+                                <input [(ngModel)]="registerData.description" matInput placeholder="Description"
+                                    required />
+                            </mat-form-field><br>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Por favor seleccione la prioridad </mat-label>
+                                <mat-select [(ngModel)]="registerData.priority">
+                                    <mat-option value="1">Alta</mat-option>
+                                    <mat-option value="2">Media</mat-option>
+                                    <mat-option value="3">Baja</mat-option>
+                                </mat-select>
+                            </mat-form-field><br>
+                            
+                            <mat-form-field>
+                                <mat-label>Por favor ingrese la fecha final</mat-label>
+                                <input type="date" matInput [(ngModel)]="registerData.finalDate">
+                            </mat-form-field><br>
+                            
+                            <input type="file" (change)="uploadImg($event)" />
+   
+                    </mat-card-content>
+
+                    <mat-card-actions class="text-center">
+                        <button (click)="saveTaskImg()" class="button" mat-raised-button>
+                            Register
+                        </button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+
+        </div>
+    </div>
+</div>

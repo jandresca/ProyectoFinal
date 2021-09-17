@@ -10,8 +10,21 @@
                     <mat-form-field>
                         <input [(ngModel)]="registerData.description" matInput placeholder="Description" required />
                     </mat-form-field>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Por favor seleccione la prioridad </mat-label>
+                        <mat-select [(ngModel)]="registerData.priority">
+                            <mat-option value="1">Alta</mat-option>
+                            <mat-option value="2">Media</mat-option>
+                            <mat-option value="3">Baja</mat-option>
+                        </mat-select>
+                    </mat-form-field><br>
                     
-                    <img class="card-img-top image_center" width="300" height="300" src="{{ registerData.imageUrl }}" />
+                    <mat-form-field>
+                        <mat-label>Por favor ingrese la fecha final</mat-label>
+                        <input type="date" matInput [value]="registerData.finalDate" [(ngModel)]="registerData.finalDate"> {{transform(registerData.finalDate)}}
+                    </mat-form-field><br>
+                    
+                    <img *ngIf="registerData.imageUrl" class="card-img-top image_center" width="300" height="300" src="{{ registerData.imageUrl }}" />
                     <input type="file" (change)="uploadImg($event)" />
                 </div>
             </mat-card-content>
