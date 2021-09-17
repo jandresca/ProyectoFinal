@@ -15,13 +15,17 @@ import {
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
+
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
   styleUrls: ['./list-task.component.css'],
 })
 export class ListTaskComponent implements OnInit {
+  registerData: any;
   panelData: any;
+  selectedFile: any;
   taskData: any;
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
@@ -30,6 +34,8 @@ export class ListTaskComponent implements OnInit {
   todo: any = [];
   progress: any = [];
   done: any = [];
+  _id: string;
+
 
   priorityone: string = 'priorityone';
   prioritytwo: string = 'prioritytwo';
@@ -40,14 +46,21 @@ export class ListTaskComponent implements OnInit {
     private _snackBar: MatSnackBar,
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
-    private _panelService: PanelService
+    private _panelService: PanelService,
+    
+    
   ) {
     this.taskData = {};
     this.panelData = {};
+    this.registerData = {};
+    this._id = '';
+    this.selectedFile = null;
+     
   }
 
   ngOnInit(): void {
     this.loadTask();
+    this._id = this.panelData._id;
   }
   /*
   loadTask() {
@@ -151,7 +164,9 @@ export class ListTaskComponent implements OnInit {
             this.taskData.splice(index, 1);
             this.message = res.message;
             this.openSnackBarSuccesfull();
+          
           }
+          this.loadTask();
         },
         (err: any) => {
           this.message = err.error;
@@ -235,4 +250,73 @@ export class ListTaskComponent implements OnInit {
         panelClass: ['style-snackBarFalse'],
       });
     }
+
+    uploadImg(event: any) {
+      this.selectedFile = <File>event.target.files[0];
+    }
+  
+    saveTaskImg() {
+      this._id = this.panelData._id;
+      if (
+        !this.registerData.name ||
+        !this.registerData.description ||
+        !this.registerData.priority
+      ) {
+        this.message = 'Failed process: Incomplete data';
+        Swal.fire({
+          allowOutsideClick: false,
+          title: 'Error!',
+          text: this.message,
+          icon: 'error',
+          confirmButtonText: 'Close',
+        });
+        this.registerData = {};
+      } else {
+        Swal.fire({
+          allowOutsideClick: false,
+          text: this.message,
+          icon: 'info',
+        });
+        Swal.showLoading();
+        const data = new FormData();
+        if (this.selectedFile != null) {
+          data.append('image', this.selectedFile, this.selectedFile.name);
+        }
+        data.append('name', this.registerData.name);
+        data.append('description', this.registerData.description);
+        data.append('priority', this.registerData.priority);
+        data.append('panelId', this._id);
+        console.log(data);
+              console.log(this.registerData);
+  
+        this._taskService.saveTaskImg(data).subscribe(
+          (res) => {
+            this.loadTask();
+            // this.message = 'Successfull user registration';
+            Swal.close();
+            Swal.fire({
+              allowOutsideClick: false,
+              title: 'congratulations!',
+              text: this.message,
+              icon: 'success',
+              confirmButtonText: 'Close',
+              
+            });
+  
+          this.registerData = {};
+          },
+          (err) => {
+            this.message = err.error;
+            Swal.fire({
+              allowOutsideClick: false,
+              title: 'Error!',
+              text: this.message,
+              icon: 'error',
+              confirmButtonText: 'Close',
+            });
+          }
+        );
+      }
+    }
+
   }

@@ -196,3 +196,16 @@ table {
   background-size: cover;
   
 }
+
+.task{
+  background-color: cornflowerblue;
+  position: absolute;
+  top: 13%;
+  /* right: 9%; */
+  left: 2%;
+}
+
+.mat-expansion-panel{
+  width: 376px;
+}
+
