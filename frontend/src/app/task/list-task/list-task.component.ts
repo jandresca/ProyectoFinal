@@ -68,7 +68,6 @@ export class ListTaskComponent implements OnInit {
   }
   /*
   loadTask() {
-
     this.done = [];
     this.todo = [];
     this.progress = [];
@@ -84,7 +83,6 @@ export class ListTaskComponent implements OnInit {
       },
       (error: any) => {
         console.log(error);
-
       }
     );
   }
@@ -292,7 +290,7 @@ export class ListTaskComponent implements OnInit {
         data.append('priority', this.registerData.priority);
         data.append('finalDate', this.registerData.finalDate);
         data.append('panelId', this._id);
-        console.log(data);
+        // console.log(data);
         // console.log(this.registerData);
   
         this._taskService.saveTaskImg(data).subscribe(
