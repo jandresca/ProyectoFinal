@@ -18,13 +18,17 @@
                             <mat-option value="3">Baja</mat-option>
                         </mat-select>
                     </mat-form-field><br>
-                    
+
                     <mat-form-field>
                         <mat-label>Por favor ingrese la fecha final</mat-label>
-                        <input type="date" matInput [value]="registerData.finalDate" [(ngModel)]="registerData.finalDate"> {{transform(registerData.finalDate)}}
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="registerData.finalDate" matInput
+                            [value]="registerData.finalDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field><br>
-                    
-                    <img *ngIf="registerData.imageUrl" class="card-img-top image_center" width="300" height="300" src="{{ registerData.imageUrl }}" />
+
+                    <img *ngIf="registerData.imageUrl" class="card-img-top image_center" width="300" height="300"
+                        src="{{ registerData.imageUrl }}" />
                     <input type="file" (change)="uploadImg($event)" />
                 </div>
             </mat-card-content>
