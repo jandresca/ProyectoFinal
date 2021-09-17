@@ -5,14 +5,8 @@
       <mat-card-content>
         <div class="container">
           <mat-form-field>
-              <input
-                [(ngModel)]="registerData.email"
-                type="email"
-                matInput
-                placeholder="Email"
-                required
-              />
-            </mat-form-field>
+            <input [(ngModel)]="registerData.email" type="email" matInput placeholder="Email" required />
+          </mat-form-field>
         </div>
       </mat-card-content>
       <mat-card-actions>
@@ -22,11 +16,13 @@
       </mat-card-actions>
       <mat-card-content *ngFor="let userProject of registerData2">
         <div *ngIf="userProject.userId._id != userProject.userCreator">
-          <span >{{userProject.userId.name}}</span>
+          <span>{{userProject.userId.name}} ({{userProject.userId.email}})</span>
           <mat-icon color="primary" (click)="deleteProject(userProject)">delete
           </mat-icon>
         </div>
-    </mat-card-content>
+      </mat-card-content>
+      <button mat-button [routerLink]="['/listTask/',_id]">Next</button>
     </mat-card>
+
   </div>
 </div>
