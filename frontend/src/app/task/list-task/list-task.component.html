@@ -2,11 +2,12 @@
 ">
     <div class="container-fluid">
         <div class="">
+            <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared</mat-icon></button>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <br>
-                        <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared</mat-icon></button>
+                        
 
                         <!-- <h1 class="text-center">My Panel</h1> -->
                         <h1 class="text-center"><strong>{{panelData.name}}</strong></h1>
