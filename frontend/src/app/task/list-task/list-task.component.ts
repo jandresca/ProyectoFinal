@@ -260,7 +260,8 @@ export class ListTaskComponent implements OnInit {
       if (
         !this.registerData.name ||
         !this.registerData.description ||
-        !this.registerData.priority
+        !this.registerData.priority ||
+        !this.registerData.finalDate
       ) {
         this.message = 'Failed process: Incomplete data';
         Swal.fire({
@@ -286,6 +287,7 @@ export class ListTaskComponent implements OnInit {
         data.append('description', this.registerData.description);
         data.append('priority', this.registerData.priority);
         data.append('panelId', this._id);
+        data.append('finalDate', this.registerData.finalDate);
         console.log(data);
               console.log(this.registerData);
   

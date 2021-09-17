@@ -2,22 +2,22 @@
 ">
     <div class="container-fluid">
         <div class="">
-            <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared</mat-icon></button>
+            <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared
+                </mat-icon></button>
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
                         <br>
-                        
-
                         <!-- <h1 class="text-center">My Panel</h1> -->
                         <h1 class="text-center"><strong>{{panelData.name}}</strong></h1>
-                        <button  class="task" mat-button  data-bs-toggle="modal" data-bs-target="#exampleModal">Create new Task</button>
-                      
+                        <button class="task" mat-button data-bs-toggle="modal" data-bs-target="#exampleModal">Create new
+                            Task</button>
+
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <div cdkDropListGroup class="accordion_display" >
+                        <div cdkDropListGroup class="accordion_display">
                             <table class="table table-bordered border-dark table-responsive " style="height: 469px;">
                                 <thead>
                                     <tr>
@@ -250,57 +250,46 @@
     </div>
 </body>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog bg-dark">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="form">
-                <mat-card class="card">
-                  <mat-card-title>Register task</mat-card-title>
-                  <mat-card-content>
-                    <div class="container">
-                      <mat-form-field>
-                        <input
-                          [(ngModel)]="registerData.name"
-                          matInput
-                          placeholder="Task name"
-                          required
-                        />
-                      </mat-form-field>
-                      <mat-form-field>
-                        <input
-                          [(ngModel)]="registerData.description"
-                          matInput
-                          placeholder="Description"
-                          required
-                        />
-                      </mat-form-field>
-                      <mat-form-field appearance="fill">
-                          <mat-label>Por favor seleccione la prioridad </mat-label>
-                          <mat-select [(ngModel)]="registerData.priority">
-                              <mat-option value="1">Alta</mat-option>
-                              <mat-option value="2">Media</mat-option>
-                              <mat-option value="3">Baja</mat-option>
-                          </mat-select>
-                      </mat-form-field>
-                      <input type="file" (change)="uploadImg($event)" />
-                    </div>
-                  </mat-card-content>
-                  <mat-card-actions>
-                    <button (click)="saveTaskImg()" class="button" mat-raised-button>
-                      Register
-                    </button>
-                  </mat-card-actions>
+                <mat-card>
+                    <mat-card-title>Register task</mat-card-title>
+                    <mat-card-content>
+                        
+                            <mat-form-field>
+                                <input [(ngModel)]="registerData.name" matInput placeholder="Task name" required />
+                            </mat-form-field><br>
+                            <mat-form-field>
+                                <input [(ngModel)]="registerData.description" matInput placeholder="Description"
+                                    required />
+                            </mat-form-field><br>
+                            <mat-form-field appearance="fill">
+                                <mat-label>Por favor seleccione la prioridad </mat-label>
+                                <mat-select [(ngModel)]="registerData.priority">
+                                    <mat-option value="1">Alta</mat-option>
+                                    <mat-option value="2">Media</mat-option>
+                                    <mat-option value="3">Baja</mat-option>
+                                </mat-select>
+                            </mat-form-field><br>
+                            
+                            <mat-form-field>
+                                <mat-label>Por favor ingrese la fecha final</mat-label>
+                                <input type="date" matInput [(ngModel)]="registerData.finalDate">
+                            </mat-form-field><br>
+                            
+                            <input type="file" (change)="uploadImg($event)" />
+   
+                    </mat-card-content>
+
+                    <mat-card-actions class="text-center">
+                        <button (click)="saveTaskImg()" class="button" mat-raised-button>
+                            Register
+                        </button>
+                    </mat-card-actions>
                 </mat-card>
-              </div>
+            </div>
+
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          
-        </div>
-      </div>
     </div>
-  </div>
+</div>
