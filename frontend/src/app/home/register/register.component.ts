@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
           Swal.close();
           Swal.fire({
             allowOutsideClick: false,
-            title: 'congratulations!',
+            title: 'success!',
             text: this.message,
             icon: 'success',
             confirmButtonText: 'Close',
