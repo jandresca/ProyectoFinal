@@ -107,8 +107,7 @@ export class SavePanelComponent implements OnInit {
         (res) => {
           this._projectService.registerProject(res.result).subscribe(
             (res) => { 
-              // console.log(res);
-              
+             console.log(res);
             },
             (err) => {
               this.message = err.error;

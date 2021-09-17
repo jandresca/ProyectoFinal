@@ -48,7 +48,7 @@ const listTaskTemp = async (req, res) => {
   return res.status(200).send({ task });
 }
 const saveTaskImg = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.priority)
+  if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
     return res.status(400).send("Incomplete data");
 
     let panel = await Panel.findOne({ _id: req.body.panelId });
@@ -74,6 +74,7 @@ const saveTaskImg = async (req, res) => {
     name: req.body.name,
     description: req.body.description,
     priority: req.body.priority,
+    finalDate: req.body.finalDate,
     taskStatus: "to-do",
     imageUrl: imageUrl,
   });
