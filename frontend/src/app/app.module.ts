@@ -33,7 +33,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCardModule } from '@angular/material/card';
+import { MatCardActions, MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -49,15 +49,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ProfileComponent } from './home/profile/profile.component';
 import { SaveProjectComponent } from './project/save-project/save-project.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDialogModule } from '@angular/material/dialog';
 import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
 
+
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -84,7 +82,6 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     UpdateTaskComponent,
 
     UpdateUser2Component,
-
   ],
   imports: [
     BrowserModule,
@@ -108,7 +105,7 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     MatMenuModule,
     DragDropModule,
     MatAutocompleteModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     UserService,
