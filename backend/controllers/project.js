@@ -37,7 +37,7 @@ const shareProjectUser = async (req, res) => {
   if (!project1) return res.status(400).send("project not found");
 
   const project2 = await Project.findOne({ userId: user._id, panelId: req.body.panelId });
-  if (project2) return res.status(400).send("ya existe");
+  if (project2) return res.status(400).send("This user is already registered");
   // console.log(project2);
 
   const project = new Project({
