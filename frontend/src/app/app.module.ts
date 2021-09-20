@@ -16,6 +16,7 @@ import { RegisterRoleComponent } from './admin/register-role/register-role.compo
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
 
+
 //servicios
 import { UserService } from './services/user.service';
 import { RoleService } from './services/role.service';
@@ -54,9 +55,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import { FullCalendarModule } from '@fullcalendar/angular';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin from '@fullcalendar/interaction'; 
+
 
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
+
+FullCalendarModule.registerPlugins([ 
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -108,6 +118,8 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     MatAutocompleteModule,
     MatDialogModule,
     MatDatepickerModule,
+    FullCalendarModule,
+    
   ],
   providers: [
     UserService,

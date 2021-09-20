@@ -209,3 +209,9 @@ table {
   width: 376px;
 }
 
+.container-lg{
+  background-color : rgb(255, 255, 255);
+  color: white;
+  width: 600px;
+  height: 500px;
+}

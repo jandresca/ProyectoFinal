@@ -14,6 +14,8 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { CalendarOptions } from '@fullcalendar/angular'; // useful for typechecking
+
 
 
 
@@ -141,6 +143,8 @@ export class ListTaskComponent implements OnInit {
               });
             }
           );
+
+
         } else {
           this._router.navigate(['/listPanel']);
         }
@@ -328,4 +332,44 @@ export class ListTaskComponent implements OnInit {
       }
     }
 
-  }
+
+    loadTasCalendar(){
+
+      let panelId = this._activatedRoute.snapshot.paramMap.get('id');
+
+      this._taskService.listTask(panelId).subscribe(
+
+        (res: any) => {
+          this.registerData.name = {};
+          this.registerData.finalDate
+
+        },
+        (err: any) => {
+          this.message = err.error;
+              Swal.fire({
+                allowOutsideClick: false,
+                title: 'Error!',
+                text: this.message,
+                icon: 'error',
+                confirmButtonText: 'Close',
+              });
+        }
+        
+      )
+    }
+
+
+    calendarOptions: CalendarOptions = {
+
+
+
+      initialView: 'dayGridMonth',
+
+    events: [
+      { title: 'event 1', date: '2021-09-01' },
+      { title: 'event 2', date: '2021-09-20' }
+    ]
+
+
+  };
+}

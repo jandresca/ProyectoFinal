@@ -1,9 +1,26 @@
 <body class="img" style="background-image: url('../../../assets/img/{{panelData.theme}}');
 ">
-    <div class="container-fluid">
+    
+
+
+<div class="container-fluid">
+
+    <div class="container-lg">
+    
+        <full-calendar [options]="calendarOptions">
+
+            
+        </full-calendar>
+        
+        
+        </div>
+
         <div class="">
             <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared
                 </mat-icon></button>
+
+                
+
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -15,6 +32,8 @@
 
                     </div>
                 </div>
+
+                
                 <div class="row">
                     <div class="col-sm-12">
                         <div cdkDropListGroup class="accordion_display" >
@@ -175,6 +194,8 @@
 
                                             <div class="example-container">
 
+
+                                                
                                                 <div cdkDropList [cdkDropListData]="done" class="example-list"
                                                     (cdkDropListDropped)="drop($event, 'done')" *ngIf="taskData.length">
                                                     <mat-accordion class="example-box" *ngFor="let task of done"
@@ -210,6 +231,8 @@
                                                                 <img class="card-img-top image_center"
                                                                     src="{{ task.imageUrl }}" />
                                                             </mat-panel-description>
+
+                                                            
                                                             <mat-action-row>
                                                                 <button class="btnSelectTodo" mat-button
                                                                     (click)="updateTask(task, 'to-do', 'true')">
@@ -279,8 +302,11 @@
                             </mat-form-field><br>
                             
                             <input type="file" (change)="uploadImg($event)" />
+
+                            
    
                     </mat-card-content>
+
 
                     <mat-card-actions class="text-center">
                         <button (click)="saveTaskImg()" class="button" mat-raised-button>
