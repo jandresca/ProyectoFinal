@@ -55,6 +55,8 @@ export class CalendarComponent {
    panelData: any = {};
    
 
+   
+
    primary: any = '#ad2121';
    secondary: any = '#ad2121';
 
@@ -126,6 +128,7 @@ export class CalendarComponent {
   }
 
   formatData(): void {
+    this.events = [];
     this.taskData.forEach((task:any)=>{
       this.events.push( {
         start: new Date(task.date),

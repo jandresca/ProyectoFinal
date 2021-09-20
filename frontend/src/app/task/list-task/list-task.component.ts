@@ -17,6 +17,7 @@ import Swal from 'sweetalert2';
 
 
 
+
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -40,6 +41,8 @@ export class ListTaskComponent implements OnInit {
   priorityone: string = 'priorityone';
   prioritytwo: string = 'prioritytwo';
   prioritythree: string = 'prioritythree';
+  data: {};
+  exampleModal: any;
 
   constructor(
     private _taskService: TaskService,
@@ -51,6 +54,7 @@ export class ListTaskComponent implements OnInit {
     
   ) {
     this.taskData = {};
+    this.data = {};
     this.panelData = {};
     this.registerData = {};
     this._id = '';
@@ -62,29 +66,7 @@ export class ListTaskComponent implements OnInit {
     this.loadTask();
     this._id = this.panelData._id;
   }
-  /*
-  loadTask() {
 
-    this.done = [];
-    this.todo = [];
-    this.progress = [];
-    this._taskService.getTask().subscribe(
-      (res: any) => {
-        this.taskData = res.task;
-        console.log(res);
-        this.taskData.forEach((element: any) => {
-          if (element.taskStatus === 'done') this.done.push(element);
-          if (element.taskStatus === 'to-do') this.todo.push(element);
-          if (element.taskStatus === 'in-progress') this.progress.push(element);
-        });
-      },
-      (error: any) => {
-        console.log(error);
-
-      }
-    );
-  }
-  */
     
       loadTask() {
         let panelId = this._activatedRoute.snapshot.paramMap.get('id');
@@ -98,7 +80,7 @@ export class ListTaskComponent implements OnInit {
           this._panelService.listPanel2(panelId).subscribe(
             (res) => {
               this.panelData = res.panel;
-              console.log(this.panelData);
+              // console.log(this.panelData);
             },
             (err) => {
               this.message = err.error;
@@ -185,54 +167,6 @@ export class ListTaskComponent implements OnInit {
       }
       this.updateTask(event.container.data[event.currentIndex], status);
     }
-    /*
-      deleteTask(task: any) {
-        this._taskService.deleteTask(task).subscribe(
-          (res) => {
-            let index = this.taskData.indexOf(task);
-            if (index > -1) {
-              this.taskData.splice(index, 1);
-              this.message = res.message;
-              Swal.fire({
-                allowOutsideClick: false,
-                title: 'Good',
-                text: this.message,
-                icon: 'success',
-                confirmButtonText: 'Close',
-              });
-            }
-          },
-          (err) => {
-            this.message = err.error;
-            Swal.fire({
-              allowOutsideClick: false,
-              title: 'Error!',
-              text: this.message,
-              icon: 'error',
-              confirmButtonText: 'Close',
-            });
-          }
-        );
-      }
-    
-      drop(event: CdkDragDrop<string[]>, status?: any) {
-        if (event.previousContainer === event.container) {
-          moveItemInArray(
-            event.container.data,
-            event.previousIndex,
-            event.currentIndex
-          );
-        } else {
-          transferArrayItem(
-            event.previousContainer.data,
-            event.container.data,
-            event.previousIndex,
-            event.currentIndex
-          );
-        }
-        this.updateTask(event.container.data[event.currentIndex], status);
-      }
-    */
     openSnackBarSuccesfull() {
       this._snackBar.open(this.message, 'X', {
         horizontalPosition: this.horizontalPosition,
@@ -260,7 +194,8 @@ export class ListTaskComponent implements OnInit {
       if (
         !this.registerData.name ||
         !this.registerData.description ||
-        !this.registerData.priority
+        !this.registerData.priority ||
+        !this.registerData.finalDate
       ) {
         this.message = 'Failed process: Incomplete data';
         Swal.fire({
@@ -285,9 +220,10 @@ export class ListTaskComponent implements OnInit {
         data.append('name', this.registerData.name);
         data.append('description', this.registerData.description);
         data.append('priority', this.registerData.priority);
+        data.append('finalDate', this.registerData.finalDate);
         data.append('panelId', this._id);
-        console.log(data);
-              console.log(this.registerData);
+        // console.log(data);
+        // console.log(this.registerData);
   
         this._taskService.saveTaskImg(data).subscribe(
           (res) => {
@@ -302,7 +238,8 @@ export class ListTaskComponent implements OnInit {
               confirmButtonText: 'Close',
               
             });
-  
+          //document.getElementById('exampleModal').hide();
+          this.data = {};
           this.registerData = {};
           },
           (err) => {
@@ -318,5 +255,4 @@ export class ListTaskComponent implements OnInit {
         );
       }
     }
-
   }

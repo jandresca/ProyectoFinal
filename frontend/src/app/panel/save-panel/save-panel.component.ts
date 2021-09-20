@@ -107,17 +107,23 @@ export class SavePanelComponent implements OnInit {
         (res) => {
           this._projectService.registerProject(res.result).subscribe(
             (res) => { 
-              // console.log(res);
-              
+             console.log(res);
             },
             (err) => {
               this.message = err.error;
               this.openSnackBarError();
             }
           );
-          // this._router.navigate(['/saveProyect/' + res.result._id]);
+          this._router.navigate(['/listTask/' + res.result._id]);
           this.message = 'Panel create';
-          Swal.close();
+          this.message = 'Panel create';
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Successful creation',
+            text: this.message,
+            icon: 'success',
+            confirmButtonText: 'Close',
+          })
           this.registerData = {};
         },
         (err) => {

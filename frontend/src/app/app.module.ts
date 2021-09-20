@@ -53,7 +53,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -121,6 +122,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
       useFactory: adapterFactory,
     }),
     
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     UserService,

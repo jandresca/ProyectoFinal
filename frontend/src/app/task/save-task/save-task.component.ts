@@ -49,7 +49,8 @@ export class SaveTaskComponent implements OnInit {
     if (
       !this.registerData.name ||
       !this.registerData.description ||
-      !this.registerData.priority
+      !this.registerData.priority ||
+      !this.registerData.finalDate
     ) {
       this.message = 'Failed process: Incomplete data';
       Swal.fire({
@@ -74,9 +75,12 @@ export class SaveTaskComponent implements OnInit {
       data.append('name', this.registerData.name);
       data.append('description', this.registerData.description);
       data.append('priority', this.registerData.priority);
+      data.append('finalDate', this.registerData.finalDate);
+      console.log(this.registerData.finalDate);
       data.append('panelId', this._id);
+
       console.log(data);
-            console.log(this.registerData);
+      // console.log(this.registerData);
 
       this._taskService.saveTaskImg(data).subscribe(
         (res) => {

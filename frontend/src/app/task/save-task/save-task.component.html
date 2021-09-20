@@ -28,6 +28,12 @@
                     <mat-option value="3">Baja</mat-option>
                 </mat-select>
             </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Por favor ingrese la fecha final de entrega</mat-label>
+              <input matInput [matDatepicker]="picker">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
             <input type="file" (change)="uploadImg($event)" />
           </div>
         </mat-card-content>

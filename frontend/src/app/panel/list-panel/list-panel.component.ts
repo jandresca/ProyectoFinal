@@ -46,7 +46,12 @@ export class ListPanelComponent implements OnInit {
 
   transform(value: any) {
     var datePipe = new DatePipe('en-US');
-    value = datePipe.transform(value, 'dd MMMM yyyy');
+    var fecha = new Date(value);
+    var dias = 1; // Número de días a agregar
+    value = datePipe.transform(
+      fecha.setDate(fecha.getDate() + dias),
+      'yyyy-MM-dd'
+    );
     return value;
   }
 
