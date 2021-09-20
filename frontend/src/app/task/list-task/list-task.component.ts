@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
+import { ProjectService } from '../../services/project.service';
 import { PanelService } from '../../services/panel.service';
 import {
   MatSnackBar,
@@ -26,6 +27,7 @@ import Swal from 'sweetalert2';
 export class ListTaskComponent implements OnInit {
   registerData: any;
   panelData: any;
+  registerData2: any;
   selectedFile: any;
   taskData: any;
   message: string = '';
@@ -50,6 +52,7 @@ export class ListTaskComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _panelService: PanelService,
+    public _projectService: ProjectService
     
     
   ) {
@@ -59,12 +62,14 @@ export class ListTaskComponent implements OnInit {
     this.registerData = {};
     this._id = '';
     this.selectedFile = null;
+    this.registerData2={};
      
   }
 
   ngOnInit(): void {
     this.loadTask();
     this._id = this.panelData._id;
+    
   }
 
     

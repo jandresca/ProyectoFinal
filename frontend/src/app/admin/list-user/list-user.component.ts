@@ -72,10 +72,15 @@ export class ListUserComponent {
           },
           (err) => {
             this.message = err.error;
-            this.openSnackBarError();
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: this.message,
+              confirmButtonText: 'Close',
+            })
           }
         );
-        Swal.fire('successfully removed', '', 'success')
+        Swal.fire('Successfully removed', '', 'success')
       }
     })
   }
