@@ -34,6 +34,8 @@ export class ListPanelComponent implements OnInit {
     this._projectService.listProjectUserP().subscribe(
       (res) => {
         this.panelData = res.project;
+        console.log(this.panelData);
+        
       },
       (err) => {
         this.message = err.error;

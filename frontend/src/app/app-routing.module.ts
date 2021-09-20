@@ -22,6 +22,7 @@ import { UpdateTaskComponent } from "./task/update-task/update-task.component";
 
 import { AuthGuard } from './guard/auth.guard';
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
+import { CalendarComponent } from './task/calendar/calendar.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,10 @@ const routes: Routes = [
     path: 'registerAdmin',
     component: RegisterUserComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'calendar',
+    component: CalendarComponent,
   },
   {
     path: 'updateUser/:_id',

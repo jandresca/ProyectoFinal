@@ -56,6 +56,13 @@ import { UpdateTaskComponent } from './task/update-task/update-task.component';
 
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import * as moment from 'moment';
+import { CalendarComponent } from './task/calendar/calendar.component';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+
 
 @NgModule({
   declarations: [
@@ -82,6 +89,7 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     UpdateTaskComponent,
 
     UpdateUser2Component,
+      CalendarComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +114,13 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     DragDropModule,
     MatAutocompleteModule,
     MatDialogModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    
   ],
   providers: [
     UserService,
