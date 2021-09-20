@@ -67,27 +67,33 @@ export class SaveProjectComponent implements OnInit{
         confirmButtonText: 'Close',
       });
       this.registerData = {};
-    } else {
+    } 
+    else {
+      this.message = 'Ya existe';
       Swal.fire({
         allowOutsideClick: false,
         text: this.message,
-        icon: 'info',
+        icon: 'error',
       });
-      Swal.showLoading();
       const data = {
         'panelId':this._id,
         'email':this.registerData.email
+      
       }
+
       // console.log(data);
       
       this._projectService.shareProjectUser(data).subscribe(
         (res:any) => {
           //this._router.navigate(['/listTask/']);
           this.message = 'Project create';
-          Swal.close();
           this.registerData = {};
           this.ngOnInit()
         },
+        // (err) => {
+        //               this.message = err.error;
+        //               this.openSnackBarError();
+        //             }
         (err:any) => {
           this.message = err.console.error;
           Swal.fire({
