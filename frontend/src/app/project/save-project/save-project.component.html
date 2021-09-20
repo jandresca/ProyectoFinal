@@ -17,7 +17,7 @@
       <mat-card-content *ngFor="let userProject of registerData2">
         <div *ngIf="userProject.userId._id != userProject.userCreator">
           <span>{{userProject.userId.name}} ({{userProject.userId.email}})</span>
-          <mat-icon color="primary" (click)="deleteProject(userProject)">delete
+          <mat-icon color="primary" (click)="deleteProject(userProject)" *ngIf="userProject.userId._id != userProject.userCreator">delete
           </mat-icon>
         </div>
       </mat-card-content>

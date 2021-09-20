@@ -77,7 +77,7 @@ const deleteUserProject = async (req, res) => {
 //listo los usuarios del proyecto - solo el creador del proyecto podra listar los usuarios del proyecto
 const listProjectUser = async (req, res) => {
   const project = await Project.find({
-    userCreator: req.user._id,
+    // userCreator: req.user._id,
     status: "true",
     panelId: req.params.id,
   })
@@ -86,16 +86,16 @@ const listProjectUser = async (req, res) => {
     .populate("userId")
     .exec();
 
-  const project1 = await Project.findOne({
-    userCreator: req.user._id,
-    status: "true",
-    panelId: req.params.id,
-    userId: req.user._id,
-  });
+  // const project1 = await Project.findOne({
+  //   userCreator: req.user._id,
+  //   status: "true",
+  //   panelId: req.params.id,
+  //   userId: req.user._id,
+  // });
 
-  if (project1.userCreator != req.user._id) {
-    return res.status(400).send("Error list user");
-  }
+  // if (project1.userCreator != req.user._id) {
+  //   return res.status(400).send("Error list user");
+  // }
 
   if (!project || project.length === 0)
     return res.status(400).send("Empty project list");
