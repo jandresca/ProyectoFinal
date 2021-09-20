@@ -4,7 +4,7 @@
       <mat-card-title>Añadir usuarios</mat-card-title>
       <mat-card-content>
         <div class="container">
-          <mat-form-field>
+          <mat-form-field >
             <input [(ngModel)]="registerData.email" type="email" matInput placeholder="Email" required />
           </mat-form-field>
         </div>
@@ -15,7 +15,7 @@
         </button>
       </mat-card-actions>
       <mat-card-content *ngFor="let userProject of registerData2">
-        <div *ngIf="userProject.userId._id != userProject.userCreator">
+        <div *ngIf="userProject.userId._id != userProject.userCreator" >
           <span>{{userProject.userId.name}} ({{userProject.userId.email}})</span>
           <mat-icon color="primary" (click)="deleteProject(userProject)" *ngIf="userProject.userId._id != userProject.userCreator">delete
           </mat-icon>

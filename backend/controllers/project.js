@@ -36,12 +36,17 @@ const shareProjectUser = async (req, res) => {
   const project1 = await Project.findOne({ panelId: req.body.panelId });
   if (!project1) return res.status(400).send("project not found");
 
+  const project2 = await Project.findOne({ userId: user._id, panelId: req.body.panelId });
+  if (project2) return res.status(400).send("ya existe");
+  // console.log(project2);
+
   const project = new Project({
     userCreator: project1.userCreator,
     panelId: project1.panelId,
     userId: user._id,
     status: true,
   });
+
 
   const result = await project.save();
   if (!result) return res.status(400).send("Failed to register project");
@@ -76,6 +81,7 @@ const deleteUserProject = async (req, res) => {
 
 //listo los usuarios del proyecto - solo el creador del proyecto podra listar los usuarios del proyecto
 const listProjectUser = async (req, res) => {
+  
   const project = await Project.find({
     // userCreator: req.user._id,
     status: "true",
