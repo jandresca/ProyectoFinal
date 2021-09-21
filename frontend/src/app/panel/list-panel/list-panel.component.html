@@ -23,7 +23,14 @@
                             <h2 class="title"><a
                                     [routerLink]="['/listTask/',panel.panelId._id]">{{panel?.panelId?.description}}</a>
                             </h2>
-                            <p class="text"></p>
+                            <p class="text" *ngIf="panel.panelId.panelAlternative == 1">
+                                <br>
+                                <br>
+                                Tipo de Tablero: <strong>Classic panel</strong> 
+                            </p>
+                            <p class="text" *ngIf="panel.panelId.panelAlternative === 2">
+                                Tipo de Tablero: <strong>Free panel</strong>
+                            </p>
                             <ng-container *ngIf="panel.panelId._id; else elseTemplate">
                                 <button class="button" mat-button
                                     [routerLink]="['/listTask/',panel.panelId._id]">Go</button>
