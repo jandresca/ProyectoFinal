@@ -5,12 +5,12 @@
     <div *ngIf="panelData.length">
         <div class="row text-center">
             <div class="example-2 card " *ngFor="let panel of panelData; index as i">
-                
+
                 <div class="wrapper"
-                style="background-color: #343a40 ; background: url(../../../assets/img/{{panel?.panelId?.theme}}) center/cover no-repeat;">
+                    style="background-color: #343a40 ; background: url(../../../assets/img/{{panel?.panelId?.theme}}) center/cover no-repeat;">
                     <div class="header">
                         <div class="date">
-                        <span class="year">{{transform(panel?.panelId?.date)}}</span>
+                            <span class="year">{{transform(panel?.panelId?.date)}}</span>
                         </div>
                         <ul class="menu-content">
                             <a [routerLink]="['/updatePanel/',panel.panelId._id]">
@@ -25,22 +25,50 @@
                                     [routerLink]="['/listTask/',panel.panelId._id]">{{panel?.panelId?.description}}</a>
                             </h2>
                             <p class="text"></p>
-                           <ng-container *ngIf="panel.panelId._id; else elseTemplate">
-                            <button class="button" mat-button
-                            [routerLink]="['/listTask/',panel.panelId._id]">Go</button>
-                           </ng-container>
-                           <ng-template #elseTemplate>
-                            <button class="button" mat-button
-                            [routerLink]="['/savePanel']">Go</button>
-                           </ng-template>
-                           
-                            
+                            <ng-container *ngIf="panel.panelId._id; else elseTemplate">
+                                <button class="button" mat-button
+                                    [routerLink]="['/listTask/',panel.panelId._id]">Go</button>
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                                <button class="button" mat-button [routerLink]="['/savePanel']">Go</button>
+                            </ng-template>
+
+
                         </div>
                     </div>
                 </div>
 
             </div>
-            
+
+            <div class="example-2 card ">
+                <div class="wrapper" style="background-color: #343a40 ;">
+                    <div class="header">
+                        <div class="date">
+                            <!-- <span class="year">{{transform(panel?.panelId?.date)}}</span> -->
+                        </div>
+                        <ul class="menu-content">
+                            <!-- <a [routerLink]="['/updatePanel/',panel.panelId._id]">
+                                <mat-icon>border_color</mat-icon>
+                            </a> -->
+                        </ul>
+                    </div>
+
+                    <div class="data">
+                        <div class="content">
+                            <!-- <span class="author">{{panel?.panelId?.name}}</span> -->
+                            <h2 class="title"><a [routerLink]="['/savePanel']">Crear Nuevo Tablero</a>
+                            </h2>
+                            <p class="text"></p>
+                            <ng-container>
+                                <button class="button" mat-button [routerLink]="['/savePanel/']">Go</button>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
         <br>
     </div>

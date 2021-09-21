@@ -34,12 +34,12 @@ export class ListPanelComponent implements OnInit {
     this._projectService.listProjectUserP().subscribe(
       (res) => {
         this.panelData = res.project;
-        this.panelData.push({
-          panelId: {
-            name: '',
-            description: 'Crear Nuevo Tablero'
-          }
-        });
+        // this.panelData.push({
+        //   panelId: {
+        //     name: '',
+        //     description: 'Crear Nuevo Tablero'
+        //   }
+        // });
         console.log(this.panelData);
         
       },
