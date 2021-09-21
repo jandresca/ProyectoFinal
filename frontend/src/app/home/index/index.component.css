@@ -1,0 +1,87 @@
+.backgroundIndex{
+    background-image:none;
+}
+  
+  body {
+    background-color: white;
+    font-family: Helvetica, sans-serif;
+  }
+  header {
+    background-image: url("../../../assets/img/ToolTaskImage.gif") ; 
+    background-size: cover;
+    color: #cfcfcf;
+    position: relative;
+    height: 100%;
+  }
+  header p {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 60px;
+    padding: 0 4px;
+  }
+  .intro-text {
+    position: relative;
+    padding-top: 300px;
+    padding-right: 50%;
+    padding-left: 0;
+    padding-bottom: 200px;
+  }
+  .intro-text H1 {
+    font-size: 45px;
+    color: #2e2828;
+    font-weight: 600;
+  }
+  .color {
+    color: #02979d;
+    font-weight: 700;
+  }
+  .btn-default {
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
+    background-color: transparent;
+    border: 1px solid #02989da2;
+    border-radius: 4px;
+    margin: 0 8px;
+    font-size: 18px;
+    transition: all 0.5s;
+  }
+  .btn-default:hover,
+  .btn-default:focus,
+  .btn-default.focus,
+  .btn-default:active,
+  .btn-default.active {
+    background-color: #02989da2;
+    border: 1px solid #02989da2;
+    color: #eeeeee;
+  }
+  
+  p{
+    font-size: 19px;
+    text-align:justify;
+  }
+  
+  .center {
+    text-align: center;
+  }
+  
+  .imagen {
+    width: 37%;
+  }
+  
+  
+  .center {
+    text-align: center;
+    padding-bottom: 3%;
+  }
+  
+  .inline {
+    display: inline-flex;
+    align-items: center;
+  }
+  .footer {
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }

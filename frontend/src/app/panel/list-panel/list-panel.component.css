@@ -103,7 +103,9 @@ h1 {
     padding: 1em;
 } */
 
-
+.example-2{
+  border: none;
+}
 .example-2 .wrapper:hover .menu-content span {
   transform: translate(-50%, -10px);
   opacity: 1;
@@ -164,4 +166,16 @@ h1 {
 .example-2 .button:hover::after {
   transform: translate(5px, -50%);
   opacity: 1;
+}
+
+.backgroundIndex{
+  /* background-image:none; */
+   background-image: url("../../../assets/img/Panel.png") !important;  
+  background-size: cover; 
+   color: #cfcfcf; 
+   /* position: relative; */
+   height: 100%;
+   width: 100%;
+   background-repeat: no-repeat; 
+  background-size: cover;  
 }

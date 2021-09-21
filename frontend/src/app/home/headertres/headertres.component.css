@@ -1,0 +1,57 @@
+.logo {
+    position: absolute;
+    left: 4%;
+    height: 60px;
+    top: 2%;
+  }
+  .btn-default {
+    color: #000000;
+    font-family: "Open Sans", sans-serif;
+    background-color: #02989da2;
+    border: 1px solid #02989da2;
+    border-radius: 4px;
+    margin: 0 8px;
+    font-size: 14px;
+    transition: all 0.5s;
+    position: absolute;
+    right: 2%;
+  }
+  .btn-default:hover,
+  .btn-default:focus,
+  .btn-default.focus,
+  .btn-default:active,
+  .btn-default.active {
+    background-color: #02989da2;
+    border: 1px solid #02989da2;
+    color: #eeeeee;
+  }
+
+ .button{
+    position: absolute;
+    right: 2%;
+ }
+ mat-form-field {
+    margin: 5px 0px;
+    font-size: 15px;
+    width: 300px;
+    padding: 6px;
+  }
+  
+  
+a {
+    text-decoration: none;
+    color: #00c2cb;
+  }
+  
+  ul {
+    margin: auto;
+  }
+
+  .text{
+    color: #00c2cb;
+  }
+
+  .absolute{
+    position: absolute;
+    right: 2%;
+  }

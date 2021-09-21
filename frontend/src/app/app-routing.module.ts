@@ -20,18 +20,17 @@ import { UpdateTaskComponent } from "./task/update-task/update-task.component";
 
 
 
+
+
+
 import { AuthGuard } from './guard/auth.guard';
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 import { CalendarComponent } from './task/calendar/calendar.component';
 
 const routes: Routes = [
+  
   {
     path: '',
-    component: LoginComponent,
-    pathMatch: 'full',
-  },
-  {
-    path: 'index',
     component: IndexComponent,
     pathMatch: 'full',
   },
@@ -84,6 +83,10 @@ const routes: Routes = [
     component: RegisterComponent,
   },
   {
+    path: 'signUp/:email',
+    component: RegisterComponent,
+  },
+  {
     path: 'listUser',
     component: ListUserComponent,
     canActivate: [AuthGuard],
@@ -120,6 +123,11 @@ const routes: Routes = [
   {
     path: 'listRole',
     component: ListRoleComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'updateRole/:_id',
+    component: UpdateRoleComponent,
     canActivate: [AuthGuard],
   },
   {

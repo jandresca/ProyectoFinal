@@ -1,3 +1,4 @@
+<app-header></app-header>
 <body class="img" style="background-image: url('../../../assets/img/{{panelData.theme}}');
 ">
     <div class="container-fluid">
@@ -41,8 +42,8 @@
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <app-task [todo] = "todo" [updateTask] = "updateTask" [deleteTask] = deleteTask [taskData] = "taskData"></app-task>
-                                            <!-- <div class="example-container">
+                                            <!-- <app-task [todo] = "todo" [updateTask] = "updateTask" [deleteTask] = deleteTask [taskData] = "taskData"></app-task> -->
+                                             <div class="example-container">
 
                                                 <div cdkDropList [cdkDropListData]="todo" class="example-list"
                                                     (cdkDropListDropped)="drop($event, 'to-do')"
@@ -104,7 +105,7 @@
                                                         </mat-expansion-panel>
                                                     </mat-accordion>
                                                 </div>
-                                            </div> -->
+                                            </div> 
 
                                         </td>
                                         <td>

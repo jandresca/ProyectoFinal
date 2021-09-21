@@ -63,6 +63,8 @@ import * as moment from 'moment';
 import { CalendarComponent } from './task/calendar/calendar.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
+import { HeaderdosComponent } from './home/headerdos/headerdos.component';
+import { HeadertresComponent } from './home/headertres/headertres.component';
 
 
 @NgModule({
@@ -91,6 +93,8 @@ import { FlatpickrModule } from 'angularx-flatpickr';
 
     UpdateUser2Component,
       CalendarComponent,
+      HeaderdosComponent,
+      HeadertresComponent,
   ],
   imports: [
     BrowserModule,
