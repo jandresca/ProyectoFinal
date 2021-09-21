@@ -116,7 +116,7 @@ export class SavePanelComponent implements OnInit {
               this.openSnackBarError();
             }
           );
-          // this._router.navigate(['/saveProyect/' + res.result._id]);
+          this._router.navigate(['/listPanel/' ]);
           this.message = 'Panel create';
           Swal.close();
           this.registerData = {};
