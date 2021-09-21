@@ -10,7 +10,6 @@ const taskSchema = new mongoose.Schema({
   imageUrl: String,
   finalDate: Date,
   date: { type: Date, default: Date.now },
-  
 });
 
 const task = mongoose.model("task", taskSchema);
