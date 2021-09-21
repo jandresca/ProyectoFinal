@@ -52,21 +52,16 @@
   <section class="registro">
     <img src="../../../assets/img/logo.png" alt="" style="width:80%">
       <div class="resPhotogram">
-      <h2 class="TituloRegistro">Crea tablero</h2>
+      <h2 class="TituloRegistro">crea tablero</h2>
         <div class="divRegistro">
           <div class="divNombre">
-            <input type="text" name="nombre" placeholder="Nombre"  [(ngModel)]="registerData.name"
-            matInput
-            required >					
+            <input type="text" name="nombre" placeholder="Nombre" >					
           </div>
           <div class="divEmail">
-            <input type="text" name="description" placeholder="Descripción"  [(ngModel)]="registerData.description"
-            type="text"
-            matInput
-            required >
+            <input type="text" name="description" placeholder="Descripción" >
           </div>
           
-          <mat-form-field class="example-full-width divTheme" appearance="fill" style="margin-left: 3%;">
+          <mat-form-field class="example-full-width divEmail" appearance="fill">
             <mat-label>Theme</mat-label>
             <input matInput
             [(ngModel)]="registerData.theme"
@@ -85,7 +80,7 @@
             
             <a href="">
           
-            <button  class=" btn btn-default btn-lg"  (click)="registerPanel()" mat-raised-button>Guardar</button>
+            <button  class=" btn btn-default btn-lg" mat-raised-button>Guardar</button>
             </a>
           </div>
           

@@ -17,7 +17,6 @@ import { ProfileComponent } from "./home/profile/profile.component";
 import { SaveProjectComponent } from "./project/save-project/save-project.component";
 import { UpdatePanelComponent } from "./panel/update-panel/update-panel.component";
 import { UpdateTaskComponent } from "./task/update-task/update-task.component";
-import { DescriptionComponent } from "./home/description/description.component";
 
 
 
@@ -134,11 +133,6 @@ const routes: Routes = [
   {
     path: 'updateRole/:_id',
     component: UpdateRoleComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'description',
-    component: DescriptionComponent,
     canActivate: [AuthGuard],
   },
 ];
