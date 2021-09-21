@@ -10,8 +10,25 @@
                     <mat-form-field>
                         <input [(ngModel)]="registerData.description" matInput placeholder="Description" required />
                     </mat-form-field>
-                    
-                    <img class="card-img-top image_center" width="300" height="300" src="{{ registerData.imageUrl }}" />
+                    <mat-form-field appearance="fill">
+                        <mat-label>Por favor seleccione la prioridad </mat-label>
+                        <mat-select [(ngModel)]="registerData.priority">
+                            <mat-option value="1">Alta</mat-option>
+                            <mat-option value="2">Media</mat-option>
+                            <mat-option value="3">Baja</mat-option>
+                        </mat-select>
+                    </mat-form-field><br>
+
+                    <mat-form-field>
+                        <mat-label>Por favor ingrese la fecha final</mat-label>
+                        <input matInput [matDatepicker]="picker" [(ngModel)]="registerData.finalDate" matInput
+                            [value]="registerData.finalDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field><br>
+
+                    <img *ngIf="registerData.imageUrl" class="card-img-top image_center" width="300" height="300"
+                        src="{{ registerData.imageUrl }}" />
                     <input type="file" (change)="uploadImg($event)" />
                 </div>
             </mat-card-content>
@@ -19,10 +36,10 @@
                 <!-- <button (click)="saveTask()" class="button" mat-raised-button>
             Create
           </button> -->
-                <button (click)="updateTask()" class="button" mat-raised-button>
-                    Create
-                </button>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+        <button (click)="updateTask()" class="button" mat-raised-button>
+          Create
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>

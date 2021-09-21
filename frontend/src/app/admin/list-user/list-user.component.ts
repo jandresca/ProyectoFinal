@@ -9,6 +9,7 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-user',
@@ -53,21 +54,30 @@ export class ListUserComponent {
   }
 
   deleteUser(user: any) {
-    this._userService.deleteUser(user).subscribe(
-      (res) => {
-        let index = this.userData.indexOf(user);
-        if (index > -1) {
-          this.userData.splice(index, 1);
-          this.dataSource = new MatTableDataSource(this.userData);
-          this.message = 'Delete user';
-          this.openSnackBarSuccesfull();
-        }
-      },
-      (err) => {
-        this.message = err.error;
-        this.openSnackBarError();
+    Swal.fire({
+      title: 'You sure want to delete this user?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this._userService.deleteUser(user).subscribe(
+          (res) => {
+            let index = this.userData.indexOf(user);
+            if (index > -1) {
+              this.userData.splice(index, 1);
+              this.dataSource = new MatTableDataSource(this.userData);
+              this.message = 'Delete user';
+            }
+          },
+          (err) => {
+            this.message = err.error;
+            this.openSnackBarError();
+          }
+        );
+        Swal.fire('successfully removed', '', 'success')
       }
-    );
+    })
   }
 
   updateUser(user: any) {}
@@ -79,15 +89,6 @@ export class ListUserComponent {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-  }
-
-  openSnackBarSuccesfull() {
-    this._snackBar.open(this.message, 'X', {
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-      duration: this.durationInSeconds * 1000,
-      panelClass: ['style-snackBarTrue'],
-    });
   }
 
   openSnackBarError() {

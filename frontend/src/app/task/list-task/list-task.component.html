@@ -16,11 +16,14 @@
         </div>
 
         <div class="">
-            <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared
-                </mat-icon></button>
-
-                
-
+            <div>
+                <div >
+                    <button class="btn" mat-button [routerLink]="['/saveProyect/',panelData._id]">INVITE<mat-icon>folder_shared
+                    </mat-icon></button>
+                </div>
+            </div>
+            
+            
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
@@ -36,7 +39,7 @@
                 
                 <div class="row">
                     <div class="col-sm-12">
-                        <div cdkDropListGroup class="accordion_display" >
+                        <div cdkDropListGroup class="accordion_display">
                             <table class="table table-bordered border-dark table-responsive " style="height: 600px;">
                                 <thead>
                                     <tr>
@@ -275,36 +278,37 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="form">
-                <mat-card>
+           
+                <mat-card class="text-center" style="width: 100%;">
+                    <button style='float:right; background-color: white;' type="button" class="btn-close"
+                        data-bs-dismiss="modal" aria-label="Close"></button>
                     <mat-card-title>Register task</mat-card-title>
                     <mat-card-content>
-                        
-                            <mat-form-field>
-                                <input [(ngModel)]="registerData.name" matInput placeholder="Task name" required />
-                            </mat-form-field><br>
-                            <mat-form-field>
-                                <input [(ngModel)]="registerData.description" matInput placeholder="Description"
-                                    required />
-                            </mat-form-field><br>
-                            <mat-form-field appearance="fill">
-                                <mat-label>Por favor seleccione la prioridad </mat-label>
-                                <mat-select [(ngModel)]="registerData.priority">
-                                    <mat-option value="1">Alta</mat-option>
-                                    <mat-option value="2">Media</mat-option>
-                                    <mat-option value="3">Baja</mat-option>
-                                </mat-select>
-                            </mat-form-field><br>
-                            
-                            <mat-form-field>
-                                <mat-label>Por favor ingrese la fecha final</mat-label>
-                                <input type="date" matInput [(ngModel)]="registerData.finalDate">
-                            </mat-form-field><br>
-                            
-                            <input type="file" (change)="uploadImg($event)" />
 
-                            
-   
+                        <mat-form-field>
+                            <input [(ngModel)]="registerData.name" matInput placeholder="Task name" required />
+                        </mat-form-field><br>
+                        <mat-form-field>
+                            <input [(ngModel)]="registerData.description" matInput placeholder="Description" required />
+                        </mat-form-field><br>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Por favor seleccione la prioridad </mat-label>
+                            <mat-select [(ngModel)]="registerData.priority">
+                                <mat-option value="1">Alta</mat-option>
+                                <mat-option value="2">Media</mat-option>
+                                <mat-option value="3">Baja</mat-option>
+                            </mat-select>
+                        </mat-form-field><br>
+
+                        <mat-form-field>
+                            <mat-label>Por favor ingrese la fecha final </mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel)]="registerData.finalDate" matInput>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field><br>
+
+                        <input type="file" (change)="uploadImg($event)" />
+
                     </mat-card-content>
 
 
@@ -314,7 +318,7 @@
                         </button>
                     </mat-card-actions>
                 </mat-card>
-            </div>
+           
 
         </div>
     </div>

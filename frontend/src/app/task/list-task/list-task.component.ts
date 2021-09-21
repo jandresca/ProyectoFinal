@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from '../../services/task.service';
+import { ProjectService } from '../../services/project.service';
 import { PanelService } from '../../services/panel.service';
 import {
   MatSnackBar,
@@ -26,13 +27,9 @@ import { CalendarOptions } from '@fullcalendar/angular'; // useful for typecheck
   styleUrls: ['./list-task.component.css'],
 })
 export class ListTaskComponent implements OnInit {
-  myFilter = (d: Date | null): boolean => {
-    const day = (d || new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
-  }
   registerData: any;
   panelData: any;
+  registerData2: any;
   selectedFile: any;
   taskData: any;
   message: string = '';
@@ -48,6 +45,8 @@ export class ListTaskComponent implements OnInit {
   priorityone: string = 'priorityone';
   prioritytwo: string = 'prioritytwo';
   prioritythree: string = 'prioritythree';
+  data: {};
+  exampleModal: any;
 
   constructor(
     private _taskService: TaskService,
@@ -55,24 +54,27 @@ export class ListTaskComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _router: Router,
     private _panelService: PanelService,
+    public _projectService: ProjectService
     
     
   ) {
     this.taskData = {};
+    this.data = {};
     this.panelData = {};
     this.registerData = {};
     this._id = '';
     this.selectedFile = null;
+    this.registerData2={};
      
   }
 
   ngOnInit(): void {
     this.loadTask();
     this._id = this.panelData._id;
+    
   }
   /*
   loadTask() {
-
     this.done = [];
     this.todo = [];
     this.progress = [];
@@ -88,7 +90,6 @@ export class ListTaskComponent implements OnInit {
       },
       (error: any) => {
         console.log(error);
-
       }
     );
   }
@@ -106,7 +107,7 @@ export class ListTaskComponent implements OnInit {
           this._panelService.listPanel2(panelId).subscribe(
             (res) => {
               this.panelData = res.panel;
-              console.log(this.panelData);
+              // console.log(this.panelData);
             },
             (err) => {
               this.message = err.error;
@@ -298,9 +299,8 @@ export class ListTaskComponent implements OnInit {
         data.append('priority', this.registerData.priority);
         data.append('finalDate', this.registerData.finalDate);
         data.append('panelId', this._id);
-        data.append('finalDate', this.registerData.finalDate);
-        console.log(data);
-              console.log(this.registerData);
+        // console.log(data);
+        // console.log(this.registerData);
   
         this._taskService.saveTaskImg(data).subscribe(
           (res) => {
@@ -315,7 +315,8 @@ export class ListTaskComponent implements OnInit {
               confirmButtonText: 'Close',
               
             });
-  
+          //document.getElementById('exampleModal').hide();
+          this.data = {};
           this.registerData = {};
           },
           (err) => {

@@ -50,6 +50,7 @@ const listTaskTemp = async (req, res) => {
 const saveTaskImg = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
     return res.status(400).send("Incomplete data");
+    // console.log(req.body.finalDate);
 
     let panel = await Panel.findOne({ _id: req.body.panelId });
     if (!panel) return res.status(400).send("Panel not found");
@@ -110,6 +111,24 @@ const updateTask = async (req, res) => {
   if (!task) return res.status(400).send("Task not found");
   return res.status(200).send({ task });
 };
+const updateTaskImg = async (req, res) => {
+  if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
+  return res.status(400).send("Incomplete data");
+
+  let validId = mongoose.Types.ObjectId.isValid(req.body._id);
+  if (!validId) return res.status(400).send("Invalid id");
+
+
+  const task = await Task.findByIdAndUpdate(req.body._id, {
+    name: req.body.name,
+    description: req.body.description,
+    priority: req.body.priority,
+    finalDate: req.body.finalDate,
+  });
+
+  if (!task) return res.status(400).send("Task not found");
+  return res.status(200).send({ task });
+};
 
 const deleteTask = async (req, res) => {
   const validId = mongoose.Types.ObjectId.isValid(req.params._id);
@@ -146,4 +165,5 @@ const sharePanelTask = async (req, res) => {
 
 }
 
-module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask , listTaskTemp, findTask};
+module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask , listTaskTemp, findTask, updateTaskImg};
+
