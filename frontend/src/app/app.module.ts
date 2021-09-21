@@ -65,6 +65,8 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FlatpickrModule } from 'angularx-flatpickr';
 import { HeaderdosComponent } from './home/headerdos/headerdos.component';
 import { HeadertresComponent } from './home/headertres/headertres.component';
+import { HeadercuatroComponent } from './home/headercuatro/headercuatro.component';
+import { DescriptionComponent } from './home/description/description.component';
 
 
 @NgModule({
@@ -95,6 +97,8 @@ import { HeadertresComponent } from './home/headertres/headertres.component';
       CalendarComponent,
       HeaderdosComponent,
       HeadertresComponent,
+      HeadercuatroComponent,
+      DescriptionComponent,
   ],
   imports: [
     BrowserModule,
