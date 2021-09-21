@@ -7,6 +7,7 @@ const panelSchema = new mongoose.Schema({
   theme: String,
   date: { type: Date, default: Date.now },
   dbStatus: Boolean,
+  panelAlternative: Number,
 });
 
 const panel = mongoose.model("panel", panelSchema);

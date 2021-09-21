@@ -7,11 +7,10 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-
 export interface State {
   url: string;
   name: string;
@@ -23,6 +22,8 @@ export interface State {
   styleUrls: ['./save-panel.component.css'],
 })
 export class SavePanelComponent implements OnInit {
+  animalControl = new FormControl('', Validators.required);
+  selectFormControl = new FormControl('', Validators.required);
   registerData: any;
   selectedFile: any;
   message: string = '';
@@ -85,7 +86,8 @@ export class SavePanelComponent implements OnInit {
     if (
       !this.registerData.name ||
       !this.registerData.description ||
-      !this.registerData.theme
+      !this.registerData.theme ||
+      !this.registerData.panelAlternative
     ) {
       this.message = 'Failed process: Incomplete data';
       Swal.fire({
@@ -106,8 +108,8 @@ export class SavePanelComponent implements OnInit {
       this._panelService.registerPanel(this.registerData).subscribe(
         (res) => {
           this._projectService.registerProject(res.result).subscribe(
-            (res) => { 
-             console.log(res);
+            (res) => {
+              console.log(res);
             },
             (err) => {
               this.message = err.error;

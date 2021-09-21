@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 
 //registrar panel
 const registerPanel = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.theme)
+  if (!req.body.name || !req.body.description || !req.body.theme || !req.body.panelAlternative)
     return res.status(400).send("Incomplete data");
 
   const existingPanel = await Panel.findOne({ name: req.body.name });
@@ -15,6 +15,7 @@ const registerPanel = async (req, res) => {
     description: req.body.description,
     theme: req.body.theme,
     dbStatus: true,
+    panelAlternative: req.body.panelAlternative,
   });
 
   const result = await panel.save();
