@@ -2,11 +2,10 @@
 <div class="container rounded-1 text-center backgroundIndex">
     <h2><span class="" style="color:black">Mis proyectos</span></h2>
     <!-- div.row>div.col-sm-6*2 -->
-    <div *ngIf="panelData.length">
+    <div >
         <div class="row text-center">
             <div class="example-2 card " *ngFor="let panel of panelData; index as i">
-
-                <div class="wrapper"
+                <div class="wrapper" *ngIf="panelData.length"
                     style="background-color: #343a40 ; background: url(../../../assets/img/{{panel?.panelId?.theme}}) center/cover no-repeat;">
                     <div class="header">
                         <div class="date">
