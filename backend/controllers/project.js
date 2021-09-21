@@ -81,11 +81,12 @@ const deleteUserProject = async (req, res) => {
 
 //listo los usuarios del proyecto - solo el creador del proyecto podra listar los usuarios del proyecto
 const listProjectUser = async (req, res) => {
-  
   const project = await Project.find({
     // userCreator: req.user._id,
     status: "true",
     panelId: req.params.id,
+    userId: {$ne:req.user._id}
+    
   })
     // .populate("panelId")
     // .populate("roleId")

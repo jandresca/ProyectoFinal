@@ -46,12 +46,12 @@ export class ListPanelComponent implements OnInit {
       (err) => {
         this.message = err.error;
         this.openSnackBarError();
-        this.panelData.push({
-          panelId: {
-            name: 'Texto 1',
-            description: 'Texto 2'
-          }
-        });
+        // this.panelData.push({
+        //   panelId: {
+        //     name: 'Texto 1',
+        //     description: 'Texto 2'
+        //   }
+        // });
       }
     );
   }
