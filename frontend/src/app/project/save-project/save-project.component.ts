@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import Swal from 'sweetalert2';
 import { ProjectService } from '../../services/project.service';
-import { PanelService } from '../../services/panel.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   MatSnackBar,
@@ -11,10 +10,9 @@ import {
 @Component({
   selector: 'app-save-project',
   templateUrl: './save-project.component.html',
-  styleUrls: ['./save-project.component.css'],
+  styleUrls: ['./save-project.component.css']
 })
-export class SaveProjectComponent implements OnInit {
-  dataPanel: any;
+export class SaveProjectComponent implements OnInit{
   registerData: any;
   registerData2: any;
   message: string = '';
@@ -23,42 +21,23 @@ export class SaveProjectComponent implements OnInit {
   durationInSeconds: number = 2;
   _id: string = '';
 
-  constructor(
-    private _projectService: ProjectService,
+  constructor( private _projectService: ProjectService,
     private _router: Router,
     private _snackBar: MatSnackBar,
-    private _Arouter: ActivatedRoute,
-    private _panelService: PanelService
-  ) {
-    this.registerData = {};
-    this.registerData2 = {};
-    this.dataPanel = {};
-  }
+    private _Arouter: ActivatedRoute
+    ) {
+      this.registerData = {};
+      this.registerData2 = {};
+     }
 
   ngOnInit(): void {
+    
     this._Arouter.params.subscribe((params) => {
       this._id = params['id'];
       this._projectService.listProjectUser(this._id).subscribe(
         (res: any) => {
           this.registerData2 = res.project;
-          console.log(this.registerData2);
-          this._panelService.listPanel2(this._id).subscribe(
-            (res) => {
-              this.dataPanel = res.panel;
-              console.log(this.dataPanel.userId);
-              
-            },
-            (err) => {
-              this.message = err.error;
-              Swal.fire({
-                allowOutsideClick: false,
-                title: 'Error!',
-                text: this.message,
-                icon: 'error',
-                confirmButtonText: 'Close',
-              });
-            }
-          );
+          console.log(this.registerData2)
         },
         (err: any) => {
           this.message = err.error;
@@ -71,11 +50,14 @@ export class SaveProjectComponent implements OnInit {
           });
         }
       );
-    });
+      })
+
   }
 
   shareProjectUser() {
-    if (!this.registerData.email) {
+    if (
+      !this.registerData.email
+    ) {
       this.message = 'Failed process: Incomplete data';
       Swal.fire({
         allowOutsideClick: false,
@@ -85,32 +67,34 @@ export class SaveProjectComponent implements OnInit {
         confirmButtonText: 'Close',
       });
       this.registerData = {};
-    } else {
+    } 
+    else {
       const data = {
-        panelId: this._id,
-        email: this.registerData.email,
-      };
+        'panelId':this._id,
+        'email':this.registerData.email
+      
+      }
 
       // console.log(data);
-
+      
       this._projectService.shareProjectUser(data).subscribe(
-        (res: any) => {
+        (res:any) => {
           //this._router.navigate(['/listTask/']);
           this.message = 'Satisfactory registry';
-          Swal.fire({
-            allowOutsideClick: false,
-            text: this.message,
-            icon: 'success',
-          });
+      Swal.fire({
+        allowOutsideClick: false,
+        text: this.message,
+        icon: 'success',
+      });
           this.registerData = {};
-          this.ngOnInit();
+          this.ngOnInit()
         },
         // (err) => {
         //               this.message = err.error;
         //               this.openSnackBarError();
         //             }
-        (err: any) => {
-          this.message = err.error;
+        (err:any) => {
+          this.message = err.error;;
           Swal.fire({
             allowOutsideClick: false,
             title: 'Error!',
@@ -132,24 +116,24 @@ export class SaveProjectComponent implements OnInit {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        this._projectService.deleteUserProject(userProject).subscribe(
-          (res: any) => {
-            this.message = res.message;
-            this.ngOnInit();
-            this.message = 'Delete user';
-          },
-          (err) => {
-            this.message = err.error;
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: this.message,
-            });
-          }
-        );
-        Swal.fire('Successfully removed', '', 'success');
-      }
-    });
+    this._projectService.deleteUserProject(userProject).subscribe(
+      (res: any) => {
+        this.message = res.message;
+          this.ngOnInit();
+          this.message = 'Delete user';
+        },
+        (err) => {
+          this.message = err.error;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: this.message,
+          })
+        }
+      );
+      Swal.fire('Successfully removed', '', 'success')
+    }
+  })
   }
 
   openSnackBarSuccesfull() {
@@ -169,4 +153,5 @@ export class SaveProjectComponent implements OnInit {
       panelClass: ['style-snackBarFalse'],
     });
   }
+
 }

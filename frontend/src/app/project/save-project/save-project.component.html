@@ -15,14 +15,11 @@
           Register
         </button>
       </mat-card-actions>
-      <mat-card-content >
-        <div *ngFor="let userProject of registerData2">
-          <div >
-            <span>{{userProject.userId._id}} ({{userProject.userId.email}}) {{userProject.userCreator}}</span>
-          <mat-icon color="primary" (click)="deleteProject(userProject)" *ngIf="userProject._id == userProject.userCreator">delete
+      <mat-card-content *ngFor="let userProject of registerData2">
+        <div *ngIf="userProject.userId._id != userProject.userCreator" >
+          <span>{{userProject.userId.name}} ({{userProject.userId.email}})</span>
+          <mat-icon color="primary" (click)="deleteProject(userProject)" *ngIf="userProject.userId._id != userProject.userCreator">delete
           </mat-icon>
-          </div>
-          
         </div>
       </mat-card-content>
       <button mat-button [routerLink]="['/listTask/',_id]">Next</button>

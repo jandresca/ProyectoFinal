@@ -71,27 +71,7 @@ export class ListTaskComponent implements OnInit {
     this._id = this.panelData._id;
     
   }
-  /*
-  loadTask() {
-    this.done = [];
-    this.todo = [];
-    this.progress = [];
-    this._taskService.getTask().subscribe(
-      (res: any) => {
-        this.taskData = res.task;
-        console.log(res);
-        this.taskData.forEach((element: any) => {
-          if (element.taskStatus === 'done') this.done.push(element);
-          if (element.taskStatus === 'to-do') this.todo.push(element);
-          if (element.taskStatus === 'in-progress') this.progress.push(element);
-        });
-      },
-      (error: any) => {
-        console.log(error);
-      }
-    );
-  }
-  */
+
     
       loadTask() {
         let panelId = this._activatedRoute.snapshot.paramMap.get('id');
@@ -192,54 +172,6 @@ export class ListTaskComponent implements OnInit {
       }
       this.updateTask(event.container.data[event.currentIndex], status);
     }
-    /*
-      deleteTask(task: any) {
-        this._taskService.deleteTask(task).subscribe(
-          (res) => {
-            let index = this.taskData.indexOf(task);
-            if (index > -1) {
-              this.taskData.splice(index, 1);
-              this.message = res.message;
-              Swal.fire({
-                allowOutsideClick: false,
-                title: 'Good',
-                text: this.message,
-                icon: 'success',
-                confirmButtonText: 'Close',
-              });
-            }
-          },
-          (err) => {
-            this.message = err.error;
-            Swal.fire({
-              allowOutsideClick: false,
-              title: 'Error!',
-              text: this.message,
-              icon: 'error',
-              confirmButtonText: 'Close',
-            });
-          }
-        );
-      }
-    
-      drop(event: CdkDragDrop<string[]>, status?: any) {
-        if (event.previousContainer === event.container) {
-          moveItemInArray(
-            event.container.data,
-            event.previousIndex,
-            event.currentIndex
-          );
-        } else {
-          transferArrayItem(
-            event.previousContainer.data,
-            event.container.data,
-            event.previousIndex,
-            event.currentIndex
-          );
-        }
-        this.updateTask(event.container.data[event.currentIndex], status);
-      }
-    */
     openSnackBarSuccesfull() {
       this._snackBar.open(this.message, 'X', {
         horizontalPosition: this.horizontalPosition,

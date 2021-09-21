@@ -10,7 +10,7 @@
                 style="background-color: #343a40 ; background: url(../../../assets/img/{{panel?.panelId?.theme}}) center/cover no-repeat;">
                     <div class="header">
                         <div class="date">
-                            <span class="year">{{transform(panel.panelId.date)}}</span>
+                        <span class="year">{{transform(panel?.panelId?.date)}}</span>
                         </div>
                         <ul class="menu-content">
                             <a [routerLink]="['/updatePanel/',panel.panelId._id]">
@@ -20,9 +20,9 @@
                     </div>
                     <div class="data">
                         <div class="content">
-                            <span class="author">{{panel.panelId.name}}</span>
+                            <span class="author">{{panel?.panelId?.name}}</span>
                             <h2 class="title"><a
-                                    [routerLink]="['/listTask/',panel.panelId._id]">{{panel.panelId.description}}</a>
+                                    [routerLink]="['/listTask/',panel.panelId._id]">{{panel?.panelId?.description}}</a>
                             </h2>
                             <p class="text"></p>
                            <ng-container *ngIf="panel.panelId._id; else elseTemplate">
