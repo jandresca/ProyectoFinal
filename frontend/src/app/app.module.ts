@@ -57,6 +57,18 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
+<<<<<<< HEAD
+=======
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import * as moment from 'moment';
+import { CalendarComponent } from './task/calendar/calendar.component';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { HeaderdosComponent } from './home/headerdos/headerdos.component';
+import { HeadertresComponent } from './home/headertres/headertres.component';
+
+>>>>>>> 7efeea63b8f3afabe4b156cf9ccca74b0be5bff5
 
 @NgModule({
   declarations: [
@@ -83,6 +95,12 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     UpdateTaskComponent,
 
     UpdateUser2Component,
+<<<<<<< HEAD
+=======
+      CalendarComponent,
+      HeaderdosComponent,
+      HeadertresComponent,
+>>>>>>> 7efeea63b8f3afabe4b156cf9ccca74b0be5bff5
   ],
   imports: [
     BrowserModule,

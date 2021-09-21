@@ -1,42 +1,48 @@
-<div class="bgComponent">
-  <div class="form">
-    <mat-card class="card">
-      <mat-card-title>Register user</mat-card-title>
-      <mat-card-content>
-        <div class="container">
-          <mat-form-field>
-            <input
-              [(ngModel)]="registerData.name"
-              matInput
-              placeholder="Name and lastname"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              [(ngModel)]="registerData.email"
-              type="email"
-              matInput
-              placeholder="Email"
-              required
-            />
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              [(ngModel)]="registerData.password"
-              type="password"
-              matInput
-              placeholder="Password"
-              required
-            />
-          </mat-form-field>
+<app-headerdos></app-headerdos>
+<body class="backgroundIndex ">
+  <section class="registro">
+    <img src="../../../assets/img/logo.png" alt="" style="width:80%">
+      <div class="resPhotogram">
+      <h2 class="TituloRegistro">Registrate para obtener tu cuenta</h2>
+        <div class="divRegistro">
+          <div class="divNombre">
+            <input type="text" name="nombre" placeholder="Nombre Completo" [(ngModel)]="registerData.name"
+            matInput
+          
+            required>					
+          </div>
+          <div class="divEmail">
+            <input type="text" name="email" placeholder="Correo electrónico"  [(ngModel)]="registerData.email"
+            type="email"
+            matInput
+            
+            required>
+          </div>
+          
+          <div class="divContraseña">
+            <input type="text" name="password" placeholder="Contraseña"   [(ngModel)]="registerData.password"
+            type="password"
+            matInput
+           
+            required>			
+          </div>
+         
+          <div class="regsitroPhot">
+            
+            <a href="">
+          
+            <button (click)="registerUser()" class=" btn btn-default btn-lg" mat-raised-button>Guardar</button>
+            </a>
+          </div>
+          
         </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="registerUser()" class="button" mat-raised-button>
-          Register
-        </button>
-      </mat-card-actions>
-    </mat-card>
-  </div>
-</div>
+        <div class="Politicas">
+					<p>Al registrarte aceptas nuestras <B>Condiciones</B>,<br>
+						la <B>Política de Datos</B> y la <B>Política de Cookies.</B></p>
+				</div>
+     
+      </div>
+    
+    </section>	
+  </body>
+ 

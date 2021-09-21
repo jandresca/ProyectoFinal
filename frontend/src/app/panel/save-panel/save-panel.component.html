@@ -1,4 +1,5 @@
-<div class="bgComponent">
+<app-headertres></app-headertres>
+<!-- <div class="bgComponent">
     <div class="form">
       <mat-card class="card">
         <mat-card-title>Registrar tablero</mat-card-title>
@@ -44,4 +45,53 @@
         </mat-card-actions>
       </mat-card>
     </div>
-  </div>
+  </div> -->
+
+
+<body class="backgroundIndex ">
+  <section class="registro">
+    <img src="../../../assets/img/logo.png" alt="" style="width:80%">
+      <div class="resPhotogram">
+      <h2 class="TituloRegistro">crea tablero</h2>
+        <div class="divRegistro">
+          <div class="divNombre">
+            <input type="text" name="nombre" placeholder="Nombre" >					
+          </div>
+          <div class="divEmail">
+            <input type="text" name="description" placeholder="Descripción" >
+          </div>
+          
+          <mat-form-field class="example-full-width divEmail" appearance="fill">
+            <mat-label>Theme</mat-label>
+            <input matInput
+            [(ngModel)]="registerData.theme"
+                   aria-label="State"
+                   [matAutocomplete]="auto"
+                   [formControl]="stateCtrl">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                <img class="example-option-img" aria-hidden [src]="state.url" height="25">
+                <span>{{state.name}}</span>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+         
+          <div class="regsitroPhot">
+            
+            <a href="">
+          
+            <button  class=" btn btn-default btn-lg" mat-raised-button>Guardar</button>
+            </a>
+          </div>
+          
+        </div>
+        <div class="Politicas">
+					<p>Al registrarte aceptas nuestras <B>Condiciones</B>,<br>
+						la <B>Política de Datos</B> y la <B>Política de Cookies.</B></p>
+				</div>
+     
+      </div>
+    
+    </section>	
+  </body>
+ 
