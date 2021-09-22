@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TaskService } from "../../services/task.service";
 
 import { ChartType, ChartOptions } from 'chart.js';
 import {
