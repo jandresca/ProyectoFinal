@@ -19,7 +19,7 @@ const saveTask = async (req, res) => {
     name: req.body.name,
     description: req.body.description,
     priority: req.body.priority,
-    taskStatus: "to-do", 
+    taskStatus: req.body.taskStatus, 
   });
 
   const result = await task.save();

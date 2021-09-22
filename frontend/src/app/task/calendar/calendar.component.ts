@@ -142,7 +142,7 @@ export class CalendarComponent {
         },
         draggable: true,
       })
-      console.log('task',task);
+      // console.log('task',task);
     });
   }
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {

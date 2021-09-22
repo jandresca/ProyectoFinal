@@ -16,9 +16,6 @@ import {
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
-
-
-
 @Component({
   selector: 'app-list-task',
   templateUrl: './list-task.component.html',
@@ -39,7 +36,6 @@ export class ListTaskComponent implements OnInit {
   done: any = [];
   _id: string;
 
-
   priorityone: string = 'priorityone';
   prioritytwo: string = 'prioritytwo';
   prioritythree: string = 'prioritythree';
@@ -53,8 +49,6 @@ export class ListTaskComponent implements OnInit {
     private _router: Router,
     private _panelService: PanelService,
     public _projectService: ProjectService
-    
-    
   ) {
     this.taskData = {};
     this.data = {};
@@ -62,202 +56,240 @@ export class ListTaskComponent implements OnInit {
     this.registerData = {};
     this._id = '';
     this.selectedFile = null;
-    this.registerData2={};
-     
+    this.registerData2 = {};
   }
 
   ngOnInit(): void {
     this.loadTask();
     this._id = this.panelData._id;
-    
   }
 
-    
-      loadTask() {
-        let panelId = this._activatedRoute.snapshot.paramMap.get('id');
-        // console.log(panelId);
-    
-        this.done = [];
-        this.todo = [];
-        this.progress = [];
-    
-        if (panelId != null || panelId != '') {
-          this._panelService.listPanel2(panelId).subscribe(
-            (res) => {
-              this.panelData = res.panel;
-              // console.log(this.panelData);
-            },
-            (err) => {
-              this.message = err.error;
-              Swal.fire({
-                allowOutsideClick: false,
-                title: 'Error!',
-                text: this.message,
-                icon: 'error',
-                confirmButtonText: 'Close',
-              });
-              //this.openSnackBarError();
-            }
-          );
-    
-          this._taskService.listTask(panelId).subscribe(
-            (res: any) => {
-              this.taskData = res.task;
-              // console.log(res);
-              this.taskData.forEach((element: any) => {
-                if (element.taskStatus === 'done') this.done.push(element);
-                if (element.taskStatus === 'to-do') this.todo.push(element);
-                if (element.taskStatus === 'in-progress')
-                  this.progress.push(element);
-              });
-            },
-            (err: any) => {
-              this.message = err.error;
-              Swal.fire({
-                allowOutsideClick: false,
-                title: 'Error!',
-                text: this.message,
-                icon: 'error',
-                confirmButtonText: 'Close',
-              });
-            }
-          );
-        } else {
-          this._router.navigate(['/listPanel']);
-        }
-      }
-      
-    updateTask(task: any, status: string, button ?: string) {
-      let tempStatus = task.taskStatus;
-      task.taskStatus = status;
-      this._taskService.updateTask(task).subscribe(
-        (res: any) => {
-          task.status = status;
-          // if(button) this.loadTask();
-          this.loadTask();
-        },
-        (err: any) => {
-          task.status = tempStatus;
-          this.message = err.error;
-          this.openSnackBarError();
-        }
-      );
-    }
-    deleteTask(task: any) {
-      this._taskService.deleteTask(task).subscribe(
-        (res: any) => {
-          let index = this.taskData.indexOf(task);
-          if (index > -1) {
-            this.taskData.splice(index, 1);
-            this.message = res.message;
-            this.openSnackBarSuccesfull();
-          
+  loadTask() {
+    let panelId = this._activatedRoute.snapshot.paramMap.get('id');
+    // console.log(panelId);
+
+    this.done = [];
+    this.todo = [];
+    this.progress = [];
+
+    if (panelId != null || panelId != '') {
+      this._panelService.listPanel2(panelId).subscribe(
+        (res) => {
+          this.panelData = res.panel;
+          if (this.panelData.panelAlternative === 1) {
+            this._taskService.listTask(panelId).subscribe(
+              (res: any) => {
+                this.taskData = res.task;
+                // console.log(res);
+                this.taskData.forEach((element: any) => {
+                  if (element.taskStatus === 'done') this.done.push(element);
+                  if (element.taskStatus === 'to-do') this.todo.push(element);
+                  if (element.taskStatus === 'in-progress')
+                    this.progress.push(element);
+                });
+              },
+              (err: any) => {
+                this.message = err.error;
+                Swal.fire({
+                  allowOutsideClick: false,
+                  title: 'Error!',
+                  text: this.message,
+                  icon: 'error',
+                  confirmButtonText: 'Close',
+                });
+              }
+            );
           }
-          this.loadTask();
+          if (this.panelData.panelAlternative === 2) {
+            this._taskService.listTask(panelId).subscribe(
+              (res: any) => {
+                this.taskData = res.task;
+                this.taskData.forEach((element: any) => {
+                  this.todo.push(element);
+                });
+              },
+              (err: any) => {
+                this.message = err.error;
+                Swal.fire({
+                  allowOutsideClick: false,
+                  title: 'Error!',
+                  text: this.message,
+                  icon: 'error',
+                  confirmButtonText: 'Close',
+                });
+              }
+            );
+          }
         },
-        (err: any) => {
+        (err) => {
           this.message = err.error;
-          this.openSnackBarError();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
+          //this.openSnackBarError();
         }
       );
+    } else {
+      this._router.navigate(['/listPanel']);
     }
-    drop(event: CdkDragDrop < string[] >, status ?: any) {
-      if (event.previousContainer === event.container) {
-        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-      } else {
-        transferArrayItem(event.previousContainer.data,
-          event.container.data,
-          event.previousIndex,
-          event.currentIndex);
+  }
+
+  updateTask(task: any, status: string, button?: string) {
+    let tempStatus = task.taskStatus;
+    task.taskStatus = status;
+    this._taskService.updateTask(task).subscribe(
+      (res: any) => {
+        task.status = status;
+        // if(button) this.loadTask();
+        this.loadTask();
+      },
+      (err: any) => {
+        task.status = tempStatus;
+        this.message = err.error;
+        this.openSnackBarError();
       }
-      this.updateTask(event.container.data[event.currentIndex], status);
-    }
-    openSnackBarSuccesfull() {
-      this._snackBar.open(this.message, 'X', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-        duration: this.durationInSeconds * 1000,
-        panelClass: ['style-snackBarTrue'],
-      });
-    }
-
-    openSnackBarError() {
-      this._snackBar.open(this.message, 'X', {
-        horizontalPosition: this.horizontalPosition,
-        verticalPosition: this.verticalPosition,
-        duration: this.durationInSeconds * 1000,
-        panelClass: ['style-snackBarFalse'],
-      });
-    }
-
-    uploadImg(event: any) {
-      this.selectedFile = <File>event.target.files[0];
-    }
-  
-    saveTaskImg() {
-      this._id = this.panelData._id;
-      if (
-        !this.registerData.name ||
-        !this.registerData.description ||
-        !this.registerData.priority ||
-        !this.registerData.finalDate
-      ) {
-        this.message = 'Failed process: Incomplete data';
-        Swal.fire({
-          allowOutsideClick: false,
-          title: 'Error!',
-          text: this.message,
-          icon: 'error',
-          confirmButtonText: 'Close',
-        });
-        this.registerData = {};
-      } else {
-        Swal.fire({
-          allowOutsideClick: false,
-          text: this.message,
-          icon: 'info',
-        });
-        Swal.showLoading();
-        const data = new FormData();
-        if (this.selectedFile != null) {
-          data.append('image', this.selectedFile, this.selectedFile.name);
+    );
+  }
+  deleteTask(task: any) {
+    this._taskService.deleteTask(task).subscribe(
+      (res: any) => {
+        let index = this.taskData.indexOf(task);
+        if (index > -1) {
+          this.taskData.splice(index, 1);
+          this.message = res.message;
+          this.openSnackBarSuccesfull();
         }
-        data.append('name', this.registerData.name);
-        data.append('description', this.registerData.description);
-        data.append('priority', this.registerData.priority);
-        data.append('finalDate', this.registerData.finalDate);
-        data.append('panelId', this._id);
-        // console.log(data);
-        // console.log(this.registerData);
-  
-        this._taskService.saveTaskImg(data).subscribe(
-          (res) => {
-            this.loadTask();
-            // this.message = 'Successfull user registration';
-            Swal.close();
-            Swal.fire({
-              allowOutsideClick: false,
-              title: 'congratulations!',
-              text: this.message,
-              icon: 'success',
-              confirmButtonText: 'Close',
-              
-            });
+        this.loadTask();
+      },
+      (err: any) => {
+        this.message = err.error;
+        this.openSnackBarError();
+      }
+    );
+  }
+  drop(event: CdkDragDrop<string[]>, status?: any) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+    this.updateTask(event.container.data[event.currentIndex], status);
+  }
+
+  drop2(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
+  openSnackBarSuccesfull() {
+    this._snackBar.open(this.message, 'X', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['style-snackBarTrue'],
+    });
+  }
+
+  openSnackBarError() {
+    this._snackBar.open(this.message, 'X', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+      duration: this.durationInSeconds * 1000,
+      panelClass: ['style-snackBarFalse'],
+    });
+  }
+
+  uploadImg(event: any) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
+  saveTaskImg() {
+    this._id = this.panelData._id;
+    if (
+      !this.registerData.name ||
+      !this.registerData.description ||
+      !this.registerData.priority ||
+      !this.registerData.finalDate
+    ) {
+      this.message = 'Failed process: Incomplete data';
+      Swal.fire({
+        allowOutsideClick: false,
+        title: 'Error!',
+        text: this.message,
+        icon: 'error',
+        confirmButtonText: 'Close',
+      });
+      this.registerData = {};
+    } else {
+      Swal.fire({
+        allowOutsideClick: false,
+        text: this.message,
+        icon: 'info',
+      });
+      Swal.showLoading();
+      const data = new FormData();
+      if (this.selectedFile != null) {
+        data.append('image', this.selectedFile, this.selectedFile.name);
+      }
+      data.append('name', this.registerData.name);
+      data.append('description', this.registerData.description);
+      data.append('priority', this.registerData.priority);
+      data.append('finalDate', this.registerData.finalDate);
+      data.append('panelId', this._id);
+      // console.log(data);
+      // console.log(this.registerData);
+
+      this._taskService.saveTaskImg(data).subscribe(
+        (res) => {
+          this.loadTask();
+          // this.message = 'Successfull user registration';
+          Swal.close();
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'congratulations!',
+            text: this.message,
+            icon: 'success',
+            confirmButtonText: 'Close',
+          });
           //document.getElementById('exampleModal').hide();
           this.data = {};
           this.registerData = {};
-          },
-          (err) => {
-            this.message = err.error;
-            Swal.fire({
-              allowOutsideClick: false,
-              title: 'Error!',
-              text: this.message,
-              icon: 'error',
-              confirmButtonText: 'Close',
-            });
-          }
-        );
-      }
+        },
+        (err) => {
+          this.message = err.error;
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
+        }
+      );
     }
   }
+}

@@ -28,7 +28,9 @@
                                 <br>
                                 Tipo de Tablero: <strong>Classic panel</strong> 
                             </p>
-                            <p class="text" *ngIf="panel.panelId.panelAlternative === 2">
+                            <p class="text" *ngIf="panel.panelId.panelAlternative == 2">
+                                <br>
+                                <br>
                                 Tipo de Tablero: <strong>Free panel</strong>
                             </p>
                             <ng-container *ngIf="panel.panelId._id; else elseTemplate">
