@@ -26,6 +26,7 @@ import { UpdateTaskComponent } from "./task/update-task/update-task.component";
 import { AuthGuard } from './guard/auth.guard';
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 import { CalendarComponent } from './task/calendar/calendar.component';
+import { GraphComponent } from "./task/graph/graph.component";
 
 const routes: Routes = [
   
@@ -104,6 +105,10 @@ const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
+  },
+  {
+    path: 'graph',
+    component: GraphComponent,
   },
   {
     path: 'updateUser/:_id',

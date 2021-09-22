@@ -15,6 +15,7 @@ import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
+import { GraphComponent } from "./task/graph/graph.component";
 
 //servicios
 import { UserService } from './services/user.service';
@@ -95,6 +96,7 @@ import { HeadertresComponent } from './home/headertres/headertres.component';
       CalendarComponent,
       HeaderdosComponent,
       HeadertresComponent,
+      GraphComponent
   ],
   imports: [
     BrowserModule,
