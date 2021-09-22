@@ -12,7 +12,7 @@
                         <div class="date">
                             <span class="year">{{transform(panel?.panelId?.date)}}</span>
                         </div>
-                        <ul class="menu-content">
+                        <ul class="menu-content"  *ngIf="panel.panelId._id;"> 
                             <a [routerLink]="['/updatePanel/',panel.panelId._id]">
                                 <mat-icon>border_color</mat-icon>
                             </a>
