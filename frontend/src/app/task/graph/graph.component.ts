@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CargarScriptsService } from 'src/app/cargar-scripts.service';
+import { CargarScriptsService } from 'src/app/services/cargar-script.service';
 
 @Component({
   selector: 'app-graph',
@@ -7,9 +7,9 @@ import { CargarScriptsService } from 'src/app/cargar-scripts.service';
   styleUrls: ['./graph.component.css'],
 })
 export class GraphComponent implements OnInit {
-  
+
   constructor(private _CargaScripts: CargarScriptsService) {
-    _CargaScripts.Carga(['services/ejemplo']);
+    _CargaScripts.Carga(['ejemplo/ejemplo']);
   }
 
   ngOnInit(): void {}
