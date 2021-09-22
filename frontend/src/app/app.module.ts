@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { CargarScriptsService } from "./cargar-scripts.service"
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './home/header/header.component';
@@ -145,6 +147,7 @@ import { ResumenComponent } from './home/resumen/resumen.component';
     ProjectService,
     TokenInterceptorService,
     AuthGuard,
+    CargarScriptsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
