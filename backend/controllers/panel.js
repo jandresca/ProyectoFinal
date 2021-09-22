@@ -6,7 +6,7 @@ const registerPanel = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.theme || !req.body.panelAlternative)
     return res.status(400).send("Incomplete data");
 
-  const existingPanel = await Panel.findOne({ name: req.body.name });
+  const existingPanel = await Panel.findOne({ name: req.body.name,  userId: req.user._id });
   if (existingPanel) return res.status(400).send("The Panel already exists");
 
   const panel = new Panel({
@@ -25,7 +25,7 @@ const registerPanel = async (req, res) => {
 
 //listar panel
 const listPanel = async (req, res) => {
-  const panel = await Panel.find({ userId: req.user._id, dbStatus: "true" });
+  const panel = await Panel.find({ userId: req.user._id, dbStatus: true });
   if (!panel || panel.length === 0)
     return res.status(400).send("Empty panel list");
   return res.status(200).send({ panel });

@@ -82,9 +82,9 @@ export class ListTaskComponent implements OnInit {
                 this.taskData = res.task;
                 // console.log(res);
                 this.taskData.forEach((element: any) => {
-                  if (element.taskStatus === 'done') this.done.push(element);
-                  if (element.taskStatus === 'to-do') this.todo.push(element);
-                  if (element.taskStatus === 'in-progress')
+                  if (element.taskStatus.toLowerCase() === 'done') this.done.push(element);
+                  if (element.taskStatus.toLowerCase() === 'to-do') this.todo.push(element);
+                  if (element.taskStatus.toLowerCase() === 'in-progress')
                     this.progress.push(element);
                 });
               },
@@ -144,8 +144,8 @@ export class ListTaskComponent implements OnInit {
     this._taskService.updateTask(task).subscribe(
       (res: any) => {
         task.status = status;
-        // if(button) this.loadTask();
-        this.loadTask();
+       if(button) this.loadTask();
+      //  this.loadTask();
       },
       (err: any) => {
         task.status = tempStatus;

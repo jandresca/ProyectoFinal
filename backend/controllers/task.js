@@ -56,19 +56,23 @@ const saveTaskImg = async (req, res) => {
     if (!panel) return res.status(400).send("Panel not found");
 
   let imageUrl = "";
-  if (req.files.image) {
-    if (req.files.image.type != null) {
-      const url = req.protocol + "://" + req.get("host") + "/";
-      const serverImg =
-        "./uploads/" + moment().unix() + path.extname(req.files.image.path);
-      fs.createReadStream(req.files.image.path).pipe(
-        fs.createWriteStream(serverImg)
-      );
-      imageUrl =
-        url + "uploads/" + moment().unix() + path.extname(req.files.image.path);
+  try {
+    if (req.files.image) {
+      if (req.files.image.type != null) {
+        const url = req.protocol + "://" + req.get("host") + "/";
+        const serverImg =
+          "./uploads/" + moment().unix() + path.extname(req.files.image.path);
+        fs.createReadStream(req.files.image.path).pipe(
+          fs.createWriteStream(serverImg)
+        );
+        imageUrl =
+          url + "uploads/" + moment().unix() + path.extname(req.files.image.path);
+      }
     }
+  } catch (error) {
+    console.log("error al subir la imagen");
+    imageUrl = "";
   }
-
   const task = new Task({
     userId: req.user._id,
     panelId: panel._id,
@@ -76,7 +80,7 @@ const saveTaskImg = async (req, res) => {
     description: req.body.description,
     priority: req.body.priority,
     finalDate: req.body.finalDate,
-    taskStatus: "to-do",
+    taskStatus: req.body.taskStatus|| "to-do",
     imageUrl: imageUrl,
   });
 
