@@ -27,7 +27,7 @@ const listRole = async (req, res) => {
 };
 
 const findRole = async (req, res) => {
-  console.log(req.params["_id"]);
+  // console.log(req.params["_id"]);
   const role = await Role.findOne({ _id: req.params["_id"] })
   if (!role || role.length === 0)
     return res.status(400).send("No search results");
