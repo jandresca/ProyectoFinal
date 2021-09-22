@@ -69,12 +69,6 @@ export class SaveProjectComponent implements OnInit{
       this.registerData = {};
     } 
     else {
-      this.message = 'Ya existe';
-      Swal.fire({
-        allowOutsideClick: false,
-        text: this.message,
-        icon: 'error',
-      });
       const data = {
         'panelId':this._id,
         'email':this.registerData.email
@@ -86,7 +80,12 @@ export class SaveProjectComponent implements OnInit{
       this._projectService.shareProjectUser(data).subscribe(
         (res:any) => {
           //this._router.navigate(['/listTask/']);
-          this.message = 'Project create';
+          this.message = 'Satisfactory registry';
+      Swal.fire({
+        allowOutsideClick: false,
+        text: this.message,
+        icon: 'success',
+      });
           this.registerData = {};
           this.ngOnInit()
         },
@@ -95,7 +94,7 @@ export class SaveProjectComponent implements OnInit{
         //               this.openSnackBarError();
         //             }
         (err:any) => {
-          this.message = err.console.error;
+          this.message = err.error;;
           Swal.fire({
             allowOutsideClick: false,
             title: 'Error!',
@@ -110,17 +109,31 @@ export class SaveProjectComponent implements OnInit{
 
   deleteProject(userProject: any) {
     // console.log(userProject);
+    Swal.fire({
+      title: 'You sure want to delete this user?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
     this._projectService.deleteUserProject(userProject).subscribe(
       (res: any) => {
         this.message = res.message;
-          this.openSnackBarSuccesfull();
           this.ngOnInit();
-      },
-      (err: any) => {
-        this.message = err.error;
-        this.openSnackBarError();
-      }
-    );
+          this.message = 'Delete user';
+        },
+        (err) => {
+          this.message = err.error;
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: this.message,
+          })
+        }
+      );
+      Swal.fire('Successfully removed', '', 'success')
+    }
+  })
   }
 
   openSnackBarSuccesfull() {

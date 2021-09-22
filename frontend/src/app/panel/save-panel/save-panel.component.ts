@@ -7,7 +7,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators  } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import Swal from 'sweetalert2';
@@ -86,7 +86,7 @@ export class SavePanelComponent implements OnInit {
     if (
       !this.registerData.name ||
       !this.registerData.description ||
-      !this.registerData.theme ||
+      !this.registerData.theme || 
       !this.registerData.panelAlternative
     ) {
       this.message = 'Failed process: Incomplete data';
@@ -116,9 +116,16 @@ export class SavePanelComponent implements OnInit {
               this.openSnackBarError();
             }
           );
-          this._router.navigate(['/listPanel/' ]);
+          this._router.navigate(['/listTask/' + res.result._id]);
           this.message = 'Panel create';
-          Swal.close();
+          this.message = 'Panel create';
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Successful creation',
+            text: this.message,
+            icon: 'success',
+            confirmButtonText: 'Close',
+          })
           this.registerData = {};
         },
         (err) => {

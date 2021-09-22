@@ -3,14 +3,17 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.ObjectId, ref: "user" },
   panelId: { type: mongoose.Schema.ObjectId, ref: "panel" },
+  userA: { type: mongoose.Schema.ObjectId, ref: "user" },
   name: String,
   description: String,
   priority: Number,
   taskStatus: String,
   imageUrl: String,
-  finalDate: { type: Date, default: Date.now },
+  finalDate: Date,
   date: { type: Date, default: Date.now },
+  
 });
+
 
 const task = mongoose.model("task", taskSchema);
 module.exports = task;

@@ -53,10 +53,19 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UpdatePanelComponent } from './panel/update-panel/update-panel.component';
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
-import {MatDatepickerModule} from '@angular/material/datepicker';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import * as moment from 'moment';
+import { CalendarComponent } from './task/calendar/calendar.component';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FlatpickrModule } from 'angularx-flatpickr';
+import { HeaderdosComponent } from './home/headerdos/headerdos.component';
+import { HeadertresComponent } from './home/headertres/headertres.component';
+
 
 @NgModule({
   declarations: [
@@ -83,6 +92,9 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     UpdateTaskComponent,
 
     UpdateUser2Component,
+      CalendarComponent,
+      HeaderdosComponent,
+      HeadertresComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +119,15 @@ import { UpdateUser2Component } from './profile/update-user2/update-user2.compon
     DragDropModule,
     MatAutocompleteModule,
     MatDialogModule,
+    NgbModalModule,
+    FlatpickrModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory,
+    }),
+    
     MatDatepickerModule,
+    MatNativeDateModule,
   ],
   providers: [
     UserService,

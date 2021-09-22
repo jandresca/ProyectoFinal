@@ -5,7 +5,7 @@ const Project = require("../models/project");
 //registrar projectos
 const registerProject = async (req, res) => {
   if (!req.body._id) return res.status(400).send("Incomplete data");
-  
+
   const user = await User.findOne({ _id: req.user._id });
   if (!user) return res.status(400).send("user not found");
 
@@ -28,16 +28,19 @@ const registerProject = async (req, res) => {
 const shareProjectUser = async (req, res) => {
   if (!req.body.email || !req.body.panelId)
     return res.status(400).send("Incomplete data");
-    // console.log(req.body.email);
-    // console.log(req.body.panelId);
+  // console.log(req.body.email);
+  // console.log(req.body.panelId);
   const user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("user not found");
 
   const project1 = await Project.findOne({ panelId: req.body.panelId });
   if (!project1) return res.status(400).send("project not found");
 
-  const project2 = await Project.findOne({ userId: user._id, panelId: req.body.panelId });
-  if (project2) return res.status(400).send("ya existe");
+  const project2 = await Project.findOne({
+    userId: user._id,
+    panelId: req.body.panelId,
+  });
+  if (project2) return res.status(400).send("This user is already registered");
   // console.log(project2);
 
   const project = new Project({
@@ -46,7 +49,6 @@ const shareProjectUser = async (req, res) => {
     userId: user._id,
     status: true,
   });
-
 
   const result = await project.save();
   if (!result) return res.status(400).send("Failed to register project");
@@ -57,8 +59,8 @@ const shareProjectUser = async (req, res) => {
 const deleteUserProject = async (req, res) => {
   if (!req.body.userId._id || !req.body.panelId)
     return res.status(400).send("Incomplete data");
-    console.log(req.body.userId._id);
-    
+  console.log(req.body.userId._id);
+
   //busco los siguientes parametros para recuperar el id del registro del project
   const projects = await Project.findOne({
     userId: req.body.userId._id,
@@ -81,29 +83,27 @@ const deleteUserProject = async (req, res) => {
 
 //listo los usuarios del proyecto - solo el creador del proyecto podra listar los usuarios del proyecto
 const listProjectUser = async (req, res) => {
-  
   const project = await Project.find({
-    userCreator: req.user._id,
+    // userCreator: req.user._id,
     status: "true",
     panelId: req.params.id,
+    userId: { $ne: req.user._id },
   })
     // .populate("panelId")
     // .populate("roleId")
     .populate("userId")
     .exec();
 
+  // const project1 = await Project.findOne({
+  //   userCreator: req.user._id,
+  //   status: "true",
+  //   panelId: req.params.id,
+  //   userId: req.user._id,
+  // });
 
-
-  const project1 = await Project.findOne({
-    userCreator: req.user._id,
-    status: "true",
-    panelId: req.params.id,
-    userId: req.user._id,
-  });
-
-  if (project1.userCreator != req.user._id) {
-    return res.status(400).send("Error list user");
-  }
+  // if (project1.userCreator != req.user._id) {
+  //   return res.status(400).send("Error list user");
+  // }
 
   if (!project || project.length === 0)
     return res.status(400).send("Empty project list");
@@ -114,7 +114,10 @@ const listProjectUserP = async (req, res) => {
   const project = await Project.find({
     userId: req.user._id,
     status: "true",
-  }).populate("panelId");
+  })
+    .populate("panelId")
+    .populate("userId")
+    .exec();
 
   if (!project || project.length === 0)
     return res.status(400).send("Empty project list");

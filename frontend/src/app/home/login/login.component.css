@@ -31,3 +31,85 @@
 mat-card-title {
   text-align: center;
 }
+
+.registro{
+  color: black;
+  margin: 0 auto;
+  margin-top: 1%;
+  width: 450px;
+  display: block;
+  margin-bottom: 3%;
+  text-align: center;
+}
+.container-se{
+  text-align: center;
+  padding-bottom: 10px;
+}
+.divRegistro{
+  text-align: center;
+}
+.divRegistro2 h2 { 
+  color: blue;
+}
+.divEmail{
+  padding-bottom: 20px;
+}
+.divEmail input{
+  background-color: #F0ECEC;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  border-top: 2px solid silver;
+  font-size: 90%;
+  height: 45px;
+  color: #7E7272;
+  width: 360px;
+  padding-left: 10px;
+}
+.divContraseña{
+  padding-bottom: 20px;
+}
+.divContraseña input{
+  background-color: #F0ECEC;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  border-top: 2px solid silver;
+  font-size: 90%;
+  height: 45px;
+  color: #7E7272;
+  width: 360px;
+  padding-left: 10px;
+}
+.btn-default {
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+  background-color: transparent;
+  border: 1px solid #02989da2;
+  border-radius: 4px;
+  margin: 0 8px;
+  font-size: 18px;
+  transition: all 0.5s;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active {
+  background-color: #02989da2;
+  border: 1px solid #02989da2;
+  color: #eeeeee;
+}
+
+.padding{
+  padding-top: 5%;;
+}
+.backgroundIndex{
+  /* background-image:none; */
+   background-image: url("../../../assets/img/Login.png") !important;  
+  background-size: cover; 
+   color: #cfcfcf; 
+   /* position: relative; */
+   height: 100%;
+   width: 100%;
+   background-repeat: no-repeat; 
+  background-size: cover;  
+}

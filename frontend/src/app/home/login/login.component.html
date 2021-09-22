@@ -1,4 +1,5 @@
-<div class="bgComponent">
+<app-headerdos></app-headerdos>
+<!-- <div class="bgComponent">
   <div class="form">
     <mat-card class="card">
       <mat-card-title>Login user</mat-card-title>
@@ -29,4 +30,31 @@
       </mat-card-actions>
     </mat-card>
   </div>
+</div>
+ -->
+ <div class="backgroundIndex">
+ <section class="registro padding">		
+  <img src="../../../assets/img/logo.png" alt="" style="width:65%">
+    <h1 class="TituloRegistro">Iniciar Sesión</h1>
+    <div class="divRegistro">
+      <div class="divEmail">
+        <input type="text" name="email" placeholder="Correo electrónico"   [(ngModel)]="loginData.email"
+        type="email"
+        matInput
+        required>
+      </div>
+      <div class="divContraseña">
+        <input type="password" name="password" placeholder="Contraseña"  [(ngModel)]="loginData.password"
+        type="password"
+        matInput
+        required>					
+      </div>
+    </div>
+    <div class="LogEnPhot">
+      <button (click)="login()" class="btn btn-default btn-lg" mat-raised-button>Iniciar</button>
+    </div>
+    
+  
+
+</section>	
 </div>

@@ -1,0 +1,51 @@
+<ul class="nav justify-content-center" style="
+    padding-bottom: 2%;
+    padding-top: 2%;">
+    <a class="navbar-brand" href="./index.html">
+        <img src="../../../assets/img/logo.png" class="logo" alt="logo" width="150">
+    </a>
+
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" routerLink="/">Mis Tableros</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="">Equipo</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/listUser">Usuarios</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" routerLink="/listRole">Roles</a>
+    </li>
+    <li>
+
+    </li>
+    <!-- <span class="headerSpacer"></span> -->
+    <!-- <li>
+        <ul>
+          <a *ngIf="!_userService.loggedIn()" mat-button routerLink="/signUp">Sign Up</a>
+          <a *ngIf="!_userService.loggedIn()" mat-button routerLink="/login">Login</a>
+        </ul>
+        </li> -->
+        <li class="absolute">
+    <mat-icon *ngIf="_userService.loggedIn()">face</mat-icon>
+    <span class="text" *ngIf="_userService.loggedIn()">{{nameUser}}</span>
+
+    <button *ngIf="_userService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    </li>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/myProfile">
+            <mat-icon>manage_accounts</mat-icon>
+            <span>My profile</span>
+        </button>
+        <button mat-menu-item (click)="_userService.logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
+
+</ul>

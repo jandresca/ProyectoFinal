@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { UserService } from '../../services/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
@@ -23,12 +23,15 @@ export class RegisterComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _router: Router,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private router: ActivatedRoute
   ) {
     this.registerData = {};
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.registerData.email = this.router.snapshot.paramMap.get('email');
+  }
 
   registerUser() {
     if (

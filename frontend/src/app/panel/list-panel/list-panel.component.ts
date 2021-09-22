@@ -27,24 +27,43 @@ export class ListPanelComponent implements OnInit {
     private _projectService: ProjectService,
     private _snackBar: MatSnackBar
   ) {
-    this.panelData = {};
+    this.panelData = [];
   }
 
   ngOnInit(): void {
     this._projectService.listProjectUserP().subscribe(
       (res) => {
         this.panelData = res.project;
+        // this.panelData.push({
+        //   panelId: {
+        //     name: '',
+        //     description: 'Crear Nuevo Tablero'
+        //   }
+        // });
+        console.log(this.panelData);
+        
       },
       (err) => {
         this.message = err.error;
         this.openSnackBarError();
+        // this.panelData.push({
+        //   panelId: {
+        //     name: 'Texto 1',
+        //     description: 'Texto 2'
+        //   }
+        // });
       }
     );
   }
 
   transform(value: any) {
     var datePipe = new DatePipe('en-US');
-    value = datePipe.transform(value, 'dd MMMM yyyy');
+    var fecha = new Date(value);
+    var dias = 1; // Número de días a agregar
+    value = datePipe.transform(
+      fecha.setDate(fecha.getDate() + dias),
+      'yyyy-MM-dd'
+    );
     return value;
   }
 

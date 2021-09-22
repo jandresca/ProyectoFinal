@@ -1,15 +1,17 @@
-<div class="container bg-light rounded-1 text-center">
-    <h2><span class="badge bg-dark"><strong>PANEL</strong></span></h2>
-    <div *ngIf="panelData.length">
+<app-headertres></app-headertres>
+<div class="container rounded-1 text-center backgroundIndex">
+    <h2><span class="" style="color:black">Mis proyectos</span></h2>
+    <!-- div.row>div.col-sm-6*2 -->
+    <div >
         <div class="row text-center">
-            <div class="example-2 card " *ngFor="let panel of panelData">
-                <div class="wrapper"
-                    style="background: url(../../../assets/img/{{panel.panelId.theme}}) center/cover no-repeat;">
+            <div class="example-2 card " *ngFor="let panel of panelData; index as i">
+                <div class="wrapper" *ngIf="panelData.length"
+                    style="background-color: #343a40 ; background: url(../../../assets/img/{{panel?.panelId?.theme}}) center/cover no-repeat;">
                     <div class="header">
                         <div class="date">
-                            <span class="year">{{transform(panel.panelId.date)}}</span>
+                            <span class="year">{{transform(panel?.panelId?.date)}}</span>
                         </div>
-                        <ul class="menu-content">
+                        <ul class="menu-content"  *ngIf="panel.panelId._id;"> 
                             <a [routerLink]="['/updatePanel/',panel.panelId._id]">
                                 <mat-icon>border_color</mat-icon>
                             </a>
@@ -17,19 +19,66 @@
                     </div>
                     <div class="data">
                         <div class="content">
-                            <span class="author">{{panel.panelId.name}}</span>
+                            <span class="author">{{panel?.panelId?.name}}</span>
                             <h2 class="title"><a
-                                    [routerLink]="['/listTask/',panel.panelId._id]">{{panel.panelId.description}}</a>
+                                    [routerLink]="['/listTask/',panel.panelId._id]">{{panel?.panelId?.description}}</a>
                             </h2>
-                            <p class="text"></p>
-                            <button class="button" mat-button
-                                [routerLink]="['/listTask/',panel.panelId._id]">Go</button>
+                            <p class="text" *ngIf="panel.panelId.panelAlternative == 1">
+                                <br>
+                                <br>
+                                Tipo de Tablero: <strong>Classic panel</strong> 
+                            </p>
+                            <p class="text" *ngIf="panel.panelId.panelAlternative == 2">
+                                <br>
+                                <br>
+                                Tipo de Tablero: <strong>Free panel</strong>
+                            </p>
+                            <ng-container *ngIf="panel.panelId._id; else elseTemplate">
+                                <button class="button" mat-button
+                                    [routerLink]="['/listTask/',panel.panelId._id]">Go</button>
+                            </ng-container>
+                            <ng-template #elseTemplate>
+                                <button class="button" mat-button [routerLink]="['/savePanel']">Go</button>
+                            </ng-template>
+
+
                         </div>
                     </div>
                 </div>
 
             </div>
+
+            <div class="example-2 card ">
+                <div class="wrapper" style="background-color: #343a40 ;">
+                    <div class="header">
+                        <div class="date">
+                            <!-- <span class="year">{{transform(panel?.panelId?.date)}}</span> -->
+                        </div>
+                        <ul class="menu-content">
+                            <!-- <a [routerLink]="['/updatePanel/',panel.panelId._id]">
+                                <mat-icon>border_color</mat-icon>
+                            </a> -->
+                        </ul>
+                    </div>
+
+                    <div class="data">
+                        <div class="content">
+                            <!-- <span class="author">{{panel?.panelId?.name}}</span> -->
+                            <h2 class="title"><a [routerLink]="['/savePanel']">Crear Nuevo Tablero</a>
+                            </h2>
+                            <p class="text"></p>
+                            <ng-container>
+                                <button class="button" mat-button [routerLink]="['/savePanel/']">Go</button>
+                            </ng-container>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
+        <br>
     </div>
-    <br><br><br>
+    <!-- <br><br><br> -->
 </div>
