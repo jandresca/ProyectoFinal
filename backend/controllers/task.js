@@ -48,7 +48,7 @@ const listTaskTemp = async (req, res) => {
   return res.status(200).send({ task });
 }
 const saveTaskImg = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate || !req.body.userA)
+  if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
     return res.status(400).send("Incomplete data");
     // console.log(req.body.finalDate);
 
