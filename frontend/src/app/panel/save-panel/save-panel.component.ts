@@ -11,7 +11,6 @@ import { FormControl, Validators  } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import Swal from 'sweetalert2';
-
 export interface State {
   url: string;
   name: string;
@@ -25,7 +24,6 @@ export interface State {
 export class SavePanelComponent implements OnInit {
   animalControl = new FormControl('', Validators.required);
   selectFormControl = new FormControl('', Validators.required);
-  
   registerData: any;
   selectedFile: any;
   message: string = '';
@@ -110,8 +108,8 @@ export class SavePanelComponent implements OnInit {
       this._panelService.registerPanel(this.registerData).subscribe(
         (res) => {
           this._projectService.registerProject(res.result).subscribe(
-            (res) => { 
-             console.log(res);
+            (res) => {
+              console.log(res);
             },
             (err) => {
               this.message = err.error;
