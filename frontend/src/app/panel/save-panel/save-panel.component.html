@@ -74,7 +74,7 @@
         </mat-form-field>
 
 
-        <mat-form-field class="example-full-width divEmail" appearance="fill" style="background-color:#7E7272;">
+        <mat-form-field class="example-full-width divEmail" appearance="fill">
           <mat-label>Panel alternative</mat-label>
           <mat-select [formControl]="animalControl" [(ngModel)]="registerData.panelAlternative" required>
             <mat-option value="1">Classic panel</mat-option>
@@ -90,7 +90,7 @@
 
           <a href="">
 
-            <button class=" btn btn-default btn-lg" mat-raised-button>Guardar</button>
+            <button class=" btn btn-default btn-lg" (click)="registerPanel()" mat-raised-button>Guardar</button>
           </a>
         </div>
 
