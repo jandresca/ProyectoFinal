@@ -26,6 +26,9 @@ import { UpdateTaskComponent } from "./task/update-task/update-task.component";
 import { AuthGuard } from './guard/auth.guard';
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 import { CalendarComponent } from './task/calendar/calendar.component';
+import { DescriptionComponent } from './home/description/description.component';
+import { ResumenComponent } from './home/resumen/resumen.component';
+
 import { GraphComponent } from "./task/graph/graph.component";
 
 const routes: Routes = [
@@ -138,6 +141,16 @@ const routes: Routes = [
   {
     path: 'updateRole/:_id',
     component: UpdateRoleComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'description',
+    component: DescriptionComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'resumen',
+    component: ResumenComponent,
     canActivate: [AuthGuard],
   },
 ];

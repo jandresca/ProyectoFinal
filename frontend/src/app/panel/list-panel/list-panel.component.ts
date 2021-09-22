@@ -9,6 +9,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { TaskService } from 'src/app/services/task.service';
+import { toJSDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-calendar';
 
 @Component({
   selector: 'app-list-panel',
@@ -25,15 +27,22 @@ export class ListPanelComponent implements OnInit {
   constructor(
     private _panelService: PanelService,
     private _projectService: ProjectService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private _taskService: TaskService,
+
   ) {
     this.panelData = [];
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {  
+    this.loadboard();
+  }
+
+  loadboard(): void {
     this._projectService.listProjectUserP().subscribe(
       (res) => {
         this.panelData = res.project;
+        this.PanelExample();
         // this.panelData.push({
         //   panelId: {
         //     name: '',
@@ -44,6 +53,7 @@ export class ListPanelComponent implements OnInit {
         
       },
       (err) => {
+        this.PanelExample();
         this.message = err.error;
         this.openSnackBarError();
         // this.panelData.push({
@@ -83,5 +93,111 @@ export class ListPanelComponent implements OnInit {
       duration: this.durationInSeconds * 1000,
       panelClass: ['style-snackBarFalse'],
     });
+  }
+
+  PanelExample(){
+    console.log(this.panelData);
+    
+    if(this.panelData.length === 0){
+      console.log("entro");
+      this._panelService.registerPanel({
+        name: 'Tablero Introduccionnn',
+        description: 'Tablero introduccion usuarios',
+        theme: 'photo-1.jpg',
+        dbStatus: true,
+        panelAlternative: '1',
+      }).subscribe(
+        (res) => {
+          this._projectService.registerProject(res.result).subscribe(
+            (project) => { 
+             console.log(res);
+             this.loadboard();
+             this.taskintroduccion(res.result);
+            },
+            (err) => {
+              this.message = err.error;
+              this.openSnackBarError();
+            }
+          );
+        });
+  
+    }
+  }
+
+  taskintroduccion(panel?:any){
+    const tasks = [
+      {
+     
+      panelId: panel._id,
+      name: 'Bienvenido',
+      description: 'Bienvenido al tablero de Tooltask, gracias por elegirnos',
+      priority: 1,
+      taskStatus: 'to-do',
+      finalDate: new Date()
+      },
+      {
+      panelId: panel._id,
+      name: 'Crea una Tarea!',
+      description: 'Para crear una tarea solo tendrás que dar click en crear tarea',
+      priority: 1,
+      taskStatus: 'to-do',
+      finalDate: new Date()
+      },
+      {
+        panelId: panel._id,
+        name: 'Informacion Tarea',
+        description: 'Cada tarea cuenta con diferentes campos: nombre,descripción,prioridad, y estado',
+        priority: 1,
+        taskStatus: 'in-progress',
+        finalDate: new Date()
+      },
+      {
+        panelId: panel._id,
+        name: 'Prioridad',
+        description: 'La prioridad se ve reflejada en el color del borde de cada tarjeta de la siguiente manera Alta: Rojo, Normal: Amarillo, Baja:Verde',
+        priority: 2,
+        taskStatus: 'in-progress',
+        finalDate: new Date()
+      },
+      {
+        panelId: panel._id,
+        name: 'Estado de la tarea',
+        description: 'Cada tarea puede tomar tres diferentes estados: To-do, in-progress, Done',
+        priority: 3,
+        taskStatus: 'in-progress',
+        finalDate: new Date()
+      },
+      {
+        panelId: panel._id,
+        name: 'Cambiar estado',
+        description: 'Para cambiar el estado de una tarjeta puedes arrastrarlo a la columna que desees o dar click en los botones respectivos',
+        priority: 1,
+        taskStatus: 'done',
+        finalDate: new Date()
+      },
+      {
+        panelId: panel._id,
+        name: 'Fecha de la tarea',
+        description: 'Cada tarea tiene una fecha final, y respecto al tiempo que quede tomará diferentes valores: en proceso, en riesgo y atrasada',
+        priority: 2,
+        taskStatus: 'done',
+        finalDate: new Date()
+      },
+    ];    
+    this.saveTask(tasks);
+  }
+  
+  saveTask(tasks:any){
+    tasks.forEach((task:any) =>{
+      this._taskService.saveTaskImg(task).subscribe(
+        (res:any)=>{
+          console.log("Task", res);
+        },
+        (err:any)=>{
+          console.log("Error task", err);
+        }
+      );
+    })
+
   }
 }
