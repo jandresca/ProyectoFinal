@@ -17,6 +17,7 @@ router.post(
   taskController.saveTaskImg
 );
 router.get("/listTask/:_id", Auth, ValidateUser, taskController.listTask);
+router.get("/reporte/:_id", Auth, ValidateUser, taskController.reporte);
 router.put("/updateTask", Auth, ValidateUser, taskController.updateTask);
 router.put("/updateTaskImg", Auth, ValidateUser, taskController.updateTaskImg);
 router.delete(

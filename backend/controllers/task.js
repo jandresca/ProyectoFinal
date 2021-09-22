@@ -10,8 +10,8 @@ const saveTask = async (req, res) => {
   if (!req.body.name || !req.body.description || !req.body.priority)
     return res.status(400).send("Incomplete data");
 
-    const user = await User.findOne({ _id: req.user._id });
-    if (!user) return res.status(400).send("user not found");
+  const user = await User.findOne({ _id: req.user._id });
+  if (!user) return res.status(400).send("user not found");
 
   const task = new Task({
     userId: req.user._id,
@@ -19,7 +19,7 @@ const saveTask = async (req, res) => {
     name: req.body.name,
     description: req.body.description,
     priority: req.body.priority,
-    taskStatus: req.body.taskStatus, 
+    taskStatus: req.body.taskStatus,
   });
 
   const result = await task.save();
@@ -28,13 +28,12 @@ const saveTask = async (req, res) => {
 };
 
 const listTask = async (req, res) => {
-  
   const validId = mongoose.Types.ObjectId.isValid(req.params._id);
   if (!validId) return res.status(400).send("Invalid id");
 
-  const task = await Task.find(
-    {panelId: req.params._id}
-  ).sort( { priority: 1 } );
+  const task = await Task.find({ panelId: req.params._id }).sort({
+    priority: 1,
+  });
 
   if (!task || Task.length === 0)
     return res.status(400).send("You have no assigned tasks");
@@ -46,14 +45,19 @@ const listTaskTemp = async (req, res) => {
   if (!task || task.length === 0)
     return res.status(400).send("You have no assigned tasks");
   return res.status(200).send({ task });
-}
+};
 const saveTaskImg = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
+  if (
+    !req.body.name ||
+    !req.body.description ||
+    !req.body.priority ||
+    !req.body.finalDate
+  )
     return res.status(400).send("Incomplete data");
-    // console.log(req.body.finalDate);
+  // console.log(req.body.finalDate);
 
-    let panel = await Panel.findOne({ _id: req.body.panelId });
-    if (!panel) return res.status(400).send("Panel not found");
+  let panel = await Panel.findOne({ _id: req.body.panelId });
+  if (!panel) return res.status(400).send("Panel not found");
 
   let imageUrl = "";
   try {
@@ -80,6 +84,7 @@ const saveTaskImg = async (req, res) => {
     description: req.body.description,
     priority: req.body.priority,
     finalDate: req.body.finalDate,
+    userA: req.body.userA,
     taskStatus: req.body.taskStatus|| "to-do",
     imageUrl: imageUrl,
   });
@@ -89,9 +94,31 @@ const saveTaskImg = async (req, res) => {
   return res.status(200).send({ result });
 };
 
+const reporte = async (req, res) => {
+  const validId = mongoose.Types.ObjectId.isValid(req.params._id);
+  if (!validId) return res.status(400).send("Invalid id");
+
+  const todo = await Task.find({
+    panelId: req.params._id,
+    taskStatus: "to-do",
+  }).count();
+
+  const inprogress = await Task.find({
+    panelId: req.params._id,
+    taskStatus: "in-progress",
+  }).count();
+
+  const done = await Task.find({
+    panelId: req.params._id,
+    taskStatus: "done",
+  }).count();
+
+  return res.status(200).send({ todo, inprogress, done });
+};
+
 const findTask = async (req, res) => {
   // console.log(req.params["_id"]);
-  const task = await Task.findOne({ _id: req.params["_id"] })
+  const task = await Task.findOne({ _id: req.params["_id"] });
   if (!task || task.length === 0)
     return res.status(400).send("No search results");
   return res.status(200).send({ task });
@@ -116,12 +143,16 @@ const updateTask = async (req, res) => {
   return res.status(200).send({ task });
 };
 const updateTaskImg = async (req, res) => {
-  if (!req.body.name || !req.body.description || !req.body.priority || !req.body.finalDate)
-  return res.status(400).send("Incomplete data");
+  if (
+    !req.body.name ||
+    !req.body.description ||
+    !req.body.priority ||
+    !req.body.finalDate
+  )
+    return res.status(400).send("Incomplete data");
 
   let validId = mongoose.Types.ObjectId.isValid(req.body._id);
   if (!validId) return res.status(400).send("Invalid id");
-
 
   const task = await Task.findByIdAndUpdate(req.body._id, {
     name: req.body.name,
@@ -144,7 +175,6 @@ const deleteTask = async (req, res) => {
 };
 
 const sharePanelTask = async (req, res) => {
-  
   if (!req.body.email || !req.body.name)
     return res.status(400).send("Incomplete data");
 
@@ -159,15 +189,24 @@ const sharePanelTask = async (req, res) => {
     panelId: panel._id,
     name: req.body.name,
     description: req.body.description,
-    priority:req.body.priority,
+    priority: req.body.priority,
     taskStatus: "to-do",
   });
 
   const result = await task.save();
   if (!result) return res.status(400).send("Error registering task");
   return res.status(200).send({ result });
+};
 
-}
-
-module.exports = { saveTask, listTask, updateTask, deleteTask, saveTaskImg, sharePanelTask , listTaskTemp, findTask, updateTaskImg};
-
+module.exports = {
+  saveTask,
+  listTask,
+  updateTask,
+  deleteTask,
+  saveTaskImg,
+  sharePanelTask,
+  listTaskTemp,
+  findTask,
+  updateTaskImg,
+  reporte,
+};

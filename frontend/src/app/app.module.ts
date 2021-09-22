@@ -15,6 +15,7 @@ import { UpdateUserComponent } from './admin/update-user/update-user.component';
 import { RegisterRoleComponent } from './admin/register-role/register-role.component';
 import { ListRoleComponent } from './admin/list-role/list-role.component';
 import { UpdateRoleComponent } from './admin/update-role/update-role.component';
+import { GraphComponent } from "./task/graph/graph.component";
 
 //servicios
 import { UserService } from './services/user.service';
@@ -55,6 +56,7 @@ import { UpdatePanelComponent } from './panel/update-panel/update-panel.componen
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -99,6 +101,7 @@ import { ResumenComponent } from './home/resumen/resumen.component';
       HeaderdosComponent,
       HeadertresComponent,
       ResumenComponent,
+      GraphComponent
   ],
   imports: [
     BrowserModule,
@@ -132,6 +135,7 @@ import { ResumenComponent } from './home/resumen/resumen.component';
     
     MatDatepickerModule,
     MatNativeDateModule,
+    MatBadgeModule,
   ],
   providers: [
     UserService,

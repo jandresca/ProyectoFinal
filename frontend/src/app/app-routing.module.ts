@@ -29,6 +29,7 @@ import { CalendarComponent } from './task/calendar/calendar.component';
 import { DescriptionComponent } from './home/description/description.component';
 import { ResumenComponent } from './home/resumen/resumen.component';
 
+import { GraphComponent } from "./task/graph/graph.component";
 
 const routes: Routes = [
   
@@ -107,6 +108,10 @@ const routes: Routes = [
   {
     path: 'calendar',
     component: CalendarComponent,
+  },
+  {
+    path: 'graph',
+    component: GraphComponent,
   },
   {
     path: 'updateUser/:_id',

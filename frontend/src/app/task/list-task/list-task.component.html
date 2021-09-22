@@ -60,6 +60,19 @@
                                                                 <mat-panel-title>
                                                                     <span class="name-center">{{ task.name }}</span>
                                                                     <span class="spacer"></span>
+                                                                    <button mat-raised-button
+                                                                        *ngIf="status(task.finalDate) <0" color="primary"
+                                                                        matBadgePosition="before"
+                                                                        matBadgeColor="accent">
+                                                                        En Curso
+                                                                    </button>
+                                                                    <button mat-raised-button
+                                                                        *ngIf="status(task.finalDate) >0" color="warn"
+                                                                        matBadgePosition="before"
+                                                                        matBadgeColor="accent">
+                                                                        Con retraso
+                                                                    </button>
+
 
                                                                     <button class="btnDone"
                                                                         *ngIf="task.taskStatus == 'done'"
@@ -127,10 +140,18 @@
 
                                                                     <span class="name-center">{{ task.name }}</span>
                                                                     <span class="spacer"></span>
-                                                                    <!-- <span class="badge bg-light text-dark" *ngIf="task.task.priority == '1'">
-                                                                {{task.priority}} 
-                                                                
-                                                            </span> -->
+                                                                    <button mat-raised-button
+                                                                        *ngIf="status(task.finalDate) <0" color="primary"
+                                                                        matBadgePosition="before"
+                                                                        matBadgeColor="accent">
+                                                                        En Curso
+                                                                    </button>
+                                                                    <button mat-raised-button
+                                                                        *ngIf="status(task.finalDate) >0" color="warn"
+                                                                        matBadgePosition="before"
+                                                                        matBadgeColor="accent">
+                                                                        Con retraso
+                                                                    </button>
                                                                     <button class="btnDone"
                                                                         *ngIf="task.taskStatus == 'done'"
                                                                         mat-raised-button>
@@ -197,6 +218,12 @@
                                                                 <mat-panel-title>
                                                                     <span class="name-center">{{ task.name }}</span>
                                                                     <span class="spacer"></span>
+
+                                                                    <button mat-raised-button color="basic"
+                                                                        matBadgePosition="before"
+                                                                        matBadgeColor="accent">
+                                                                        Terminado
+                                                                    </button>
 
                                                                     <button class="btnDone"
                                                                         *ngIf="task.taskStatus == 'done'"
