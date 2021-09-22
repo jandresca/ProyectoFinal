@@ -51,52 +51,56 @@
 <body class="backgroundIndex ">
   <section class="registro">
     <img src="../../../assets/img/logo.png" alt="" style="width:80%">
-      <div class="resPhotogram">
-      <h2 class="TituloRegistro">Crea tablero</h2>
-        <div class="divRegistro">
-          <div class="divNombre">
-            <input type="text" name="nombre" placeholder="Nombre"  [(ngModel)]="registerData.name"
-            matInput
-            required >					
-          </div>
-          <div class="divEmail">
-            <input type="text" name="description" placeholder="Descripción"  [(ngModel)]="registerData.description"
-            type="text"
-            matInput
-            required >
-          </div>
-          
-          <mat-form-field class="example-full-width divTheme" appearance="fill" style="margin-left: 3%;">
-            <mat-label>Theme</mat-label>
-            <input matInput
-            [(ngModel)]="registerData.theme"
-                   aria-label="State"
-                   [matAutocomplete]="auto"
-                   [formControl]="stateCtrl">
-            <mat-autocomplete #auto="matAutocomplete">
-              <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
-                <img class="example-option-img" aria-hidden [src]="state.url" height="25">
-                <span>{{state.name}}</span>
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-         
-          <div class="regsitroPhot">
-            
-            <a href="">
-          
-            <button  class=" btn btn-default btn-lg"  (click)="registerPanel()" mat-raised-button>Guardar</button>
-            </a>
-          </div>
-          
+    <div class="resPhotogram">
+      <h2 class="TituloRegistro">crea tablero</h2>
+      <div class="divRegistro">
+        <div class="divNombre">
+          <input type="text" name="nombre" placeholder="Nombre">
         </div>
-        <div class="Politicas">
-					<p>Al registrarte aceptas nuestras <B>Condiciones</B>,<br>
-						la <B>Política de Datos</B> y la <B>Política de Cookies.</B></p>
-				</div>
-     
+        <div class="divEmail">
+          <input type="text" name="description" placeholder="Descripción">
+        </div>
+
+        <mat-form-field class="example-full-width divEmail" appearance="fill">
+          <mat-label>Theme</mat-label>
+          <input matInput [(ngModel)]="registerData.theme" aria-label="State" [matAutocomplete]="auto"
+            [formControl]="stateCtrl">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+              <img class="example-option-img" aria-hidden [src]="state.url" height="25">
+              <span>{{state.name}}</span>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+
+        <mat-form-field class="example-full-width divEmail" appearance="fill" style="background-color:#7E7272;">
+          <mat-label>Panel alternative</mat-label>
+          <mat-select [formControl]="animalControl" [(ngModel)]="registerData.panelAlternative" required>
+            <mat-option value="1">Classic panel</mat-option>
+            <mat-option value="2">Free panel</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+
+
+
+
+        <div class="regsitroPhot">
+
+          <a href="">
+
+            <button class=" btn btn-default btn-lg" mat-raised-button>Guardar</button>
+          </a>
+        </div>
+
       </div>
-    
-    </section>	
-  </body>
- 
+      <div class="Politicas">
+        <p>Al registrarte aceptas nuestras <B>Condiciones</B>,<br>
+          la <B>Política de Datos</B> y la <B>Política de Cookies.</B></p>
+      </div>
+
+    </div>
+
+  </section>
+</body>
