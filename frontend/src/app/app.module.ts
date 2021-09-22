@@ -55,6 +55,7 @@ import { UpdatePanelComponent } from './panel/update-panel/update-panel.componen
 import { UpdateTaskComponent } from './task/update-task/update-task.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { UpdateUser2Component } from './profile/update-user2/update-user2.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
@@ -128,6 +129,7 @@ import { HeadertresComponent } from './home/headertres/headertres.component';
     
     MatDatepickerModule,
     MatNativeDateModule,
+    MatBadgeModule,
   ],
   providers: [
     UserService,

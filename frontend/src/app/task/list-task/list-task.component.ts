@@ -15,6 +15,9 @@ import {
 } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
+import { DateFilterFn } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-list-task',
@@ -227,6 +230,25 @@ export class ListTaskComponent implements OnInit {
     this.selectedFile = <File>event.target.files[0];
   }
 
+  status(dateTask: any) {
+    //fecha actual 
+    let datef: Date = new Date();
+    let day = datef.getDate();
+
+    //fechafinal de la tarea 
+    var datePipe = new DatePipe('en-US');
+    var fecha = new Date(dateTask);
+
+    dateTask = datePipe.transform(
+      fecha.setDate(fecha.getDate()),
+      'dd'
+    );
+
+    let dateTaskf = day-dateTask;
+    // let dateF = day - dateTask;
+    return dateTaskf;
+  }
+
   saveTaskImg() {
     this._id = this.panelData._id;
     if (
@@ -261,7 +283,7 @@ export class ListTaskComponent implements OnInit {
       data.append('finalDate', this.registerData.finalDate);
       data.append('panelId', this._id);
       // console.log(data);
-      // console.log(this.registerData);
+      console.log(this.registerData);
 
       this._taskService.saveTaskImg(data).subscribe(
         (res) => {
