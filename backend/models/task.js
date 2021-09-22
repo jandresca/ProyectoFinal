@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.ObjectId, ref: "user" },
   panelId: { type: mongoose.Schema.ObjectId, ref: "panel" },
+  userA: { type: mongoose.Schema.ObjectId, ref: "user" },
   name: String,
   description: String,
   priority: Number,
