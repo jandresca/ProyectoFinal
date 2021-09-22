@@ -73,6 +73,7 @@ import { HeadercuatroComponent } from './home/headercuatro/headercuatro.componen
 import { DescriptionComponent } from './home/description/description.component';
 import { ResumenComponent } from './home/resumen/resumen.component';
 
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -106,6 +107,7 @@ import { ResumenComponent } from './home/resumen/resumen.component';
       GraphComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

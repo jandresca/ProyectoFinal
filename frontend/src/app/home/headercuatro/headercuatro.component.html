@@ -1,21 +1,21 @@
-
 <ul class="nav nav-tabs">
-    <a class="navbar-brand" href="./index.html">
-        <img src="../../../assets/img/logo.png" class="logo" alt="logo" width="150">
-    </a>
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page"  [routerLink]="['/listTask/',panelData._id]">Tablero</a>
-    </li>
-    <li class="nav-item ">
-      <a class="nav-link" routerLink="/description">Descripción</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link"  routerLink="">Calendario</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link"  routerLink="/resumen">Resumen</a>
-    </li>
-    <!-- <li class="nav-item">
+  <a class="navbar-brand" href="./index.html">
+    <img src="../../../assets/img/logo.png" class="logo" alt="logo" width="150">
+  </a>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" [routerLink]="['/listTask/',panelId]">Tablero</a>
+  </li>
+  <li class="nav-item ">
+    <a class="nav-link" [routerLink]="['/description',panelId]">Descripción</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/calendar',panelId]">Calendario</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/resumen/',panelId]">Resumen</a>
+
+  </li>
+  <!-- <li class="nav-item">
       <a class="nav-link disabled">Calendario</a>
     </li> -->
-  </ul>
+</ul>
