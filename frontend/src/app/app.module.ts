@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { CargarScriptsService } from "./cargar-scripts.service"
+import { CargarScriptsService } from "./services/cargar-script.service"
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';

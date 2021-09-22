@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { CargarScriptsService } from './cargar-scripts.service';
+import { CargarScriptsService } from './cargar-script.service';
 
 describe('CargarScriptsService', () => {
   let service: CargarScriptsService;
