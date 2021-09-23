@@ -70,7 +70,10 @@ const saveTaskImg = async (req, res) => {
           fs.createWriteStream(serverImg)
         );
         imageUrl =
-          url + "uploads/" + moment().unix() + path.extname(req.files.image.path);
+          url +
+          "uploads/" +
+          moment().unix() +
+          path.extname(req.files.image.path);
       }
     }
   } catch (error) {
@@ -85,7 +88,7 @@ const saveTaskImg = async (req, res) => {
     priority: req.body.priority,
     finalDate: req.body.finalDate,
     userA: req.body.userA,
-    taskStatus: req.body.taskStatus|| "to-do",
+    taskStatus: req.body.taskStatus || "to-do",
     imageUrl: imageUrl,
   });
 

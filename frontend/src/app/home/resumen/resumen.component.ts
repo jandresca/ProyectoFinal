@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from "../../services/task.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import { PanelService } from "../../services/panel.service";
-
 import { ChartType, ChartOptions } from 'chart.js';
 import {
   SingleDataSet,
@@ -17,29 +15,29 @@ import {
   styleUrls: ['./resumen.component.css'],
 })
 export class ResumenComponent implements OnInit {
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
-  };
-
-  public pieChartLabels: Label[] = ['PHP', '.Net', 'Java'];
-  public pieChartData: SingleDataSet = [50, 30, 20];
+  public pieChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
+  public pieChartData: SingleDataSet = [1,1,1];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
-  public pieChartPlugins = [];
+  public pieChartPlugins = []; 
+  
   panelId: any = '';
-  todo: number;
-  inprogress: number;
-  done: number;
-  list: number;
+  todo2:any="";
+  done:any="";
+  inprogress:any="";
+  todo1: number;
+  inprogress1: number;
+  done1: number;
+  list1: number;
 
   constructor(
     private _activatedRoute: ActivatedRoute,
     private _taskService: TaskService
   ) {
-    this.todo = 0;
-    this.inprogress = 0;
-    this.done = 0;
-    this.list = 0;
+    this.todo1 = 0;
+    this.inprogress1 = 0;
+    this.done1 = 0;
+    this.list1 = 0;
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
@@ -47,13 +45,17 @@ export class ResumenComponent implements OnInit {
   ngOnInit(): void {
     this.panelId = this._activatedRoute.snapshot.paramMap.get('id');
     console.log(this.panelId);
-    this._taskService.reporte(this.panelId).subscribe(
-      (res) => {
-        this.todo = res.todo;
-        this.inprogress = res.inprogress;
-        this.done = res.done;        
-        this.list = res.list;
-      },
-    )
+    this._taskService.reporte(this.panelId).subscribe((res: any) => {
+      this.todo1 = res.todo;
+      this.inprogress1 = res.inprogress;
+      this.done1 = res.done;        
+      this.list1 = res.list;
+      this.pieChartData = [];
+      this.pieChartData.push(res.done, res.inprogress, res.todo);
+    });
   }
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+
 }
