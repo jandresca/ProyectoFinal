@@ -1,75 +1,79 @@
 <app-headercuatro></app-headercuatro>
 <div class="container">
-    <br>
-    <br>
+  <br />
+  <br />
 
-    <div class="row">
-        <div class="col-lg-4 container2">
-            <div class="todo">
-                <div class="imgBx">
-                    <img src="../../../assets/img/logo2.png">
-                </div>
-                <div class="contentBx">
-                    <h2>To-Do</h2>
-                    <div class="size">
-                        <h3>Tareas sin finalizar :</h3>
-                        <span>##</span>
-                    </div>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-lg-4 container2">
+      <div class="todo">
+        <div class="imgBx">
+          <img src="../../../assets/img/logo2.png" />
         </div>
-        <div class="col-lg-4 container2">
-            <div class="inProgress">
-                <div class="imgBx">
-                    <img src="../../../assets/img/logo2.png">
-                </div>
-                <div class="contentBx">
-                    <h2>In Progress</h2>
-                    <div class="size">
-                        <h3>Tareas en progreso :</h3>
-                        <span>##</span>
-                    </div>
-                </div>
-            </div>
+        <div class="contentBx">
+          <h2>To-Do</h2>
+          <div class="size">
+            <h3>Tareas sin finalizar :</h3>
+            <span>##</span>
+          </div>
         </div>
-        <div class="col-lg-4 container2">
-            <div class="done">
-                <div class="imgBx">
-                    <img src="../../../assets/img/logo2.png">
-                </div>
-                <div class="contentBx">
-                    <h2>Done</h2>
-                    <div class="size">
-                        <h3>Tareas finalizadas :</h3>
-                        <span>##</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-4 container2">
-            <div class="done">
-                <div class="imgBx">
-                    <img src="../../../assets/img/logo2.png">
-                </div>
-                <div class="contentBx">
-                    <h2>Tareas</h2>
-                    <div class="size">
-                        <h3>Numero total de Tareas :</h3>
-                        <span>##</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="chart-wrapper">
-
-            <canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType"
-                [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
-
-            </canvas>
-
-        </div>
-
+      </div>
     </div>
+    <div class="col-lg-4 container2">
+      <div class="inProgress">
+        <div class="imgBx">
+          <img src="../../../assets/img/logo2.png" />
+        </div>
+        <div class="contentBx">
+          <h2>In Progress</h2>
+          <div class="size">
+            <h3>Tareas en progreso :</h3>
+            <span>##</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 container2">
+      <div class="done">
+        <div class="imgBx">
+          <img src="../../../assets/img/logo2.png" />
+        </div>
+        <div class="contentBx">
+          <h2>Done</h2>
+          <div class="size">
+            <h3>Tareas finalizadas :</h3>
+            <span>##</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 container2">
+      <div class="done">
+        <div class="imgBx">
+          <img src="../../../assets/img/logo2.png" />
+        </div>
+        <div class="contentBx">
+          <h2>Tareas</h2>
+          <div class="size">
+            <h3>Numero total de Tareas :</h3>
+            <span>##</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-wrapper">
+      <canvas
+        baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend"
+
+      >
+      </canvas>
+    </div>
+  </div>
 </div>
