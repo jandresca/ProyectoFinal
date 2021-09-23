@@ -76,6 +76,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { InformationComponent } from './information/information.component';
 
 import { ChartsModule } from 'ng2-charts';
+import { NosotrosComponent } from './home/nosotros/nosotros.component';
 
 @NgModule({
   declarations: [
@@ -107,7 +108,8 @@ import { ChartsModule } from 'ng2-charts';
       HeadertresComponent,
       ResumenComponent,
       GraphComponent,
-      InformationComponent
+      InformationComponent,
+      NosotrosComponent
   ],
   imports: [
     ChartsModule,
