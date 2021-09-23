@@ -102,7 +102,7 @@ export class ListTaskComponent implements OnInit {
             this._taskService.listTask(panelId).subscribe(
               (res: any) => {
                 this.taskData = res.task;
-                // console.log(res);
+                console.log(this.taskData);
                 this.taskData.forEach((element: any) => {
                   if (element.taskStatus.toLowerCase() === 'done') this.done.push(element);
                   if (element.taskStatus.toLowerCase() === 'to-do') this.todo.push(element);
@@ -301,7 +301,7 @@ export class ListTaskComponent implements OnInit {
       data.append('priority', this.registerData.priority);
       data.append('finalDate', this.registerData.finalDate);
       data.append('panelId', this._id);
-      data.append('userId',this.registerData.userId);
+      //data.append('userId',this.registerData.userId);
       data.append('userA',this.registerData.userA);
       //console.log(data);
       console.log(this.registerData);

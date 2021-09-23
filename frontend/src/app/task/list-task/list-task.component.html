@@ -95,8 +95,9 @@
                                                             <mat-panel-description>
                                                                 {{ task.description }}
                                                             </mat-panel-description>
-                                                            <span>{{ task.userId.name }}
-                                                                </span>
+                                                            <mat-panel-description *ngIf="task.userA.name !== ''">
+                                                                {{ task.userA.name }}
+                                                            </mat-panel-description>
                                                             <mat-panel-description>
                                                                 <img class="card-img-top image_center"
                                                                     src="{{ task.imageUrl }}" />
@@ -176,6 +177,7 @@
                                                             <mat-panel-description>
                                                                 {{ task.description }}
                                                             </mat-panel-description>
+                                                            
                                                             <mat-panel-description>
                                                                 <img class="card-img-top image_center"
                                                                     src="{{ task.imageUrl }}" />
@@ -248,6 +250,7 @@
                                                             <mat-panel-description>
                                                                 {{ task.description }}
                                                             </mat-panel-description>
+                                                            
                                                             <mat-panel-description>
                                                                 <img class="card-img-top image_center"
                                                                     src="{{ task.imageUrl }}" />
@@ -305,6 +308,7 @@
                                             <mat-panel-description>
                                                 {{ task.description }}
                                             </mat-panel-description>
+                                            
                                             <mat-panel-description>
                                                 <img class="card-img-top image_center" src="{{ task.imageUrl }}" />
                                             </mat-panel-description>
@@ -360,8 +364,8 @@
                     <mat-form-field appearance="fill">
                         <mat-label>Por favor seleccione el usuario que desea agregar a la
                           tarea</mat-label>
-                        <mat-select [(ngModel)]="registerData.userId">
-                          <mat-option *ngFor="let userTask of registerData2">{{ userTask.userId.name }}
+                        <mat-select [(ngModel)]="registerData.userA">
+                          <mat-option *ngFor="let userTask of registerData2" value="{{userTask.userId._id}}">{{ userTask.userId.name }}
                             ({{
                             userTask.userId.email
                             }})</mat-option>
