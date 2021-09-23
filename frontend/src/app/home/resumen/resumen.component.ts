@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TaskService } from "../../services/task.service";
 import { ActivatedRoute, Router } from '@angular/router';
-import { ChartType, ChartOptions } from 'chart.js';
+import { ChartType, ChartOptions, ChartDataSets } from 'chart.js';
 import {
   SingleDataSet,
   Label,
@@ -15,6 +15,21 @@ import {
   styleUrls: ['./resumen.component.css'],
 })
 export class ResumenComponent implements OnInit {
+  public barChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
+  // public barChartData: SingleDataSet = [1,1,1];
+  // public barChartType: ChartType = 'bar';
+  // public barChartLegend = true;
+  // public barChartPlugins = []; 
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartData: ChartDataSets[] = [
+    { data: [1,1,1] }
+  ];
+  barChartPlugins = [];
+
   public pieChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
   public pieChartData: SingleDataSet = [1,1,1];
   public pieChartType: ChartType = 'pie';
@@ -52,6 +67,8 @@ export class ResumenComponent implements OnInit {
       this.list1 = res.list;
       this.pieChartData = [];
       this.pieChartData.push(res.done, res.inprogress, res.todo);
+      // this.barChartData = [];
+      // this.barChartData.push(res.done, res.inprogress, res.todo);
     });
   }
   public pieChartOptions: ChartOptions = {

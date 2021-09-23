@@ -24,3 +24,43 @@
 
     background-color:yellow;
   }
+
+  .title{
+    padding-left: 7%;
+    padding-top: 3%;
+
+  }
+  .description{
+    padding-left: 7%;
+    /* padding-top: %; */
+
+  }
+  .card {
+    margin: 10px;
+    background-color: #fff;
+    /* border-radius: 50%; */
+    /* box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); */
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+}
+.carddos{
+     margin: 10px;
+    /* background-color: #fff;
+    
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); */
+    overflow: hidden;
+     width: 300px; 
+     text-align: center;
+}
+.backgroundIndex{
+  /* background-image:none; */
+   background-image: url("../../../assets/img/Panel.png") !important;  
+  background-size: cover; 
+   /* color: #cfcfcf;  */
+   /* position: relative; */
+   height: 100%;
+   width: 100%;
+   background-repeat: no-repeat; 
+  background-size: cover;  
+}

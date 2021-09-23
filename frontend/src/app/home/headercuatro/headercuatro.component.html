@@ -1,21 +1,44 @@
 <ul class="nav nav-tabs">
-  <a class="navbar-brand" href="./index.html">
-    <img src="../../../assets/img/logo.png" class="logo" alt="logo" width="150">
+  <a class="navbar-brand" href="./index.html" style="color: #000000;">
+    <img src="../../../assets/img/logo3.png" class="logo" alt="logo" > {{panelData.name}}
   </a>
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" [routerLink]="['/listTask/',panelId]">Tablero</a>
+    <a class="nav-link" aria-current="page" [routerLink]="['/listTask/',panel]">Tablero</a>
   </li>
   <li class="nav-item ">
-    <a class="nav-link" [routerLink]="['/description',panelId]">Descripción</a>
+    <a class="nav-link" [routerLink]="['/description',panel]">Descripción</a>
   </li>
-  <li class="nav-item" >
-    <a class="nav-link" [routerLink]="['/calendar',panelId]">Calendario</a>
+  <li class="nav-item">
+    <a class="nav-link" [routerLink]="['/calendar',panel]">Calendario</a>
   </li>
-  <li class="nav-item"  *ngIf="panelData.panelAlternative == 1">
-    <a class="nav-link" [routerLink]="['/resumen/',panelId]">Resumen</a>
+  <li class="nav-item" *ngIf="panel.panelAlternative == 1">
+    <a class="nav-link" [routerLink]="['/resumen/',panel]">Resumen</a>
 
   </li>
+  <li class="absolute">
+    <mat-icon *ngIf="_userService.loggedIn()">face</mat-icon>
+    <span class="text" *ngIf="_userService.loggedIn()">{{nameUser}}</span>
+
+    <button *ngIf="_userService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    </li>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/myProfile">
+            <mat-icon>manage_accounts</mat-icon>
+            <span>My profile</span>
+        </button>
+        <button mat-menu-item (click)="_userService.logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+    </mat-menu>
   <!-- <li class="nav-item">
       <a class="nav-link disabled">Calendario</a>
     </li> -->
+
+    
 </ul>
+

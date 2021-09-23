@@ -38,7 +38,8 @@ export class ListTaskComponent implements OnInit {
   progress: any = [];
   done: any = [];
   _id: string;
-
+  showFiller = false;
+  
   priorityone: string = 'priorityone';
   prioritytwo: string = 'prioritytwo';
   prioritythree: string = 'prioritythree';
@@ -157,23 +158,42 @@ export class ListTaskComponent implements OnInit {
       }
     );
   }
+
   deleteTask(task: any) {
-    this._taskService.deleteTask(task).subscribe(
-      (res: any) => {
-        let index = this.taskData.indexOf(task);
-        if (index > -1) {
-          this.taskData.splice(index, 1);
-          this.message = res.message;
-          this.openSnackBarSuccesfull();
-        }
-        this.loadTask();
-      },
-      (err: any) => {
-        this.message = err.error;
-        this.openSnackBarError();
+    Swal.fire({
+      title: 'You sure want to delete this task?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this._taskService.deleteTask(task).subscribe(
+        (res: any) => {
+          let index = this.taskData.indexOf(task);
+          if (index > -1) {
+            this.taskData.splice(index, 1);
+            this.message = res.message;
+            this.openSnackBarSuccesfull();
+          }
+          this.loadTask();
+        },
+          (err: any) => {
+            this.message = err.error;
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: this.message,
+              confirmButtonText: 'Close',
+            })
+          }
+        );
+        Swal.fire('Successfully removed', '', 'success')
       }
-    );
+    })
   }
+  
+
+
   drop(event: CdkDragDrop<string[]>, status?: any) {
     if (event.previousContainer === event.container) {
       moveItemInArray(

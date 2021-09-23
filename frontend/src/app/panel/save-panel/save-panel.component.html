@@ -65,7 +65,7 @@
       <h2 class="TituloRegistro">crea tablero</h2>
       <div class="divRegistro">
         <div class="divNombre">
-          <input type="text" name="nombre" placeholder="Nombre"   [(ngModel)]="registerData.name"
+          <input type="text" name="nombre" placeholder="Nombre" value="Nombre"  [(ngModel)]="registerData.name"
           matInput
           required>
         </div>
@@ -76,7 +76,7 @@
           required>
         </div>
 
-        <mat-form-field class="example-full-width divEmail" appearance="fill">
+        <mat-form-field class="example-full-width divTheme" appearance="fill">
           <mat-label>Theme</mat-label>
           <input matInput [(ngModel)]="registerData.theme" aria-label="State" [matAutocomplete]="auto"
             [formControl]="stateCtrl">
@@ -89,9 +89,9 @@
         </mat-form-field>
 
 
-        <mat-form-field class="example-full-width divEmail" appearance="fill">
-          <mat-label>Panel alternative</mat-label>
-          <mat-select [formControl]="animalControl" [(ngModel)]="registerData.panelAlternative" required>
+        <mat-form-field class="example-full-width divTablero" appearance="fill">
+          <mat-label>Estilo de Panel</mat-label> 
+          <mat-select [formControl]="animalControl" [(ngModel)]="registerData.panelAlternative" required >
             <mat-option value="1">Classic panel</mat-option>
             <mat-option value="2">Free panel</mat-option>
           </mat-select>

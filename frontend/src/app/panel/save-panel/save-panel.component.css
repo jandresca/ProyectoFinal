@@ -267,3 +267,47 @@
     border: 1px solid #02989da2;
     color: #eeeeee;
   }
+
+  .divTablero{
+    padding-bottom: 20px;
+  }
+  .divTablero{
+    background-color: #F0ECEC;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    border-top: 2px solid silver;
+    font-size: 90%;
+    height: 45px;
+    color: #7E7272;
+    width: 360px;
+    padding-left: 10px;
+  }
+
+  .divTheme{
+    padding-bottom: 20px;
+  }
+  .divTheme input{
+    background-color: #F0ECEC;
+    border: 1px solid #707070;
+    border-radius: 10px;
+    border-top: 2px solid silver;
+    font-size: 90%;
+    height: 45px;
+    color:black;
+    width: 360px;
+    padding-left: 10px;
+    margin-left: 3%;
+  }
+
+  ::-webkit-input-placeholder { color: #030303; } 
+
+:-moz-placeholder { /* Firefox 18- */ color: #030303;  } 
+
+::-moz-placeholder { /* Firefox 19+ */ color:#030303;  } 
+
+:-ms-input-placeholder { color: #030303;  }
+
+mat-label{
+  color: black;
+  /* text-align: center; */
+}

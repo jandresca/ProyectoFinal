@@ -1,17 +1,42 @@
-<app-headercuatro></app-headercuatro>
-<mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
-    </mat-drawer>
-  
-    <div class="example-sidenav-content">
-      <button type="button" mat-button (click)="drawer.toggle()">
-        Toggle sidenav
-      </button>
-    </div>
-  
-  </mat-drawer-container>
+ <app-headercuatro></app-headercuatro> 
+
+ <div class="backgroundIndex">
+ <content >
+
+    <h1 class="title">{{panel.name}}<mat-icon>assignment</mat-icon></h1>
+    <p class="description">{{panel.description}}</p>
+    
+ </content>
+ <div>
+    <h1 class="title">Roles del proyecto<mat-icon>accessibility</mat-icon></h1>
+    <div class="row" style="justify-content:center;">
+        <div class="carddos   mb-4" data-aos="fade-down">
+            <mat-icon >add_circle_outline</mat-icon>Añadir Rol
+            </div>
+        <div class="card  border-success mb-4" data-aos="fade-down">
+            Admin 
+            </div>
+            <div class="card  border-success mb-4" data-aos="fade-down">
+            User
+            </div>
+            
+            
+ </div>
+ <div>
+    <h1 class="title">Integrantes<mat-icon>account_circle</mat-icon></h1>
+    <div class="row" style="justify-content:center;">
+        <div class="carddos   mb-4" data-aos="fade-down">
+            <mat-icon>add_circle</mat-icon>Añadir participante
+            </div>
+        <div class="card  border-success mb-4" data-aos="fade-down">
+            
+            
+            Daniela Apraez 
+            </div>
+            <div class="card  border-success mb-4" data-aos="fade-down">
+            Juan David Daza
+            </div>
+            
+            
+ </div>
+</div>
