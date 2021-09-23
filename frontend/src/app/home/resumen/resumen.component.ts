@@ -5,6 +5,7 @@ import { ChartType, ChartOptions } from 'chart.js';
 import {
   SingleDataSet,
   Label,
+  Colors,
   monkeyPatchChartJsLegend,
   monkeyPatchChartJsTooltip,
 } from 'ng2-charts';
@@ -20,6 +21,7 @@ export class ResumenComponent implements OnInit {
   todo2:any="";
   done:any="";
   inprogress:any="";
+
 
   constructor(
     private _taskService: TaskService,
@@ -55,10 +57,10 @@ export class ResumenComponent implements OnInit {
   public pieChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
   public pieChartData: SingleDataSet = [this.todo];
   public pieChartType: ChartType = 'pie';
+  // public pieColor: Colors='#72C02C';
   public pieChartLegend = true;
   public pieChartPlugins = []; 
-  
-  public colours = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
+  // public Colores: Color= ['#72C02C', '#3498DB', '#717984'];
 
 
 
