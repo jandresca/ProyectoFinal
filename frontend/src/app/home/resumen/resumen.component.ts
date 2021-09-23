@@ -15,7 +15,13 @@ import {
   styleUrls: ['./resumen.component.css'],
 })
 export class ResumenComponent implements OnInit {
-  todo: any = [];
+  public pieChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
+  public pieChartData: SingleDataSet = [1,1,1];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = []; 
+  
+  public colours = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
   panelId: any = '';
   todo2:any="";
   done:any="";
@@ -33,36 +39,13 @@ export class ResumenComponent implements OnInit {
     this.panelId = this._activatedRoute.snapshot.paramMap.get('id');
     console.log(this.panelId);
     this._taskService.reporte(this.panelId).subscribe((res: any) => {
-      this.todo.push(res.done);
-      this.todo.push(res.inprogress);
-      this.todo.push(res.todo);
-
-      this.done=(res.done);
-      this.inprogress=(res.inprogress);
-      this.todo2=(res.todo);
-
-      console.log(this.todo);
-
-      console.log(this.done,this.inprogress,this.todo2);
-      
-      
+      this.pieChartData = [];
+      this.pieChartData.push(res.done, res.inprogress, res.todo);
     });
   }
   public pieChartOptions: ChartOptions = {
     responsive: true,
   };
-
-  public pieChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
-  public pieChartData: SingleDataSet = [this.todo];
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = []; 
-  
-  public colours = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
-
-
-
-
 
 }
 
