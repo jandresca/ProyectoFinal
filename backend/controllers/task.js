@@ -33,7 +33,7 @@ const listTask = async (req, res) => {
 
   const task = await Task.find({ panelId: req.params._id }).sort({
     priority: 1,
-  });
+  }).populate("userA").exec();
 
   if (!task || Task.length === 0)
     return res.status(400).send("You have no assigned tasks");
@@ -80,6 +80,14 @@ const saveTaskImg = async (req, res) => {
     console.log("error al subir la imagen");
     imageUrl = "";
   }
+  let userAsig = "";
+
+  if(req.body.userA){
+    userAsig = req.body.UserA;
+  }else{
+    userAsig = ''
+  }
+
   const task = new Task({
     userId: req.user._id,
     panelId: panel._id,
@@ -87,7 +95,7 @@ const saveTaskImg = async (req, res) => {
     description: req.body.description,
     priority: req.body.priority,
     finalDate: req.body.finalDate,
-    userA: req.body.userA,
+    userA: userAsig,
     taskStatus: req.body.taskStatus || "to-do",
     imageUrl: imageUrl,
   });
