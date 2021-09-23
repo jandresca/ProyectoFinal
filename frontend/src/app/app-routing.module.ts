@@ -106,11 +106,11 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'calendar',
+    path: 'calendar/:id',
     component: CalendarComponent,
   },
   {
-    path: 'graph',
+    path: 'graph/:id',
     component: GraphComponent,
   },
   {
@@ -144,12 +144,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'description',
+    path: 'description/:id',
     component: DescriptionComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'resumen',
+    path: 'resumen/:id',
     component: ResumenComponent,
     canActivate: [AuthGuard],
   },

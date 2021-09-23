@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { CargarScriptsService } from "./services/cargar-script.service"
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './home/header/header.component';
@@ -73,6 +75,7 @@ import { ResumenComponent } from './home/resumen/resumen.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { InformationComponent } from './information/information.component';
 
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -107,6 +110,7 @@ import { InformationComponent } from './information/information.component';
       InformationComponent
   ],
   imports: [
+    ChartsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -149,6 +153,7 @@ import { InformationComponent } from './information/information.component';
     ProjectService,
     TokenInterceptorService,
     AuthGuard,
+    CargarScriptsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,
