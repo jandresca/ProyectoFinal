@@ -1,42 +1,52 @@
- <app-headercuatro></app-headercuatro> 
+<app-headercuatro></app-headercuatro>
 
- <div class="backgroundIndex">
- <content >
+<div class="backgroundIndex">
+  <content>
+    <h1 class="title">{{ panel.name }}<mat-icon>assignment</mat-icon></h1>
+    <p class="description">{{ panel.description }}</p>
+  </content>
 
-    <h1 class="title">{{panel.name}}<mat-icon>assignment</mat-icon></h1>
-    <p class="description">{{panel.description}}</p>
-    
- </content>
- <div>
-    <h1 class="title">Roles del proyecto<mat-icon>accessibility</mat-icon></h1>
-    <div class="row" style="justify-content:center;">
-        <div class="carddos   mb-4" data-aos="fade-down">
-            <mat-icon >add_circle_outline</mat-icon>Añadir Rol
+  <div>
+    <h1 class="title">Roles del proyecto<mat-icon>account_circle</mat-icon></h1>
+    <div class="row" style="justify-content: center">
+      <div class="carddos mb-4" data-aos="fade-down">
+        <mat-icon>add_circle</mat-icon>
+
+        <div class="container">
+          <div class="example-button-container">
+            <button class="btn" mat-button routerLink="/registerRole">
+              New Role
+            </button>
+          </div>
+          
+          <div class="card border-success mb-4" data-aos="fade-down" *ngFor="let item of role">{{item.name}}</div>
+        </div>
+
+        <div>
+          <h1 class="title">Integrantes<mat-icon>account_circle</mat-icon></h1>
+          <div class="row" style="justify-content: center">
+            <div class="carddos mb-4" data-aos="fade-down">
+              <mat-icon>add_circle</mat-icon>
+
+              <div>
+                <div>
+                  <button
+                    class="btn"
+                    mat-button
+                    [routerLink]="['/saveProyect/', panel._id]"
+                  >
+                    Add new user
+                  </button>
+                </div>
+              </div>
+              <div class="card border-success mb-4" data-aos="fade-down" *ngFor="let item of project">
+                {{item.userId.name}}
+              </div>
+              
             </div>
-        <div class="card  border-success mb-4" data-aos="fade-down">
-            Admin 
-            </div>
-            <div class="card  border-success mb-4" data-aos="fade-down">
-            User
-            </div>
-            
-            
- </div>
- <div>
-    <h1 class="title">Integrantes<mat-icon>account_circle</mat-icon></h1>
-    <div class="row" style="justify-content:center;">
-        <div class="carddos   mb-4" data-aos="fade-down">
-            <mat-icon>add_circle</mat-icon>Añadir participante
-            </div>
-        <div class="card  border-success mb-4" data-aos="fade-down">
-            
-            
-            Daniela Apraez 
-            </div>
-            <div class="card  border-success mb-4" data-aos="fade-down">
-            Juan David Daza
-            </div>
-            
-            
- </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
