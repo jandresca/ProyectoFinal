@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TaskService } from '../../services/task.service';
+import { TaskService } from "../../services/task.service";
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChartType, ChartOptions } from 'chart.js';
 import {
@@ -21,16 +21,23 @@ export class ResumenComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = []; 
   
-  public colours = ['#72C02C', '#3498DB', '#717984', '#F1C40F'];
   panelId: any = '';
   todo2:any="";
   done:any="";
   inprogress:any="";
+  todo1: number;
+  inprogress1: number;
+  done1: number;
+  list1: number;
 
   constructor(
-    private _taskService: TaskService,
-    private _activatedRoute: ActivatedRoute
+    private _activatedRoute: ActivatedRoute,
+    private _taskService: TaskService
   ) {
+    this.todo1 = 0;
+    this.inprogress1 = 0;
+    this.done1 = 0;
+    this.list1 = 0;
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
   }
@@ -39,6 +46,10 @@ export class ResumenComponent implements OnInit {
     this.panelId = this._activatedRoute.snapshot.paramMap.get('id');
     console.log(this.panelId);
     this._taskService.reporte(this.panelId).subscribe((res: any) => {
+      this.todo1 = res.todo;
+      this.inprogress1 = res.inprogress;
+      this.done1 = res.done;        
+      this.list1 = res.list;
       this.pieChartData = [];
       this.pieChartData.push(res.done, res.inprogress, res.todo);
     });
