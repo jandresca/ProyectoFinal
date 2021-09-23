@@ -11,7 +11,7 @@
   <li class="nav-item">
     <a class="nav-link" [routerLink]="['/calendar',panel]">Calendario</a>
   </li>
-  <li class="nav-item" *ngIf="panel.panelAlternative == 1">
+  <li class="nav-item" *ngIf="panelData.panelAlternative == 1">
     <a class="nav-link" [routerLink]="['/resumen/',panel]">Resumen</a>
 
   </li>
