@@ -41,7 +41,6 @@ export class ResumenComponent implements OnInit {
     this._taskService.reporte(this.panelId).subscribe((res: any) => {
       this.pieChartData = [];
       this.pieChartData.push(res.done, res.inprogress, res.todo);
-      
     });
   }
   public pieChartOptions: ChartOptions = {
