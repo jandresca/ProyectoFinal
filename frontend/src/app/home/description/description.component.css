@@ -1,66 +1,66 @@
 .example-container {
-    width: 100%;
-    height: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.5);
-  }
-  
-  .example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    /* background-color:black; */
-  }
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
 
-  
-  .example-sidenav {
-    padding: 20px;
-  }
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  /* background-color:black; */
+}
 
-  .mat-drawer-container {
-    background-color:transparent;
-  }
-  .mat-button{
 
-    background-color:yellow;
-  }
+.example-sidenav {
+  padding: 20px;
+}
 
-  .title{
-    padding-left: 7%;
-    padding-top: 3%;
+.mat-drawer-container {
+  background-color:transparent;
+}
+.mat-button{
 
-  }
-  .description{
-    padding-left: 7%;
-    /* padding-top: %; */
+  background-color:yellow;
+}
 
-  }
-  .card {
-    margin: 10px;
-    background-color: #fff;
-    /* border-radius: 50%; */
-    /* box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); */
-    overflow: hidden;
-    width: 300px;
-    text-align: center;
+.title{
+  padding-left: 7%;
+  padding-top: 3%;
+
+}
+.description{
+  padding-left: 7%;
+   /* padding-top: %; */
+
+}
+.card {
+  margin: 10px;
+  background-color: #fff;
+   border-radius: 50%; 
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); 
+  overflow: hidden;
+  width: 300px;
+  text-align: center;
 }
 .carddos{
-     margin: 10px;
-    /* background-color: #fff;
-    
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); */
-    overflow: hidden;
-     width: 300px; 
-     text-align: center;
+   margin: 10px;
+  /* background-color: #fff; */
+
+  /* box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2); / */
+  overflow: hidden;
+   width: 300px; 
+   text-align: center;
 }
 .backgroundIndex{
-  /* background-image:none; */
-   background-image: url("../../../assets/img/Panel.png") !important;  
-  background-size: cover; 
-   /* color: #cfcfcf;  */
-   /* position: relative; */
-   height: 100%;
-   width: 100%;
-   background-repeat: no-repeat; 
-  background-size: cover;  
+/* / background-image:none; / */
+ background-image: url("../../../assets/img/Panel.png") !important;
+background-size: cover; 
+ /* / color: #cfcfcf;  / */
+ /* / position: relative; */ 
+ height: 100%;
+ width: 100%;
+ background-repeat: no-repeat; 
+background-size: cover;
 }
