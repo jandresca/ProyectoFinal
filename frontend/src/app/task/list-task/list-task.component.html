@@ -1,5 +1,8 @@
 <app-headercuatro></app-headercuatro>
 
+
+
+
 <body class="img" style="background-image: url('../../../assets/img/{{ panelData.theme }}');
 ">
     <div class="container-fluid">
@@ -16,7 +19,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <br />
-                        <div style="text-align: center">
+                        <div style="text-align: center;">
                             <button class="" mat-button data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Create new Task
                             </button>
@@ -56,16 +59,17 @@
                                                     <mat-accordion class="example-box" *ngFor="let task of todo"
                                                         multi="true" cdkDrag>
                                                         <mat-expansion-panel hideToggle="false" [ngClass]="
-                                task.priority === 1
-                                  ? priorityone
-                                  : task.priority === 2
-                                  ? prioritytwo
-                                  : prioritythree
-                              ">
+                                    task.priority === 1
+                                      ? priorityone
+                                      : task.priority === 2
+                                      ? prioritytwo
+                                      : prioritythree
+                                  ">
                                                             <mat-expansion-panel-header>
                                                                 <mat-panel-title>
                                                                     <span class="name-center" style="color: black">{{
-                                                                        task.name }}</span>
+                                                                        task.name
+                                                                        }}</span>
                                                                     <span class="spacer"></span>
 
                                                                     <button mat-raised-button
@@ -98,7 +102,7 @@
                                                                     </button>
                                                                 </mat-panel-title>
                                                             </mat-expansion-panel-header>
-                                                            <mat-panel-description>
+                                                            <mat-panel-description style="color: black">
                                                                 {{ task.description }}
                                                             </mat-panel-description>
                                                             <mat-panel-description>
@@ -106,13 +110,14 @@
                                                                     src="{{ task.imageUrl }}" />
                                                             </mat-panel-description>
                                                             <mat-action-row>
-                                                                <button class="btnSelectTodo" mat-button
-                                                                    (click)="updateTask(task, 'to-do', 'true')">
+                                                                <button class="btnSelectTodo" mat-button (click)="
+                                        updateTask(task, 'to-do', 'true')
+                                      ">
                                                                     to-do
                                                                 </button>
                                                                 <button class="btnSelectInProgress" mat-button (click)="
-                                    updateTask(task, 'in-progress', 'true')
-                                  ">
+                                        updateTask(task, 'in-progress', 'true')
+                                      ">
                                                                     In-progress
                                                                 </button>
                                                                 <button class="btnSelectDone" mat-button
@@ -130,7 +135,7 @@
                                                             </mat-action-row>
                                                         </mat-expansion-panel>
                                                     </mat-accordion>
-                                                    <div style="text-align: center">
+                                                    <div style="text-align: center;">
                                                         <button class="" mat-button data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal">
                                                             Create new Task
@@ -147,6 +152,8 @@
                                                                                 </mat-expansion-panel-header>
                                                                     </mat-expansion-panel>
                                                                 </mat-accordion> -->
+
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -159,16 +166,17 @@
                                                     <mat-accordion class="example-box" *ngFor="let task of progress"
                                                         multi="true" cdkDrag>
                                                         <mat-expansion-panel hideToggle="false" [ngClass]="
-                                task.priority === 1
-                                  ? priorityone
-                                  : task.priority === 2
-                                  ? prioritytwo
-                                  : prioritythree
-                              ">
+                                    task.priority === 1
+                                      ? priorityone
+                                      : task.priority === 2
+                                      ? prioritytwo
+                                      : prioritythree
+                                  ">
                                                             <mat-expansion-panel-header>
                                                                 <mat-panel-title>
                                                                     <span class="name-center" style="color: black">{{
-                                                                        task.name }}</span>
+                                                                        task.name
+                                                                        }}</span>
                                                                     <span class="spacer"></span>
                                                                     <button mat-raised-button
                                                                         *ngIf="status(task.finalDate) < 0"
@@ -200,7 +208,7 @@
                                                                 </mat-panel-title>
                                                             </mat-expansion-panel-header>
 
-                                                            <mat-panel-description>
+                                                            <mat-panel-description style="color: black">
                                                                 {{ task.description }}
                                                             </mat-panel-description>
                                                             <mat-panel-description>
@@ -208,13 +216,14 @@
                                                                     src="{{ task.imageUrl }}" />
                                                             </mat-panel-description>
                                                             <mat-action-row>
-                                                                <button class="btnSelectTodo" mat-button
-                                                                    (click)="updateTask(task, 'to-do', 'true')">
+                                                                <button class="btnSelectTodo" mat-button (click)="
+                                        updateTask(task, 'to-do', 'true')
+                                      ">
                                                                     to-do
                                                                 </button>
                                                                 <button class="btnSelectInProgress" mat-button (click)="
-                                    updateTask(task, 'in-progress', 'true')
-                                  ">
+                                        updateTask(task, 'in-progress', 'true')
+                                      ">
                                                                     In-progress
                                                                 </button>
                                                                 <button class="btnSelectDone" mat-button
@@ -231,12 +240,13 @@
                                                             </mat-action-row>
                                                         </mat-expansion-panel>
                                                     </mat-accordion>
-                                                    <div style="text-align: center">
+                                                    <div style="text-align: center;">
                                                         <button class="" mat-button data-bs-toggle="modal"
                                                             data-bs-target="#exampleModal">
                                                             Create new Task
                                                         </button>
                                                     </div>
+
                                                 </div>
                                             </div>
                                         </td>
@@ -245,18 +255,19 @@
                                                 <div cdkDropList [cdkDropListData]="done" class="example-list"
                                                     (cdkDropListDropped)="drop($event, 'done')" *ngIf="taskData.length">
                                                     <mat-accordion class="example-box" *ngFor="let task of done"
-                                                        multi="true" cdkDrag>
+                                                        data-aos="fade-down" multi="true" cdkDrag>
                                                         <mat-expansion-panel hideToggle="false" [ngClass]="
-                                task.priority === 1
-                                  ? priorityone
-                                  : task.priority === 2
-                                  ? prioritytwo
-                                  : prioritythree
-                              ">
+                                    task.priority === 1
+                                      ? priorityone
+                                      : task.priority === 2
+                                      ? prioritytwo
+                                      : prioritythree
+                                  ">
                                                             <mat-expansion-panel-header>
                                                                 <mat-panel-title>
                                                                     <span class="name-center" style="color: black">{{
-                                                                        task.name }}</span>
+                                                                        task.name
+                                                                        }}</span>
                                                                     <span class="spacer"></span>
 
                                                                     <button mat-raised-button color="basic"
@@ -282,7 +293,7 @@
                                                                     </button>
                                                                 </mat-panel-title>
                                                             </mat-expansion-panel-header>
-                                                            <mat-panel-description>
+                                                            <mat-panel-description style="color: black">
                                                                 {{ task.description }}
                                                             </mat-panel-description>
                                                             <mat-panel-description>
@@ -290,13 +301,14 @@
                                                                     src="{{ task.imageUrl }}" />
                                                             </mat-panel-description>
                                                             <mat-action-row>
-                                                                <button class="btnSelectTodo" mat-button
-                                                                    (click)="updateTask(task, 'to-do', 'true')">
+                                                                <button class="btnSelectTodo" mat-button (click)="
+                                        updateTask(task, 'to-do', 'true')
+                                      ">
                                                                     to-do
                                                                 </button>
                                                                 <button class="btnSelectInProgress" mat-button (click)="
-                                    updateTask(task, 'in-progress', 'true')
-                                  ">
+                                        updateTask(task, 'in-progress', 'true')
+                                      ">
                                                                     In-progress
                                                                 </button>
                                                                 <button class="btnSelectDone" mat-button
@@ -354,7 +366,7 @@
                                             </mat-action-row>
                                         </mat-expansion-panel>
                                     </mat-accordion>
-                                    <div style="text-align: center">
+                                    <div style="text-align: center;">
                                         <button class="" mat-button data-bs-toggle="modal"
                                             data-bs-target="#exampleModal">
                                             Create new Task

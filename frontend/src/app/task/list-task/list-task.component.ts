@@ -66,6 +66,25 @@ export class ListTaskComponent implements OnInit {
   ngOnInit(): void {
     this.loadTask();
     this._id = this.panelData._id;
+    this._activatedRoute.params.subscribe((params) => {
+      this._id = params['id'];
+      this._projectService.listProjectUser(this._id).subscribe(
+        (res: any) => {
+          this.registerData2 = res.project;
+          console.log(this.registerData2)
+        },
+        // (err: any) => {
+        //   this.message = err.error;
+        //   Swal.fire({
+        //     allowOutsideClick: false,
+        //     title: 'Error!',
+        //     text: this.message,
+        //     icon: 'error',
+        //     confirmButtonText: 'Close',
+        //   });
+        // }
+      );
+      })
   }
 
   loadTask() {
@@ -84,7 +103,7 @@ export class ListTaskComponent implements OnInit {
             this._taskService.listTask(panelId).subscribe(
               (res: any) => {
                 this.taskData = res.task;
-                // console.log(res);
+                console.log(this.taskData);
                 this.taskData.forEach((element: any) => {
                   if (element.taskStatus.toLowerCase() === 'done') this.done.push(element);
                   if (element.taskStatus.toLowerCase() === 'to-do') this.todo.push(element);
@@ -158,23 +177,42 @@ export class ListTaskComponent implements OnInit {
       }
     );
   }
+
   deleteTask(task: any) {
-    this._taskService.deleteTask(task).subscribe(
-      (res: any) => {
-        let index = this.taskData.indexOf(task);
-        if (index > -1) {
-          this.taskData.splice(index, 1);
-          this.message = res.message;
-          this.openSnackBarSuccesfull();
-        }
-        this.loadTask();
-      },
-      (err: any) => {
-        this.message = err.error;
-        this.openSnackBarError();
+    Swal.fire({
+      title: 'You sure want to delete this task?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        this._taskService.deleteTask(task).subscribe(
+        (res: any) => {
+          let index = this.taskData.indexOf(task);
+          if (index > -1) {
+            this.taskData.splice(index, 1);
+            this.message = res.message;
+            this.openSnackBarSuccesfull();
+          }
+          this.loadTask();
+        },
+          (err: any) => {
+            this.message = err.error;
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: this.message,
+              confirmButtonText: 'Close',
+            })
+          }
+        );
+        Swal.fire('Successfully removed', '', 'success')
       }
-    );
+    })
   }
+  
+
+
   drop(event: CdkDragDrop<string[]>, status?: any) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
@@ -283,7 +321,9 @@ export class ListTaskComponent implements OnInit {
       data.append('priority', this.registerData.priority);
       data.append('finalDate', this.registerData.finalDate);
       data.append('panelId', this._id);
-      // console.log(data);
+      //data.append('userId',this.registerData.userId);
+      data.append('userA',this.registerData.userA);
+      //console.log(data);
       console.log(this.registerData);
 
       this._taskService.saveTaskImg(data).subscribe(

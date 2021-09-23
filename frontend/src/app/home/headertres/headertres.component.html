@@ -6,17 +6,14 @@
     </a>
 
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" routerLink="/">Mis Tableros</a>
+        <a class="nav-link active" aria-current="page" [routerLink]="['/listPanel/']">Mis Tableros</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" routerLink="">Equipo</a>
-    </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link" routerLink="/listUser">Usuarios</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" routerLink="/listRole">Roles</a>
-    </li>
+    </li> -->
     <li>
 
     </li>
@@ -27,14 +24,14 @@
           <a *ngIf="!_userService.loggedIn()" mat-button routerLink="/login">Login</a>
         </ul>
         </li> -->
-        <li class="absolute">
-    <mat-icon *ngIf="_userService.loggedIn()">face</mat-icon>
-    <span class="text" *ngIf="_userService.loggedIn()">{{nameUser}}</span>
+    <li class="absolute">
+        <mat-icon *ngIf="_userService.loggedIn()">face</mat-icon>
+        <span class="text" *ngIf="_userService.loggedIn()">{{nameUser}}</span>
 
-    <button *ngIf="_userService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu"
-        aria-label="Example icon-button with a menu">
-        <mat-icon>more_vert</mat-icon>
-    </button>
+        <button *ngIf="_userService.loggedIn()" mat-icon-button [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
     </li>
 
     <mat-menu #menu="matMenu">

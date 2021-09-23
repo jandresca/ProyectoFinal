@@ -1,34 +1,112 @@
+
 .container {
-    display: flex;
-    flex-direction: column;
-  }
+  display: flex;
+  flex-direction: column;
+ 
   
-  .button {
-    width: 100%;
-    background-color: #3d3838;
-    color: white;
-  }
+}
+
+.button {
+  width: 100%;
+  background-color: #02989da2;
+  border: 1px solid #02989da2;
+  color: white;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active {
+  background-color: #02989da2;
+  border: 1px solid #02989da2;
+  color: #eeeeee;
+}
+
+.card {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  /* background-color: #eeeeee; */
   
-  .card {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
-  }
+  background-color: #1A5276;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 16px 0px;
   
-  .form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 16px 0px;
-  }
+}
+
+.bgComponent {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 30%;
+  /* display: flex;
+  justify-content: flex-end;
+  align-content: top; */
   
-  .bgComponent {
-    width: 100%;
-    height: 100%;
-    padding-bottom: 30%;
-  }
-  
-  mat-card-title {
-    text-align: center;
-  }
-  
+}
+
+mat-card-title {
+  text-align: center;
+}
+
+.logo {
+  position: absolute;
+  left: 4%;
+  height: 60px;
+  top: 2%;
+}
+.btn-default {
+  color: #000000;
+  font-family: "Open Sans", sans-serif;
+  background-color: #02989da2;
+  border: 1px solid #02989da2;
+  border-radius: 4px;
+  margin: 0 8px;
+  font-size: 14px;
+  transition: all 0.5s;
+  position: absolute;
+  right: 2%;
+}
+.btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active {
+  background-color: #02989da2;
+  border: 1px solid #02989da2;
+  color: #eeeeee;
+}
+
+.btn-default{
+  position: absolute;
+  right: 2%;
+}
+mat-form-field {
+  margin: 5px 0px;
+  font-size: 15px;
+  width: 300px;
+  padding: 6px;
+}
+
+
+a {
+  text-decoration: none;
+  color: #00c2cb;
+}
+
+ul {
+  margin: auto;
+}
+
+.text{
+  color: #00c2cb;
+}
+
+.absolute{
+  position: absolute;
+  right: 2%;
+}

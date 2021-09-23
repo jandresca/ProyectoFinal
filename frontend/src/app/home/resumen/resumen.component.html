@@ -4,27 +4,25 @@
   <br />
 
   <div class="row">
-    <div class="col-lg-4 container2">
+    <div class="col-lg-3 container2">
       <div class="todo">
         <div class="imgBx">
-          <img src="../../../assets/img/logo2.png" />
         </div>
         <div class="contentBx">
-          <h2>To-Do</h2>
-          <div class="size">
+          <h2>To-Do</h2><br>
+          <div class="size"> 
             <h3>Tareas sin finalizar :</h3>
             <span>{{this.todo1}}</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-4 container2">
+    <div div class="col-lg-3 container2">
       <div class="inProgress">
         <div class="imgBx">
-          <img src="../../../assets/img/logo2.png" />
         </div>
         <div class="contentBx">
-          <h2>In Progress</h2>
+          <h2>In-Progress</h2><br>
           <div class="size">
             <h3>Tareas en progreso :</h3>
             <span>{{this.inprogress1}}</span>
@@ -32,13 +30,12 @@
         </div>
       </div>
     </div>
-    <div class="col-lg-4 container2">
+    <div div class="col-lg-3 container2">
       <div class="done">
         <div class="imgBx">
-          <img src="../../../assets/img/logo2.png" />
         </div>
         <div class="contentBx">
-          <h2>Done</h2>
+          <h2>Done</h2><br>
           <div class="size">
             <h3>Tareas finalizadas :</h3>
             <span >{{this.done1}}</span>
@@ -47,23 +44,23 @@
       </div>
     </div>
 
-    <div class="col-lg-4 container2">
-        <br> <br>
-      <div class="done">
+    <div div class="col-lg-3 container2">
+      <div class="total">
         <div class="imgBx">
-          <img src="../../../assets/img/logo2.png" />
         </div>
-        <div class="contentBx">
-          <h2>Tareas</h2>
+        <div class="contentBx"> 
+          <h2>Task</h2><br>
           <div class="size">
             <h3>Numero total de Tareas :</h3>
             <span>{{this.list1}}</span>
           </div>
         </div>
       </div>
+      <br><br><br>
     </div>
 
-    <div class="chart-wrapper">
+    <div class="chart-wrapper row">
+      <div class="col-lg-6">
       <canvas
         baseChart
         [data]="pieChartData"
@@ -73,7 +70,19 @@
         [plugins]="pieChartPlugins"
         [legend]="pieChartLegend"
       >
-      </canvas>
+      </canvas></div>
+      <div class="col-lg-6">
+        <canvas
+          baseChart
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [chartType]="barChartType"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+        >
+        </canvas>
+      </div>
     </div>
   </div>
 </div>

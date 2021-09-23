@@ -17,7 +17,7 @@ import { UserService } from '../../services/user.service';
 })
 export class HeadercuatroComponent implements OnInit {
   panelData: any;
-  panel:any={};
+  panel: any = '';
   message: string = '';
   horizontalPosition: MatSnackBarHorizontalPosition = 'end';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -36,18 +36,20 @@ export class HeadercuatroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.panel._id = this._activatedRoute.snapshot.paramMap.get('id');
+    this.panel = this._activatedRoute.snapshot.paramMap.get('id');
     // this.panelData =  this.panelData._id;
+    // console.log(this.panel);
+    
     
     this.nameUser = localStorage.getItem('user');
-    this.GetData(this.panel._id);
+    this.GetData(this.panel);
   }
 
   GetData( id: any ) {
     this._panelService.findPanel(id).subscribe(
       (res) => {
-        console.log(res);
-        this.panel= res.panel;
+        // console.log(res);
+        this.panelData= res.panel;
       },
       (err) => {
         
@@ -55,6 +57,6 @@ export class HeadercuatroComponent implements OnInit {
     );
 
   }
-
-  
 }
+
+
