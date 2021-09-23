@@ -95,6 +95,8 @@
                                                             <mat-panel-description>
                                                                 {{ task.description }}
                                                             </mat-panel-description>
+                                                            <span>{{ task.userId.name }}
+                                                                </span>
                                                             <mat-panel-description>
                                                                 <img class="card-img-top image_center"
                                                                     src="{{ task.imageUrl }}" />
@@ -355,7 +357,17 @@
                             <mat-option value="3">Baja</mat-option>
                         </mat-select>
                     </mat-form-field><br>
-
+                    <mat-form-field appearance="fill">
+                        <mat-label>Por favor seleccione el usuario que desea agregar a la
+                          tarea</mat-label>
+                        <mat-select [(ngModel)]="registerData.userId">
+                          <mat-option *ngFor="let userTask of registerData2">{{ userTask.userId.name }}
+                            ({{
+                            userTask.userId.email
+                            }})</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <br />
                     <mat-form-field>
                         <mat-label>Por favor ingrese la fecha final </mat-label>
                         <input matInput [matDatepicker]="picker" [(ngModel)]="registerData.finalDate" matInput>

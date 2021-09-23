@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
   durationInSeconds: number = 2;
 
   constructor(
-    private _userService: UserService,
+    public _userService: UserService,
     private _router: Router,
     private _snackBar: MatSnackBar
   ) {
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
     this._userService.listUser2().subscribe(
       (res) => {
         this.profileData = res.users;
-        // this.role = res.users.roleId.name;
+        this.role = res.users.roleId.name;
       },
       (err) => {
         this.message = err.error;
