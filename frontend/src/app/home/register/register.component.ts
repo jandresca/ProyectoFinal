@@ -58,7 +58,7 @@ export class RegisterComponent implements OnInit {
       this._userService.registerUser(this.registerData).subscribe(
         (res) => {
           localStorage.setItem('token', res.jwtToken);
-          this._router.navigate(['/savePanel']);
+          this._router.navigate(['/listPanel' ]);
           this.getRole(this.registerData.email);
           this.getName(this.registerData.email);
           this.message = 'Successfull user registration';
