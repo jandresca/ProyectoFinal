@@ -72,6 +72,8 @@ import { HeadertresComponent } from './home/headertres/headertres.component';
 import { HeadercuatroComponent } from './home/headercuatro/headercuatro.component';
 import { DescriptionComponent } from './home/description/description.component';
 import { ResumenComponent } from './home/resumen/resumen.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { InformationComponent } from './information/information.component';
 
 import { ChartsModule } from 'ng2-charts';
 
@@ -104,7 +106,8 @@ import { ChartsModule } from 'ng2-charts';
       HeaderdosComponent,
       HeadertresComponent,
       ResumenComponent,
-      GraphComponent
+      GraphComponent,
+      InformationComponent
   ],
   imports: [
     ChartsModule,
@@ -140,6 +143,7 @@ import { ChartsModule } from 'ng2-charts';
     MatDatepickerModule,
     MatNativeDateModule,
     MatBadgeModule,
+    MatSidenavModule,
   ],
   providers: [
     UserService,
