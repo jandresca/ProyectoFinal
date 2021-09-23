@@ -38,7 +38,8 @@ export class ListTaskComponent implements OnInit {
   progress: any = [];
   done: any = [];
   _id: string;
-
+  showFiller = false;
+  
   priorityone: string = 'priorityone';
   prioritytwo: string = 'prioritytwo';
   prioritythree: string = 'prioritythree';

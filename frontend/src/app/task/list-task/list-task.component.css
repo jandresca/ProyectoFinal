@@ -172,7 +172,7 @@
 }
 
 table {
-  background-color: #fcfcfccc;
+  /* background-color: #fcfcfccc; */
 }
 
 .name-center {
@@ -207,5 +207,18 @@ table {
 
 .mat-expansion-panel{
   width: 376px;
+  background-color: #f8f9fae0;
+  color:black;
 }
 
+/* .example-container {
+  width: 100%;
+  height: 100%;
+}
+
+.example-sidenav {
+  z-index: 99 !important;
+} */
+.mat-drawer-container {
+  background-color:transparent;
+}
