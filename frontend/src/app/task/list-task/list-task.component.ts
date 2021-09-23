@@ -73,16 +73,16 @@ export class ListTaskComponent implements OnInit {
           this.registerData2 = res.project;
           console.log(this.registerData2)
         },
-        // (err: any) => {
-        //   this.message = err.error;
-        //   Swal.fire({
-        //     allowOutsideClick: false,
-        //     title: 'Error!',
-        //     text: this.message,
-        //     icon: 'error',
-        //     confirmButtonText: 'Close',
-        //   });
-        // }
+        (err: any) => {
+          this.message = err.error;
+          Swal.fire({
+            allowOutsideClick: false,
+            title: 'Error!',
+            text: this.message,
+            icon: 'error',
+            confirmButtonText: 'Close',
+          });
+        }
       );
       })
   }
