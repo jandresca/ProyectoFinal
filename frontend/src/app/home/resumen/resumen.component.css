@@ -213,7 +213,7 @@
   }
   
   .container2 .inProgress:after {
-    content: "ToDo";
+    content: "Progress";
     position: absolute;
     top: 30%;
     left: -20%;
@@ -392,7 +392,7 @@
   }
   
   .container2 .done:after {
-    content: "ToDo";
+    content: "Done";
     position: absolute;
     top: 30%;
     left: -20%;
@@ -572,7 +572,7 @@
   }
   
   .container2 .done:after {
-    content: "ToDo";
+    content: "Total";
     position: absolute;
     top: 30%;
     left: -20%;

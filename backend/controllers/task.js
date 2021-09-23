@@ -113,7 +113,11 @@ const reporte = async (req, res) => {
     taskStatus: "done",
   }).count();
 
-  return res.status(200).send({ todo, inprogress, done });
+  const list = await Task.find({
+    panelId: req.params._id,
+  }).count();
+
+  return res.status(200).send({ todo, inprogress, done, list });
 };
 
 const findTask = async (req, res) => {
