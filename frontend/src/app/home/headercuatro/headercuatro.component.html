@@ -8,10 +8,10 @@
   <li class="nav-item ">
     <a class="nav-link" [routerLink]="['/description',panelId]">Descripción</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item" >
     <a class="nav-link" [routerLink]="['/calendar',panelId]">Calendario</a>
   </li>
-  <li class="nav-item">
+  <li class="nav-item"  *ngIf="panelData.panelAlternative == 1">
     <a class="nav-link" [routerLink]="['/resumen/',panelId]">Resumen</a>
 
   </li>
