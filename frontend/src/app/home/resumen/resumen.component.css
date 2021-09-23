@@ -8,7 +8,7 @@
   position: relative;
   width: 250px;
   height: 350px;
-  background: #232323;
+  background: #4d4a4a;
   border-radius: 20px;
   overflow: hidden;
 }
@@ -553,7 +553,7 @@
     position: relative;
     width: 250px;
     height: 350px;
-    background: #232323;
+    background: #505050;
     border-radius: 20px;
     overflow: hidden;
   }
