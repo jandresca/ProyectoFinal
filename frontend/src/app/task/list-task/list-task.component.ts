@@ -180,7 +180,7 @@ export class ListTaskComponent implements OnInit {
 
   deleteTask(task: any) {
     Swal.fire({
-      title: 'You sure want to delete this task?',
+      title: 'Estas seguro que quieres eliminar esta tarea?',
       showDenyButton: true,
       confirmButtonText: 'Yes',
     }).then((result) => {
