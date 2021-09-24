@@ -104,7 +104,12 @@
                                                             </mat-expansion-panel-header>
                                                             <mat-panel-description style="color: black">
                                                                 {{ task.description }}
+                                                            </mat-panel-description><br>
+
+                                                            <mat-panel-description style="color: black" *ngIf="task.userA._id !== '614c7b589132c13a0c94c083'">
+                                                                <strong>Usuario: </strong> {{ task.userA.name }}
                                                             </mat-panel-description>
+                                                            
                                                             <mat-panel-description>
                                                                 <img class="card-img-top image_center"
                                                                     src="{{ task.imageUrl }}" />
@@ -412,6 +417,16 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field><br />
+                    <mat-form-field>
+                        <mat-label>Por favor seleccione el usuario que desea agregar a la
+                            tarea</mat-label>
+                          <mat-select [(ngModel)]="registerData.userA">
+                            <mat-option *ngFor="let userTask of registerData2" value="{{userTask.userId._id}}">{{ userTask.userId.name }}
+                              ({{
+                              userTask.userId.email
+                              }})</mat-option>
+                          </mat-select>
+                    </mat-form-field><br />
 
                     <input matInput [(ngModel)]="registerData.taskStatus" hidden matInput
                         *ngIf="panelData.panelAlternative == 1" value="to-do" />
@@ -478,6 +493,7 @@
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field><br />
+                    
 
                     <input matInput [(ngModel)]="registerData.taskStatus" hidden matInput
                         *ngIf="panelData.panelAlternative == 1" value="to-do" />
