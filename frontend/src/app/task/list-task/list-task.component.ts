@@ -73,18 +73,18 @@ export class ListTaskComponent implements OnInit {
           this.registerData2 = res.project;
           console.log(this.registerData2)
         },
-        // (err: any) => {
-        //   this.message = err.error;
-        //   Swal.fire({
-        //     allowOutsideClick: false,
-        //     title: 'Error!',
-        //     text: this.message,
-        //     icon: 'error',
-        //     confirmButtonText: 'Close',
-        //   });
-        // }
-      );
-      })
+  //       (err: any) => {
+  //         this.message = err.error;
+  //         Swal.fire({
+  //           allowOutsideClick: false,
+  //           title: 'Error!',
+  //           text: this.message,
+  //           icon: 'error',
+  //           confirmButtonText: 'Close',
+  //         });
+         
+       );
+       })
   }
 
   loadTask() {
@@ -180,7 +180,7 @@ export class ListTaskComponent implements OnInit {
 
   deleteTask(task: any) {
     Swal.fire({
-      title: 'You sure want to delete this task?',
+      title: 'Estas seguro que quieres eliminar esta tarea?',
       showDenyButton: true,
       confirmButtonText: 'Yes',
     }).then((result) => {
