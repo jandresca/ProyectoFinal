@@ -133,8 +133,7 @@
                                                                 <mat-icon color="primary" (click)="deleteTask(task)">
                                                                     delete
                                                                 </mat-icon>
-                                                                <mat-icon data-bs-toggle="modal"
-                                                                    data-bs-target="#update">
+                                                                <mat-icon [routerLink]="['/updateTask/', task._id]">
                                                                     border_color
                                                                 </mat-icon>
                                                             </mat-action-row>
@@ -349,16 +348,16 @@
                                     <mat-accordion class="example-box" *ngFor="let task of todo" multi="true" cdkDrag>
                                         <mat-expansion-panel hideToggle="false">
                                             <mat-expansion-panel-header>
-                                                <mat-panel-title>
+                                                <mat-panel-title style="color: black">
                                                     <span class="name-center">{{ task.name }}</span>
                                                     <span class="spacer"></span>
                                                 </mat-panel-title>
                                             </mat-expansion-panel-header>
-                                            <mat-panel-description>
+                                            <mat-panel-description style="color: black">
                                                 {{ task.description }}
                                             </mat-panel-description>
                                             <mat-panel-description>
-                                                <img class="card-img-top image_center" src="{{ task.imageUrl }}" />git
+                                                <img class="card-img-top image_center" src="{{ task.imageUrl }}" />
                                             </mat-panel-description>
                                             <mat-action-row>
                                                 <span class="spacer"></span>
@@ -377,11 +376,6 @@
                                             Create new Task
                                         </button>
                                     </div>
-                                    <h1>Hola</h1>
-<<<<<<< HEAD
-
-=======
->>>>>>> d597cccbff0e66d2b6c16975ee83366037fdd9d0
                                 </div>
                             </div>
                         </div>
