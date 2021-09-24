@@ -23,11 +23,9 @@ export class ResumenComponent implements OnInit {
   barChartOptions: ChartOptions = {
     responsive: true,
   };
-  barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'polarArea';
   barChartLegend = true;
-  barChartData: ChartDataSets[] = [
-    { data: [1,1,1] }
-  ];
+  barChartData: SingleDataSet = [1,1,1];
   barChartPlugins = [];
 
   public pieChartLabels: Label[] = ['Done', 'In-Progress', 'To-Do'];
@@ -67,8 +65,8 @@ export class ResumenComponent implements OnInit {
       this.list1 = res.list;
       this.pieChartData = [];
       this.pieChartData.push(res.done, res.inprogress, res.todo);
-      // this.barChartData = [];
-      // this.barChartData.push(res.done, res.inprogress, res.todo);
+      this.barChartData = [];
+      this.barChartData.push(res.done, res.inprogress, res.todo);
     });
   }
   public pieChartOptions: ChartOptions = {

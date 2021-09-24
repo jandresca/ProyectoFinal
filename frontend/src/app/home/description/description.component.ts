@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { PanelService } from 'src/app/services/panel.service';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
+import { RoleService } from "src/app/services/role.service";
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -16,12 +18,25 @@ export class DescriptionComponent implements OnInit {
   panelData: any;
   panel:any={};
   nameUser: any = localStorage.getItem('user');
+  message: string = '';
+  registerData: any;
+  registerData2: any;
+  selectedFile: any;
+  taskData: any;
+  _id: string;
+  project: any;
+  role:any;
   constructor(
+    private _projectService: ProjectService,
     private _activatedRoute: ActivatedRoute,
     public _userService: UserService,
     public _panelService: PanelService,
+    public _roleService: RoleService,
   ) { 
+    this._id = '';
     this.panelData = [];
+    this.project = {};
+    this.role = {};
   }
 
   ngOnInit(): void {
@@ -30,6 +45,9 @@ export class DescriptionComponent implements OnInit {
     
     this.nameUser = localStorage.getItem('user');
     this.GetData(this.panel._id);
+    this.GetUser(this.panel._id);
+    this.GetRole();
+    
   }
 
 
@@ -43,6 +61,30 @@ export class DescriptionComponent implements OnInit {
         
       }
     );
+  }
+
+  GetUser(id:any) {
+    this._projectService.listProjectUser(id).subscribe(
+      (res) => {
+        console.log(res);
+        this.project= res.project;
+      },
+      (err) => {
+        
+      }
+    )
+  }
+
+  GetRole(){
+    this._roleService.listRole().subscribe(
+      (res) => {
+        console.log(res);
+        this.role= res.role;
+      },
+      (err) => {
+        
+      }
+    )
   }
 
 }
