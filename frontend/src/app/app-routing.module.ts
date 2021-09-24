@@ -17,6 +17,7 @@ import { ProfileComponent } from "./home/profile/profile.component";
 import { SaveProjectComponent } from "./project/save-project/save-project.component";
 import { UpdatePanelComponent } from "./panel/update-panel/update-panel.component";
 import { UpdateTaskComponent } from "./task/update-task/update-task.component";
+import { NosotrosComponent } from './home/nosotros/nosotros.component';
 
 
 
@@ -43,6 +44,7 @@ const routes: Routes = [
     component: UpdateTaskComponent,
     canActivate: [AuthGuard],
   },
+  
   {
     path: 'updatePanel/:id',
     component: UpdatePanelComponent,
@@ -153,6 +155,11 @@ const routes: Routes = [
     component: ResumenComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'nosotros',
+    component: NosotrosComponent,
+    canActivate: [AuthGuard],
+  }
 ];
 
 @NgModule({
