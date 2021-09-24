@@ -60,6 +60,7 @@ const saveTaskImg = async (req, res) => {
   if (!panel) return res.status(400).send("Panel not found");
 
   let imageUrl = "";
+  let userAsig = "614c7b589132c13a0c94c083";
   try {
     if (req.files.image) {
       if (req.files.image.type != null) {
@@ -80,13 +81,13 @@ const saveTaskImg = async (req, res) => {
     console.log("error al subir la imagen");
     imageUrl = "";
   }
-  let userAsig = "";
-
+  
+  
   if(req.body.userA){
-    userAsig = req.body.UserA;
-  }else{
-    userAsig = ''
-  }
+    userAsig = req.body.userA;
+    
+  } 
+
 
   const task = new Task({
     userId: req.user._id,

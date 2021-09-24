@@ -71,20 +71,20 @@ export class ListTaskComponent implements OnInit {
       this._projectService.listProjectUser(this._id).subscribe(
         (res: any) => {
           this.registerData2 = res.project;
-          console.log(this.registerData2)
+          // console.log(this.registerData2)
         },
-  //       (err: any) => {
-  //         this.message = err.error;
-  //         Swal.fire({
-  //           allowOutsideClick: false,
-  //           title: 'Error!',
-  //           text: this.message,
-  //           icon: 'error',
-  //           confirmButtonText: 'Close',
-  //         });
-         
-       );
-       })
+        // (err: any) => {
+        //   this.message = err.error;
+        //   // Swal.fire({
+        //   //   allowOutsideClick: false,
+        //   //   title: 'Error!',
+        //   //   text: this.message,
+        //   //   icon: 'error',
+        //   //   confirmButtonText: 'Close',
+        //   // });
+        // }
+      );
+      })
   }
 
   loadTask() {
@@ -316,13 +316,19 @@ export class ListTaskComponent implements OnInit {
       if (this.selectedFile != null) {
         data.append('image', this.selectedFile, this.selectedFile.name);
       }
+      let userA="";
+      if(this.registerData.userA){
+        userA=this.registerData.userA;
+      }
       data.append('name', this.registerData.name);
       data.append('description', this.registerData.description);
       data.append('priority', this.registerData.priority);
       data.append('finalDate', this.registerData.finalDate);
       data.append('panelId', this._id);
       //data.append('userId',this.registerData.userId);
-      data.append('userA',this.registerData.userA);
+      data.append('userA',userA);
+      console.log(this.registerData.userA);
+      
       //console.log(data);
       console.log(this.registerData);
 
